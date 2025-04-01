@@ -36,7 +36,7 @@ width: full
 
 ## Schedule
 
-{{% steps %}}
+
 
 
 
