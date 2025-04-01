@@ -1,3 +1,9 @@
+---
+title: 6. Tool in Lanchain
+weight: 7
+---
+
+
 ### What exactly is a tool?
 
 At its core, a tool is simply a Python function that performs a specific task. But in the context of LangChain, it’s more than just a function. A tool is a function packaged with metadata that helps the AI understand what it does, how to use it, and what kind of information it needs. Think of it like a well-documented instruction manual for your AI assistant.

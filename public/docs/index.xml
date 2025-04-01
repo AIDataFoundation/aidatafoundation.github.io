@@ -15,7 +15,76 @@
     
     
     <item>
-      <title></title>
+      <title>1.Introduction to Langchain</title>
+      <link>//localhost:1313/docs/langchain-python/what-is-langchain/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/docs/langchain-python/what-is-langchain/</guid>
+      <description>
+        
+        
+        &lt;h3&gt;what is langchain ?&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;what-is-langchain-&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#what-is-langchain-&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;LangChain is like a &amp;ldquo;toolkit&amp;rdquo; for building application with LLMs . it provides a way to use these powerful AI &amp;ldquo;brains&amp;rdquo; effectively . Think of it as a set of instrustions that helps you guide and connect with an LLM to build something bigger and more userful&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
+
+&lt;pre&gt;&lt;code&gt;                  user 
+                   |
+                   |
+                   |
+External Source &amp;lt;--LangChain--&amp;gt;LLM &lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
+    &lt;div class=&#34;success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;langchain helps in a few key ways , fistly it allows us to chain or connect multiple LLMs Together, enabling us to perform complex tasks .
+secondly , it lets LLMs access and use information from ousdie of their buil-in knowledge .&lt;/p&gt;
+&lt;p&gt;this is essential when working with things like current news or specific data .overall langchain turns the abstarct potiential of LLMs into something we can use to  make awesome things&lt;/p&gt;
+&lt;h3&gt;Why should you learn LangChain?&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;why-should-you-learn-langchain&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#why-should-you-learn-langchain&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Now that we understand how LangChain simplifies working with LLMs, let’s explore why learning it can be so valuable. Well, it dramatically simplifies the process of building AI applications. Instead of wrestling with the raw complexity of LLMs, LangChain lets you focus on building your vision. It makes things easier even for beginners!&lt;/p&gt;
+&lt;p&gt;With LangChain, you can create all sorts of cool things. Chatbots with human-like conversations, AI tools that can help you write or research, or data analysis tools that can provide powerful insights. The possibilities are truly vast.&lt;/p&gt;
+&lt;p&gt;Plus, as AI becomes increasingly important, knowing how to use tools like Langhain is becoming a valuable skill. The demand for people who understand this technology is only going to grow.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>2. How Langchain Work</title>
+      <link>//localhost:1313/docs/langchain-python/how-langchain-work/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/docs/langchain-python/how-langchain-work/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Imagine you want to cook a complex recipe. You wouldn’t just dump all the ingredients together and hope for the best, right? You’d likely follow a recipe with specific steps, where each step builds on the previous one. LangChain does something similar with LLMs.&lt;/p&gt;
+&lt;p&gt;Instead of directly asking an LLM to do everything at once, LangChain allows you to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Define a “Chain” of actions: You can create a sequence of actions that the LLM will execute. Each action might be a different task, like summarizing text, translating content, or answering questions based on a specific source of information.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Connect different tools: LangChain can hook into various external tools, like:
+LLMs: To generate text, analyze, translate, etc.
+Data Sources: To load information from text files, databases, or APIs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Other Utilities: Like web search or even math tools
+Manage the flow of information: LangChain acts as the orchestrator, ensuring that the output from one action becomes the input for the next action in the chain. This flow allows for complex operations that are beyond what a single LLM call could achieve.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The word “chain” is central because it represents the core way LangChain structures its work. Imagine a physical chain with multiple connected links. Each link represents one step in your process, whether it&amp;rsquo;s using an LLM for a specific task, transforming some data, retrieving information, etc. By “chaining” these actions, you create more complex and powerful workflows.&lt;/p&gt;
+&lt;p&gt;&amp;ndash;&amp;gt; Input Query &amp;ndash;&amp;gt; [Prompt Templete, LLM , Output parser]&amp;mdash;&amp;gt; respose&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>3. Chat Models, Messages, and Prompt Templates</title>
       <link>//localhost:1313/docs/langchain-python/chatbot-message/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -109,52 +178,7 @@ So, without further ado, the answer is... (drumroll please)... 4! Wow, I know, I
     </item>
     
     <item>
-      <title></title>
-      <link>//localhost:1313/docs/langchain-python/embeddings-vector-stores-in-langchain/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//localhost:1313/docs/langchain-python/embeddings-vector-stores-in-langchain/</guid>
-      <description>
-        
-        
-        &lt;h3&gt;Embeddings and Vector Stores in LangChain&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;embeddings-and-vector-stores-in-langchain&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#embeddings-and-vector-stores-in-langchain&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>//localhost:1313/docs/langchain-python/how-langchain-work/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//localhost:1313/docs/langchain-python/how-langchain-work/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Imagine you want to cook a complex recipe. You wouldn’t just dump all the ingredients together and hope for the best, right? You’d likely follow a recipe with specific steps, where each step builds on the previous one. LangChain does something similar with LLMs.&lt;/p&gt;
-&lt;p&gt;Instead of directly asking an LLM to do everything at once, LangChain allows you to:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Define a “Chain” of actions: You can create a sequence of actions that the LLM will execute. Each action might be a different task, like summarizing text, translating content, or answering questions based on a specific source of information.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Connect different tools: LangChain can hook into various external tools, like:
-LLMs: To generate text, analyze, translate, etc.
-Data Sources: To load information from text files, databases, or APIs.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Other Utilities: Like web search or even math tools
-Manage the flow of information: LangChain acts as the orchestrator, ensuring that the output from one action becomes the input for the next action in the chain. This flow allows for complex operations that are beyond what a single LLM call could achieve.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The word “chain” is central because it represents the core way LangChain structures its work. Imagine a physical chain with multiple connected links. Each link represents one step in your process, whether it&amp;rsquo;s using an LLM for a specific task, transforming some data, retrieving information, etc. By “chaining” these actions, you create more complex and powerful workflows.&lt;/p&gt;
-&lt;p&gt;&amp;ndash;&amp;gt; Input Query &amp;ndash;&amp;gt; [Prompt Templete, LLM , Output parser]&amp;mdash;&amp;gt; respose&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title></title>
+      <title>4. Parsing outputs with langchain</title>
       <link>//localhost:1313/docs/langchain-python/parsing-outputs-with-langchain/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -354,7 +378,7 @@ print(returned_object.books)&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;hextra-c
     </item>
     
     <item>
-      <title></title>
+      <title>5. Prompt templates</title>
       <link>//localhost:1313/docs/langchain-python/prompt-templates/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -449,7 +473,7 @@ P.S. Don&amp;#39;t forget to arrive early to grab a good seat and enjoy the pre-
     </item>
     
     <item>
-      <title></title>
+      <title>6. Runnable and LCEL</title>
       <link>//localhost:1313/docs/langchain-python/runnables-lcel/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -768,7 +792,7 @@ Sincerely,
     </item>
     
     <item>
-      <title></title>
+      <title>6. Tool in Lanchain</title>
       <link>//localhost:1313/docs/langchain-python/tools-in-langchain/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1064,40 +1088,16 @@ Tools unlock the full potential of LangCh&lt;/p&gt;
     </item>
     
     <item>
-      <title></title>
-      <link>//localhost:1313/docs/langchain-python/what-is-langchain/</link>
+      <title>7. Embeddings and Vector Stores in LangChain</title>
+      <link>//localhost:1313/docs/langchain-python/embeddings-vector-stores-in-langchain/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/docs/langchain-python/what-is-langchain/</guid>
+      <guid>//localhost:1313/docs/langchain-python/embeddings-vector-stores-in-langchain/</guid>
       <description>
         
         
-        &lt;h3&gt;what is langchain ?&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;what-is-langchain-&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#what-is-langchain-&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;LangChain is like a &amp;ldquo;toolkit&amp;rdquo; for building application with LLMs . it provides a way to use these powerful AI &amp;ldquo;brains&amp;rdquo; effectively . Think of it as a set of instrustions that helps you guide and connect with an LLM to build something bigger and more userful&lt;/p&gt;
-&lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
-
-&lt;pre&gt;&lt;code&gt;                  user 
-                   |
-                   |
-                   |
-External Source &amp;lt;--LangChain--&amp;gt;LLM &lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0&#34;&gt;
-  &lt;button
-    class=&#34;hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50&#34;
-    title=&#34;Copy code&#34;
-  &gt;
-    &lt;div class=&#34;copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
-    &lt;div class=&#34;success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
-  &lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;langchain helps in a few key ways , fistly it allows us to chain or connect multiple LLMs Together, enabling us to perform complex tasks .
-secondly , it lets LLMs access and use information from ousdie of their buil-in knowledge .&lt;/p&gt;
-&lt;p&gt;this is essential when working with things like current news or specific data .overall langchain turns the abstarct potiential of LLMs into something we can use to  make awesome things&lt;/p&gt;
-&lt;h3&gt;Why should you learn LangChain?&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;why-should-you-learn-langchain&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#why-should-you-learn-langchain&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Now that we understand how LangChain simplifies working with LLMs, let’s explore why learning it can be so valuable. Well, it dramatically simplifies the process of building AI applications. Instead of wrestling with the raw complexity of LLMs, LangChain lets you focus on building your vision. It makes things easier even for beginners!&lt;/p&gt;
-&lt;p&gt;With LangChain, you can create all sorts of cool things. Chatbots with human-like conversations, AI tools that can help you write or research, or data analysis tools that can provide powerful insights. The possibilities are truly vast.&lt;/p&gt;
-&lt;p&gt;Plus, as AI becomes increasingly important, knowing how to use tools like Langhain is becoming a valuable skill. The demand for people who understand this technology is only going to grow.&lt;/p&gt;
-
+        &lt;h3&gt;Embeddings and Vector Stores in LangChain&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;embeddings-and-vector-stores-in-langchain&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#embeddings-and-vector-stores-in-langchain&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
       </description>
     </item>
     

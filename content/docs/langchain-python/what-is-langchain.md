@@ -1,3 +1,9 @@
+---
+title: 1.Introduction to Langchain
+weight: 1
+---
+
+
 ### what is langchain ?
 
 LangChain is like a "toolkit" for building application with LLMs . it provides a way to use these powerful AI "brains" effectively . Think of it as a set of instrustions that helps you guide and connect with an LLM to build something bigger and more userful 

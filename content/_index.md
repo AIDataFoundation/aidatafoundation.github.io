@@ -39,10 +39,16 @@ width: full
 
 ### Langchain 
 
-- **Lab 1: [Understanding AI Threat Modeling]()**  
-&nbsp;&nbsp;• Types of threats in AI systems  
+1. Introduction to Langchain
+2. How Langchain Work
+3. Chat Models, Messages, and Prompt Templates
+4. Parsing outputs with langchain
+5. Prompt templates
+6. Runnable and LCEL
+6. Tool in Lanchain
+7. Embeddings and Vector Stores in LangChain
 
-- *
+
   
 
 {{% /steps %}}

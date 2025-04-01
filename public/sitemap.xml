@@ -2,13 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/</loc>
-  </url><url>
-    <loc>//localhost:1313/docs/langchain-python/chatbot-message/</loc>
-  </url><url>
-    <loc>//localhost:1313/docs/langchain-python/embeddings-vector-stores-in-langchain/</loc>
+    <loc>//localhost:1313/docs/langchain-python/what-is-langchain/</loc>
   </url><url>
     <loc>//localhost:1313/docs/langchain-python/how-langchain-work/</loc>
+  </url><url>
+    <loc>//localhost:1313/docs/langchain-python/chatbot-message/</loc>
   </url><url>
     <loc>//localhost:1313/docs/langchain-python/parsing-outputs-with-langchain/</loc>
   </url><url>
@@ -18,7 +16,9 @@
   </url><url>
     <loc>//localhost:1313/docs/langchain-python/tools-in-langchain/</loc>
   </url><url>
-    <loc>//localhost:1313/docs/langchain-python/what-is-langchain/</loc>
+    <loc>//localhost:1313/docs/langchain-python/embeddings-vector-stores-in-langchain/</loc>
+  </url><url>
+    <loc>//localhost:1313/</loc>
   </url><url>
     <loc>//localhost:1313/news/</loc>
   </url><url>

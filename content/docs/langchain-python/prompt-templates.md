@@ -1,3 +1,10 @@
+---
+title: 5. Prompt templates
+weight: 5
+---
+
+
+
 ## Prompt templates
 
 A prompt is a query that stores the style and format of an input to a model that answers the query accordingly. Prompts play an important role in the interaction with language models. Careful prompt crafting is essential to getting the desired and effective response from the model. To ease the prompting tasks, LangChain provides prompt templates.

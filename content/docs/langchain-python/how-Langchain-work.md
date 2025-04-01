@@ -1,3 +1,9 @@
+---
+title: 2. How Langchain Work 
+weight: 2
+---
+
+
 Imagine you want to cook a complex recipe. You wouldn’t just dump all the ingredients together and hope for the best, right? You’d likely follow a recipe with specific steps, where each step builds on the previous one. LangChain does something similar with LLMs.
 
 Instead of directly asking an LLM to do everything at once, LangChain allows you to:

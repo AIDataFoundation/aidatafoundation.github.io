@@ -1,3 +1,9 @@
+---
+title: 3. Chat Models, Messages, and Prompt Templates
+weight: 3
+---
+
+
 ### Chat Models, Messages, and Prompt Templates in LangChain
 
 ```

@@ -10,13 +10,13 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>AIDATA Foundation.</title>
+<title>4. Parsing outputs with langchain – AIDATA Foundation.</title>
   <meta name="description" content="Parsing Outputs with LangChain
 LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
 Lab 1 - Promt Templating and parcing date and time
 from langchain_groq import ChatGroq from langchain_core.prompts import PromptTemplate from langchain.output_parsers import DatetimeOutputParser llm = ChatGroq(model=&#34;llama3-8b-8192&#34;) parser_dateTime = DatetimeOutputParser() prompt_dateTime = PromptTemplate.from_template( template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;, input_vairables = [&#34;question&#34;], partial_variables = {&#34;format_instructions&#34;: parser_dateTime.get_format_instructions()} ) prompt_value = prompt_dateTime.invoke({&#34;question&#34;: &#34;When was the iPhone released&#34;}) response = llm.invoke(prompt_value) print(response.content) returned_object = parser_dateTime.parse(response.content) print(type(returned_object)) Output" /><link rel="canonical" href="//localhost:1313/docs/langchain-python/parsing-outputs-with-langchain/" itemprop="url" />
 
-<meta property="og:title" content="" />
+<meta property="og:title" content="4. Parsing outputs with langchain" />
 <meta property="og:description" content="Parsing Outputs with LangChain
 LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
 Lab 1 - Promt Templating and parcing date and time
@@ -51,14 +51,14 @@ Output" />
 
 
 
-  <meta itemprop="name" content="AIDATA Foundation.">
+  <meta itemprop="name" content="4. Parsing outputs with langchain">
   <meta itemprop="description" content="Parsing Outputs with LangChain
 LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
 Lab 1 - Promt Templating and parcing date and time
 from langchain_groq import ChatGroq from langchain_core.prompts import PromptTemplate from langchain.output_parsers import DatetimeOutputParser llm = ChatGroq(model=&#34;llama3-8b-8192&#34;) parser_dateTime = DatetimeOutputParser() prompt_dateTime = PromptTemplate.from_template( template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;, input_vairables = [&#34;question&#34;], partial_variables = {&#34;format_instructions&#34;: parser_dateTime.get_format_instructions()} ) prompt_value = prompt_dateTime.invoke({&#34;question&#34;: &#34;When was the iPhone released&#34;}) response = llm.invoke(prompt_value) print(response.content) returned_object = parser_dateTime.parse(response.content) print(type(returned_object)) Output">
   <meta itemprop="wordCount" content="544">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AIDATA Foundation.">
+  <meta name="twitter:title" content="4. Parsing outputs with langchain">
   <meta name="twitter:description" content="Parsing Outputs with LangChain
 LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
 Lab 1 - Promt Templating and parcing date and time
@@ -209,17 +209,9 @@ from langchain_groq import ChatGroq from langchain_core.prompts import PromptTem
         <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/chatbot-message/"
+    href="/docs/langchain-python/what-is-langchain/"
     
-  >Chatbot Message
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
-    
-  >Embeddings Vector Stores in Lang Chain
+  >1.Introduction to Langchain
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -227,7 +219,15 @@ from langchain_groq import ChatGroq from langchain_core.prompts import PromptTem
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/how-langchain-work/"
     
-  >How Langchain Work
+  >2. How Langchain Work
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/langchain-python/chatbot-message/"
+    
+  >3. Chat Models, Messages, and Prompt Templates
     </a>
               
             </li><li class="hx-flex hx-flex-col open"><a
@@ -235,7 +235,7 @@ from langchain_groq import ChatGroq from langchain_core.prompts import PromptTem
       sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/langchain-python/parsing-outputs-with-langchain/"
     
-  >Parsing Outputs With Lang Chain
+  >4. Parsing outputs with langchain
     </a>
   
               
@@ -244,7 +244,7 @@ from langchain_groq import ChatGroq from langchain_core.prompts import PromptTem
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/prompt-templates/"
     
-  >Prompt Templates
+  >5. Prompt templates
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -252,7 +252,7 @@ from langchain_groq import ChatGroq from langchain_core.prompts import PromptTem
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/runnables-lcel/"
     
-  >Runnables Lcel
+  >6. Runnable and LCEL
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -260,15 +260,15 @@ from langchain_groq import ChatGroq from langchain_core.prompts import PromptTem
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/tools-in-langchain/"
     
-  >Tools in Lang Chain
+  >6. Tool in Lanchain
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/what-is-langchain/"
+    href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
     
-  >What Is Langchain
+  >7. Embeddings and Vector Stores in LangChain
     </a>
               
             </li></ul>
@@ -287,58 +287,58 @@ from langchain_groq import ChatGroq from langchain_core.prompts import PromptTem
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/chatbot-message/"
+    href="/docs/langchain-python/what-is-langchain/"
     
-  >Chatbot Message
-    </a></li>
-          <li class=""><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
-    
-  >Embeddings Vector Stores in Lang Chain
+  >1.Introduction to Langchain
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/how-langchain-work/"
     
-  >How Langchain Work
+  >2. How Langchain Work
+    </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/langchain-python/chatbot-message/"
+    
+  >3. Chat Models, Messages, and Prompt Templates
     </a></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/langchain-python/parsing-outputs-with-langchain/"
     
-  >Parsing Outputs With Lang Chain
+  >4. Parsing outputs with langchain
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/prompt-templates/"
     
-  >Prompt Templates
+  >5. Prompt templates
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/runnables-lcel/"
     
-  >Runnables Lcel
+  >6. Runnable and LCEL
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/tools-in-langchain/"
     
-  >Tools in Lang Chain
+  >6. Tool in Lanchain
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/what-is-langchain/"
+    href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
     
-  >What Is Langchain
+  >7. Embeddings and Vector Stores in LangChain
     </a></li>
         
       </ul>
@@ -376,11 +376,11 @@ from langchain_groq import ChatGroq from langchain_core.prompts import PromptTem
   <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current">
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
           <a href="/docs/">Docs</a>
-        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Parsing Outputs With Lang Chain</div>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">4. Parsing outputs with langchain</div>
   </div>
 
         <div class="content">
-          
+          <h1>4. Parsing outputs with langchain</h1>
           <p>Parsing Outputs with LangChain</p>
 <p>LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.</p>
 <p>Lab 1 - Promt Templating and parcing date and time</p>
@@ -572,14 +572,14 @@ print(returned_object.books)</code></pre><div class="hextra-code-copy-btn-contai
         </div>
         <div class="hx-mt-16"></div>
         <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
-        href="/docs/langchain-python/how-langchain-work/"
-        title="How Langchain Work"
+        href="/docs/langchain-python/chatbot-message/"
+        title="3. Chat Models, Messages, and Prompt Templates"
         class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
-      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>How Langchain Work</a><a
+      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>3. Chat Models, Messages, and Prompt Templates</a><a
         href="/docs/langchain-python/prompt-templates/"
-        title="Prompt Templates"
+        title="5. Prompt templates"
         class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-ml-auto ltr:hx-pl-4 ltr:hx-text-right rtl:hx-mr-auto rtl:hx-pr-4 rtl:hx-text-left"
-      >Prompt Templates<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
+      >5. Prompt templates<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
         
       </main>
     </article>

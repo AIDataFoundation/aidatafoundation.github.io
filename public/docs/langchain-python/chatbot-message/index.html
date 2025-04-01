@@ -10,11 +10,11 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>AIDATA Foundation.</title>
+<title>3. Chat Models, Messages, and Prompt Templates – AIDATA Foundation.</title>
   <meta name="description" content="Chat Models, Messages, and Prompt Templates in LangChain from langchain_groq import ChatGroq llm = ChatGroq(model=&#34;llama3-8b-8192&#34;) response = llm.invoke(&#34;What is the tallest building in the world?&#34;) print(response.content) output
 As of 2021, the tallest building in the world is the Burj Khalifa, located in Dubai, United Arab Emirates. It stands at a height of 828 meters (2,722 feet) tall, with 163 floors. It was completed in 2010 and was designed by the American architectural firm Skidmore, Owings &amp; Merrill. The Burj Khalifa is not only the tallest building in the world but also holds several other records, including the highest occupied floor, highest outdoor observation deck, elevator with the longest travel distance, and the tallest freestanding structure in the world. Here are some interesting facts about the Burj Khalifa: * It took over 6 years to build the Burj Khalifa, with a workforce of over 10,000 people. * The building&#39;s foundation is 43 meters (141 feet) deep and is designed to withstand extreme winds and earthquakes. * The Burj Khalifa has 57 elevators, including the world&#39;s fastest elevator, which travels at a speed of 46 km/h (29 mph). * The building&#39;s exterior is designed to resemble a Hymenocallis, a desert flower native to the UAE. * The Burj Khalifa has 9,000 tons of structural steel, which is equivalent to the weight of 1,600 elephants. I hope you find these facts interesting! Messages Messages allow us to easily create and maintain chats with the models. Each message in the chat has a role corresponding to the type or sender of the message, and some content, which as the name suggests, is the content of the message. This enables us to use a large variety of models using a single format." /><link rel="canonical" href="//localhost:1313/docs/langchain-python/chatbot-message/" itemprop="url" />
 
-<meta property="og:title" content="" />
+<meta property="og:title" content="3. Chat Models, Messages, and Prompt Templates" />
 <meta property="og:description" content="Chat Models, Messages, and Prompt Templates in LangChain
     
 
@@ -58,12 +58,12 @@ Messages
 
 
 
-  <meta itemprop="name" content="AIDATA Foundation.">
+  <meta itemprop="name" content="3. Chat Models, Messages, and Prompt Templates">
   <meta itemprop="description" content="Chat Models, Messages, and Prompt Templates in LangChain from langchain_groq import ChatGroq llm = ChatGroq(model=&#34;llama3-8b-8192&#34;) response = llm.invoke(&#34;What is the tallest building in the world?&#34;) print(response.content) output
 As of 2021, the tallest building in the world is the Burj Khalifa, located in Dubai, United Arab Emirates. It stands at a height of 828 meters (2,722 feet) tall, with 163 floors. It was completed in 2010 and was designed by the American architectural firm Skidmore, Owings &amp; Merrill. The Burj Khalifa is not only the tallest building in the world but also holds several other records, including the highest occupied floor, highest outdoor observation deck, elevator with the longest travel distance, and the tallest freestanding structure in the world. Here are some interesting facts about the Burj Khalifa: * It took over 6 years to build the Burj Khalifa, with a workforce of over 10,000 people. * The building&#39;s foundation is 43 meters (141 feet) deep and is designed to withstand extreme winds and earthquakes. * The Burj Khalifa has 57 elevators, including the world&#39;s fastest elevator, which travels at a speed of 46 km/h (29 mph). * The building&#39;s exterior is designed to resemble a Hymenocallis, a desert flower native to the UAE. * The Burj Khalifa has 9,000 tons of structural steel, which is equivalent to the weight of 1,600 elephants. I hope you find these facts interesting! Messages Messages allow us to easily create and maintain chats with the models. Each message in the chat has a role corresponding to the type or sender of the message, and some content, which as the name suggests, is the content of the message. This enables us to use a large variety of models using a single format.">
   <meta itemprop="wordCount" content="426">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AIDATA Foundation.">
+  <meta name="twitter:title" content="3. Chat Models, Messages, and Prompt Templates">
   <meta name="twitter:description" content="Chat Models, Messages, and Prompt Templates in LangChain from langchain_groq import ChatGroq llm = ChatGroq(model=&#34;llama3-8b-8192&#34;) response = llm.invoke(&#34;What is the tallest building in the world?&#34;) print(response.content) output
 As of 2021, the tallest building in the world is the Burj Khalifa, located in Dubai, United Arab Emirates. It stands at a height of 828 meters (2,722 feet) tall, with 163 floors. It was completed in 2010 and was designed by the American architectural firm Skidmore, Owings &amp; Merrill. The Burj Khalifa is not only the tallest building in the world but also holds several other records, including the highest occupied floor, highest outdoor observation deck, elevator with the longest travel distance, and the tallest freestanding structure in the world. Here are some interesting facts about the Burj Khalifa: * It took over 6 years to build the Burj Khalifa, with a workforce of over 10,000 people. * The building&#39;s foundation is 43 meters (141 feet) deep and is designed to withstand extreme winds and earthquakes. * The Burj Khalifa has 57 elevators, including the world&#39;s fastest elevator, which travels at a speed of 46 km/h (29 mph). * The building&#39;s exterior is designed to resemble a Hymenocallis, a desert flower native to the UAE. * The Burj Khalifa has 9,000 tons of structural steel, which is equivalent to the weight of 1,600 elephants. I hope you find these facts interesting! Messages Messages allow us to easily create and maintain chats with the models. Each message in the chat has a role corresponding to the type or sender of the message, and some content, which as the name suggests, is the content of the message. This enables us to use a large variety of models using a single format.">
 
@@ -209,12 +209,28 @@ As of 2021, the tallest building in the world is the Burj Khalifa, located in Du
   >Docs
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
-        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col open"><a
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/langchain-python/what-is-langchain/"
+    
+  >1.Introduction to Langchain
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/langchain-python/how-langchain-work/"
+    
+  >2. How Langchain Work
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/langchain-python/chatbot-message/"
     
-  >Chatbot Message
+  >3. Chat Models, Messages, and Prompt Templates
     </a>
   
     <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
@@ -235,25 +251,9 @@ As of 2021, the tallest building in the world is the Burj Khalifa, located in Du
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
-    
-  >Embeddings Vector Stores in Lang Chain
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/how-langchain-work/"
-    
-  >How Langchain Work
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/parsing-outputs-with-langchain/"
     
-  >Parsing Outputs With Lang Chain
+  >4. Parsing outputs with langchain
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -261,7 +261,7 @@ As of 2021, the tallest building in the world is the Burj Khalifa, located in Du
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/prompt-templates/"
     
-  >Prompt Templates
+  >5. Prompt templates
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -269,7 +269,7 @@ As of 2021, the tallest building in the world is the Burj Khalifa, located in Du
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/runnables-lcel/"
     
-  >Runnables Lcel
+  >6. Runnable and LCEL
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -277,15 +277,15 @@ As of 2021, the tallest building in the world is the Burj Khalifa, located in Du
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/tools-in-langchain/"
     
-  >Tools in Lang Chain
+  >6. Tool in Lanchain
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/what-is-langchain/"
+    href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
     
-  >What Is Langchain
+  >7. Embeddings and Vector Stores in LangChain
     </a>
               
             </li></ul>
@@ -301,61 +301,61 @@ As of 2021, the tallest building in the world is the Burj Khalifa, located in Du
 
     <ul class="hx-flex hx-flex-col hx-gap-1 max-md:hx-hidden">
         
-          <li class="open"><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
-    href="/docs/langchain-python/chatbot-message/"
-    
-  >Chatbot Message
-    </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
+    href="/docs/langchain-python/what-is-langchain/"
     
-  >Embeddings Vector Stores in Lang Chain
+  >1.Introduction to Langchain
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/how-langchain-work/"
     
-  >How Langchain Work
+  >2. How Langchain Work
+    </a></li>
+          <li class="open"><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+    href="/docs/langchain-python/chatbot-message/"
+    
+  >3. Chat Models, Messages, and Prompt Templates
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/parsing-outputs-with-langchain/"
     
-  >Parsing Outputs With Lang Chain
+  >4. Parsing outputs with langchain
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/prompt-templates/"
     
-  >Prompt Templates
+  >5. Prompt templates
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/runnables-lcel/"
     
-  >Runnables Lcel
+  >6. Runnable and LCEL
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/langchain-python/tools-in-langchain/"
     
-  >Tools in Lang Chain
+  >6. Tool in Lanchain
     </a></li>
           <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/langchain-python/what-is-langchain/"
+    href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
     
-  >What Is Langchain
+  >7. Embeddings and Vector Stores in LangChain
     </a></li>
         
       </ul>
@@ -401,11 +401,11 @@ As of 2021, the tallest building in the world is the Burj Khalifa, located in Du
   <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current">
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
           <a href="/docs/">Docs</a>
-        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Chatbot Message</div>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">3. Chat Models, Messages, and Prompt Templates</div>
   </div>
 
         <div class="content">
-          
+          <h1>3. Chat Models, Messages, and Prompt Templates</h1>
           <h3>Chat Models, Messages, and Prompt Templates in LangChain<span class="hx-absolute -hx-mt-20" id="chat-models-messages-and-prompt-templates-in-langchain"></span>
     <a href="#chat-models-messages-and-prompt-templates-in-langchain" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 
@@ -491,10 +491,14 @@ So, without further ado, the answer is... (drumroll please)... 4! Wow, I know, I
         </div>
         <div class="hx-mt-16"></div>
         <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
-        href="/docs/langchain-python/embeddings-vector-stores-in-langchain/"
-        title="Embeddings Vector Stores in Lang Chain"
+        href="/docs/langchain-python/how-langchain-work/"
+        title="2. How Langchain Work"
+        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
+      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>2. How Langchain Work</a><a
+        href="/docs/langchain-python/parsing-outputs-with-langchain/"
+        title="4. Parsing outputs with langchain"
         class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-ml-auto ltr:hx-pl-4 ltr:hx-text-right rtl:hx-mr-auto rtl:hx-pr-4 rtl:hx-text-left"
-      >Embeddings Vector Stores in Lang Chain<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
+      >4. Parsing outputs with langchain<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
         
       </main>
     </article>

@@ -1,3 +1,8 @@
+---
+title: 6. Runnable and LCEL
+weight: 6
+---
+
 
 ### Runnable and LCEL
 

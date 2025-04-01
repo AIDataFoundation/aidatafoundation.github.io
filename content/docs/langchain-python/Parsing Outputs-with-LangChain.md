@@ -1,6 +1,14 @@
+---
+title: 4. Parsing outputs with langchain
+weight: 4
+---
+
+
 Parsing Outputs with LangChain
 
 LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
+
+
 
 
 
