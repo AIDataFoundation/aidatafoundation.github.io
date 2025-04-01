@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon shortcut" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+<link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
+<title>CloudSecCorner</title>
+  <meta name="description" content="NMAP - Network Mapper 1. Scanning and Enumeration scanning and enumeration are two commaon techuques for gathering information about hosrs and services on the network. scanning is techniques to survey a network for active hosts , open ports and the type of servies running on those ports enumeration is gathering detailed information about the discoveries made using scanning techniques 2. Phases of an NMAP Scan Script Pre-scanning: Optional phase that runs when requested with options like --script or -sC. It executes scripts that only need to run once per scan, such as broadcast queries to network services." /><link rel="canonical" href="//localhost:1313/docs/nmap/nmap/" itemprop="url" />
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="NMAP - Network Mapper
+    1. Scanning and Enumeration
+    
+scanning and enumeration are two commaon techuques for gathering information about hosrs and services on the network.
+scanning is techniques to survey a network for active hosts , open ports and the type of servies running on those ports
+enumeration is gathering detailed information about the discoveries made using scanning techniques
+
+2. Phases of an NMAP Scan
+    
+
+Script Pre-scanning: Optional phase that runs when requested with options like --script or -sC. It executes scripts that only need to run once per scan, such as broadcast queries to network services." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//localhost:1313/docs/nmap/nmap/" /><meta property="article:section" content="docs" />
+
+
+
+  <meta itemprop="name" content="CloudSecCorner">
+  <meta itemprop="description" content="NMAP - Network Mapper 1. Scanning and Enumeration scanning and enumeration are two commaon techuques for gathering information about hosrs and services on the network. scanning is techniques to survey a network for active hosts , open ports and the type of servies running on those ports enumeration is gathering detailed information about the discoveries made using scanning techniques 2. Phases of an NMAP Scan Script Pre-scanning: Optional phase that runs when requested with options like --script or -sC. It executes scripts that only need to run once per scan, such as broadcast queries to network services.">
+  <meta itemprop="wordCount" content="3175">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CloudSecCorner">
+  <meta name="twitter:description" content="NMAP - Network Mapper 1. Scanning and Enumeration scanning and enumeration are two commaon techuques for gathering information about hosrs and services on the network. scanning is techniques to survey a network for active hosts , open ports and the type of servies running on those ports enumeration is gathering detailed information about the discoveries made using scanning techniques 2. Phases of an NMAP Scan Script Pre-scanning: Optional phase that runs when requested with options like --script or -sC. It executes scripts that only need to run once per scan, such as broadcast queries to network services.">
+
+    <link href="/css/compiled/main.css" rel="stylesheet" />
+
+
+
+  <link href="/css/custom.css" rel="stylesheet" />
+
+
+  <script>
+     
+    const defaultTheme = 'system';
+
+    const setDarkTheme = () => {
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = "dark";
+    }
+    const setLightTheme = () => {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.style.colorScheme = "light";
+    }
+
+    if ("color-theme" in localStorage) {
+      localStorage.getItem("color-theme") === "dark" ? setDarkTheme() : setLightTheme();
+    } else {
+      defaultTheme === "dark" ? setDarkTheme() : setLightTheme();
+      if (defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? setDarkTheme() : setLightTheme();
+      }
+    }
+  </script>
+
+  
+</head>
+<body dir="ltr"><div class="nav-container hx-sticky hx-top-0 hx-z-20 hx-w-full hx-bg-transparent print:hx-hidden">
+  <div class="nav-container-blur hx-pointer-events-none hx-absolute hx-z-[-1] hx-h-full hx-w-full hx-bg-white dark:hx-bg-dark hx-shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] contrast-more:hx-shadow-[0_0_0_1px_#000] dark:hx-shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] contrast-more:dark:hx-shadow-[0_0_0_1px_#fff]"></div>
+
+  <nav class="hx-mx-auto hx-flex hx-items-center hx-justify-end hx-gap-2 hx-h-16 hx-px-6 hx-max-w-[90rem]">
+    <a class="hx-flex hx-items-center hover:hx-opacity-75 ltr:hx-mr-auto rtl:hx-ml-auto" href="/">
+        <span class="hx-mx-2 hx-font-extrabold hx-inline hx-select-none" title="CloudSecCorner">CloudSecCorner</span>
+    </a><a
+            title="Docs"
+            href="/docs"
+            
+            class="hx-text-sm contrast-more:hx-text-gray-700 contrast-more:dark:hx-text-gray-100 hx-relative -hx-ml-2 hx-hidden hx-whitespace-nowrap hx-p-2 md:hx-inline-block hx-font-medium"
+          >
+            <span class="hx-text-center">Docs</span>
+          </a><a
+            title="News"
+            href="/news"
+            
+            class="hx-text-sm contrast-more:hx-text-gray-700 contrast-more:dark:hx-text-gray-100 hx-relative -hx-ml-2 hx-hidden hx-whitespace-nowrap hx-p-2 md:hx-inline-block hx-text-gray-600 hover:hx-text-gray-800 dark:hx-text-gray-400 dark:hover:hx-text-gray-200"
+          >
+            <span class="hx-text-center">News</span>
+          </a><a
+            title="tools ↗"
+            href="/tools"
+            
+            class="hx-text-sm contrast-more:hx-text-gray-700 contrast-more:dark:hx-text-gray-100 hx-relative -hx-ml-2 hx-hidden hx-whitespace-nowrap hx-p-2 md:hx-inline-block hx-text-gray-600 hover:hx-text-gray-800 dark:hx-text-gray-400 dark:hover:hx-text-gray-200"
+          >
+            <span class="hx-text-center">tools ↗</span>
+          </a><div class="search-wrapper hx-relative md:hx-w-64">
+  <div class="hx-relative hx-flex hx-items-center hx-text-gray-900 contrast-more:hx-text-gray-800 dark:hx-text-gray-300 contrast-more:dark:hx-text-gray-300">
+    <input
+      placeholder="Search..."
+      class="search-input hx-block hx-w-full hx-appearance-none hx-rounded-lg hx-px-3 hx-py-2 hx-transition-colors hx-text-base hx-leading-tight md:hx-text-sm hx-bg-black/[.05] dark:hx-bg-gray-50/10 focus:hx-bg-white dark:focus:hx-bg-dark placeholder:hx-text-gray-500 dark:placeholder:hx-text-gray-400 contrast-more:hx-border contrast-more:hx-border-current"
+      type="search"
+      value=""
+      spellcheck="false"
+    />
+    <kbd
+      class="hx-absolute hx-my-1.5 hx-select-none ltr:hx-right-1.5 rtl:hx-left-1.5 hx-h-5 hx-rounded hx-bg-white hx-px-1.5 hx-font-mono hx-text-[10px] hx-font-medium hx-text-gray-500 hx-border dark:hx-border-gray-100/20 dark:hx-bg-dark/50 contrast-more:hx-border-current contrast-more:hx-text-current contrast-more:dark:hx-border-current hx-items-center hx-gap-1 hx-transition-opacity hx-pointer-events-none hx-hidden sm:hx-flex"
+    >
+      CTRL K
+    </kbd>
+  </div>
+
+  <div>
+    <ul
+      class="search-results hextra-scrollbar hx-hidden hx-border hx-border-gray-200 hx-bg-white hx-text-gray-100 dark:hx-border-neutral-800 dark:hx-bg-neutral-900 hx-absolute hx-top-full hx-z-20 hx-mt-2 hx-overflow-auto hx-overscroll-contain hx-rounded-xl hx-py-2.5 hx-shadow-xl hx-max-h-[min(calc(50vh-11rem-env(safe-area-inset-bottom)),400px)] md:hx-max-h-[min(calc(100vh-5rem-env(safe-area-inset-bottom)),400px)] hx-inset-x-0 ltr:md:hx-left-auto rtl:md:hx-right-auto contrast-more:hx-border contrast-more:hx-border-gray-900 contrast-more:dark:hx-border-gray-50 hx-w-screen hx-min-h-[100px] hx-max-w-[min(calc(100vw-2rem),calc(100%+20rem))]"
+      style="transition: max-height 0.2s ease 0s;"
+    ></ul>
+  </div>
+</div>
+
+          <a class="hx-p-2 hx-text-current" target="_blank" rel="noreferrer" href="https://github.com/CloudSecCorner/cloudseccorner.github.io" title="GitHub"><svg height=24 fill="currentColor" viewBox="3 3 18 18">
+  <path d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z"></path>
+</svg>
+<span class="hx-sr-only">GitHub</span>
+          </a>
+          <a class="hx-p-2 hx-text-current" target="_blank" rel="noreferrer" href="https://twitter.com/" title="Twitter"><svg height=24 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg><span class="hx-sr-only">Twitter</span>
+          </a><button type="button" aria-label="Menu" class="hamburger-menu -hx-mr-2 hx-rounded hx-p-2 active:hx-bg-gray-400/20 md:hx-hidden"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
+  </nav>
+</div>
+
+  <div class='hx-mx-auto hx-flex hx-max-w-screen-xl'>
+    <div class="mobile-menu-overlay [transition:background-color_1.5s_ease] hx-fixed hx-inset-0 hx-z-10 hx-bg-black/80 dark:hx-bg-black/60 hx-hidden"></div>
+<aside class="sidebar-container hx-flex hx-flex-col print:hx-hidden md:hx-top-16 md:hx-shrink-0 md:hx-w-64 md:hx-self-start max-md:[transform:translate3d(0,-100%,0)] md:hx-sticky">
+  
+  <div class="hx-px-4 hx-pt-4 md:hx-hidden">
+    <div class="search-wrapper hx-relative md:hx-w-64">
+  <div class="hx-relative hx-flex hx-items-center hx-text-gray-900 contrast-more:hx-text-gray-800 dark:hx-text-gray-300 contrast-more:dark:hx-text-gray-300">
+    <input
+      placeholder="Search..."
+      class="search-input hx-block hx-w-full hx-appearance-none hx-rounded-lg hx-px-3 hx-py-2 hx-transition-colors hx-text-base hx-leading-tight md:hx-text-sm hx-bg-black/[.05] dark:hx-bg-gray-50/10 focus:hx-bg-white dark:focus:hx-bg-dark placeholder:hx-text-gray-500 dark:placeholder:hx-text-gray-400 contrast-more:hx-border contrast-more:hx-border-current"
+      type="search"
+      value=""
+      spellcheck="false"
+    />
+    <kbd
+      class="hx-absolute hx-my-1.5 hx-select-none ltr:hx-right-1.5 rtl:hx-left-1.5 hx-h-5 hx-rounded hx-bg-white hx-px-1.5 hx-font-mono hx-text-[10px] hx-font-medium hx-text-gray-500 hx-border dark:hx-border-gray-100/20 dark:hx-bg-dark/50 contrast-more:hx-border-current contrast-more:hx-text-current contrast-more:dark:hx-border-current hx-items-center hx-gap-1 hx-transition-opacity hx-pointer-events-none hx-hidden sm:hx-flex"
+    >
+      CTRL K
+    </kbd>
+  </div>
+
+  <div>
+    <ul
+      class="search-results hextra-scrollbar hx-hidden hx-border hx-border-gray-200 hx-bg-white hx-text-gray-100 dark:hx-border-neutral-800 dark:hx-bg-neutral-900 hx-absolute hx-top-full hx-z-20 hx-mt-2 hx-overflow-auto hx-overscroll-contain hx-rounded-xl hx-py-2.5 hx-shadow-xl hx-max-h-[min(calc(50vh-11rem-env(safe-area-inset-bottom)),400px)] md:hx-max-h-[min(calc(100vh-5rem-env(safe-area-inset-bottom)),400px)] hx-inset-x-0 ltr:md:hx-left-auto rtl:md:hx-right-auto contrast-more:hx-border contrast-more:hx-border-gray-900 contrast-more:dark:hx-border-gray-50 hx-w-screen hx-min-h-[100px] hx-max-w-[min(calc(100vw-2rem),calc(100%+20rem))]"
+      style="transition: max-height 0.2s ease 0s;"
+    ></ul>
+  </div>
+</div>
+
+  </div>
+  <div class="hextra-scrollbar hx-overflow-y-auto hx-overflow-x-hidden hx-p-4 hx-grow md:hx-h-[calc(100vh-var(--navbar-height)-var(--menu-height))]">
+    <ul class="hx-flex hx-flex-col hx-gap-1 md:hx-hidden">
+      
+      
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/news/"
+    
+  >News
+    </a></li>
+          <li class="open"><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/"
+    
+  >Docs
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col open"><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+    href="/docs/nmap/nmap/"
+    
+  >Nmap
+    </a>
+  
+    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
+              <a
+                href="#nmap---network-mapper"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >NMAP - Network Mapper</a>
+            </li>
+          <li>
+              <a
+                href="#fingerprint-operating-system--services"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >fingerprint Operating system &amp;amp; Services</a>
+            </li>
+          </ul>
+  
+              
+            </li></ul>
+      </div></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/tools/"
+    
+  >Tools
+    </a></li>
+    </ul>
+
+    <ul class="hx-flex hx-flex-col hx-gap-1 max-md:hx-hidden">
+        
+          <li class="open"><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+    href="/docs/nmap/nmap/"
+    
+  >Nmap
+    </a></li>
+        
+      </ul>
+    </div>
+  
+  
+    <div class="  hx-sticky hx-bottom-0 hx-bg-white dark:hx-bg-dark hx-mx-4 hx-py-4 hx-shadow-[0_-12px_16px_#fff] hx-flex hx-items-center hx-gap-2 dark:hx-border-neutral-800 dark:hx-shadow-[0_-12px_16px_#111] contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-shadow-none hx-border-t" data-toggle-animation="show"><div class="hx-flex hx-grow hx-flex-col"><button
+  title="Change theme"
+  data-theme="light"
+  class="theme-toggle hx-group hx-h-7 hx-rounded-md hx-px-2 hx-text-left hx-text-xs hx-font-medium hx-text-gray-600 hx-transition-colors dark:hx-text-gray-400 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50"
+  type="button"
+  aria-label="Change theme"
+>
+  <div class="hx-flex hx-items-center hx-gap-2 hx-capitalize"><svg height=12 class="group-data-[theme=light]:hx-hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><span class="group-data-[theme=light]:hx-hidden">Light</span><svg height=12 class="group-data-[theme=dark]:hx-hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span class="group-data-[theme=dark]:hx-hidden">Dark</span></div>
+</button>
+</div></div></aside>
+    
+<nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
+    <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#nmap---network-mapper">NMAP - Network Mapper
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-12 rtl:hx-pr-12 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#1-scanning-and-enumeration">1. Scanning and Enumeration
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-12 rtl:hx-pr-12 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#2-phases-of-an-nmap-scan">2. Phases of an NMAP Scan
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-12 rtl:hx-pr-12 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#3-a-quick-note-on-ports">3. A Quick Note on Ports
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-12 rtl:hx-pr-12 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#4-nmap-scan-ports">4. Nmap Scan Ports
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#verify-nmap-is-installed-or-not">Verify Nmap is installed or not
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#tcp-syn-scan--ss--quick-recap">TCP SYN Scan (-sS) – Quick recap:
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#udp-scan--su">UDP(https://www.rfc-editor.org/rfc/rfc768.txt) Scan (-sU)
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#nmap-port-states">Nmap Port States
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#nmap-options">Nmap Options
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#host-discovery">Host Discovery
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#fingerprint-operating-system--services">fingerprint Operating system &amp; Services
+        </a>
+      </li></ul>
+      <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400"><a class="hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50" href="https://github.com/CloudSecCorner/cloudseccorner.github.io/edit/main/content/docs/nmap/nmap.md" target="_blank" rel="noreferrer">Edit this page on GitHub →</a>
+        <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx-transition-all hx-duration-75 hx-opacity-0 hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50">
+          <span>Scroll to top</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hx-inline ltr:hx-ml-1 rtl:hx-mr-1 hx-h-3.5 hx-w-3.5 hx-border hx-rounded-full hx-border-gray-500 hover:hx-border-gray-900 dark:hx-border-gray-400 dark:hover:hx-border-gray-100 contrast-more:hx-border-gray-800 contrast-more:dark:hx-border-gray-50">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+    <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx-w-full hx-min-w-0 hx-max-w-6xl hx-px-6 hx-pt-4 md:hx-px-12">
+        
+  <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current">
+        <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
+          <a href="/docs/">Docs</a>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Nmap</div>
+  </div>
+
+        <div class="content">
+          
+          <h2>NMAP - Network Mapper<span class="hx-absolute -hx-mt-20" id="nmap---network-mapper"></span>
+    <a href="#nmap---network-mapper" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h5>1. Scanning and Enumeration<span class="hx-absolute -hx-mt-20" id="1-scanning-and-enumeration"></span>
+    <a href="#1-scanning-and-enumeration" class="subheading-anchor" aria-label="Permalink for this section"></a></h5><ul>
+<li>scanning and enumeration are two commaon techuques for gathering information about hosrs and services on the network.</li>
+<li>scanning is techniques to survey a network for active hosts , open ports and the type of servies running on those ports</li>
+<li>enumeration is gathering detailed information about the discoveries made using scanning techniques</li>
+</ul>
+<h5>2. Phases of an NMAP Scan<span class="hx-absolute -hx-mt-20" id="2-phases-of-an-nmap-scan"></span>
+    <a href="#2-phases-of-an-nmap-scan" class="subheading-anchor" aria-label="Permalink for this section"></a></h5><ol>
+<li>
+<p><strong>Script Pre-scanning</strong>: Optional phase that runs when requested with options like <code>--script</code> or <code>-sC</code>. It executes scripts that only need to run once per scan, such as broadcast queries to network services.</p>
+</li>
+<li>
+<p><strong>Target Enumeration</strong>: Nmap processes the user-provided host specifications (DNS names, IP addresses, CIDR notations) and converts them into a list of IPv4 or IPv6 addresses for scanning.</p>
+</li>
+<li>
+<p><strong>Host Discovery</strong>: Also known as ping scanning, this phase identifies which target systems are online and worth investigating further. Nmap offers various discovery techniques from ARP requests to TCP/ICMP probes.</p>
+</li>
+<li>
+<p><strong>Reverse-DNS Resolution</strong>: Nmap looks up DNS names for online hosts to make reports more readable and potentially reveal clues about host functions.</p>
+</li>
+<li>
+<p><strong>Port Scanning</strong>: The core Nmap operation that sends probes and analyzes responses to classify remote ports as open, closed, or filtered.</p>
+</li>
+<li>
+<p><strong>Version Detection</strong>: When ports are found open, Nmap can determine the server software running by sending probes and matching responses against a database of service signatures.</p>
+</li>
+<li>
+<p><strong>OS Detection</strong>: If requested with <code>-O</code>, Nmap analyzes subtle differences in network implementations to identify the remote host&rsquo;s operating system.</p>
+</li>
+<li>
+<p><strong>Traceroute</strong>: An optimized implementation that can find network routes to multiple hosts in parallel using the best available probe packets.</p>
+</li>
+<li>
+<p><strong>Script Scanning</strong>: Most NSE (Nmap Scripting Engine) scripts run during this phase, performing tasks like vulnerability detection, malware discovery, and information gathering.</p>
+</li>
+<li>
+<p><strong>Output</strong>: Nmap collects all gathered information and presents it in the requested format (human-readable, XML, etc.).</p>
+</li>
+<li>
+<p><strong>Script Post-scanning</strong>: Final phase where scripts can process results and deliver reports and statistics, though currently requires user-created scripts.</p>
+</li>
+</ol>
+<h5>3. A Quick Note on Ports<span class="hx-absolute -hx-mt-20" id="3-a-quick-note-on-ports"></span>
+    <a href="#3-a-quick-note-on-ports" class="subheading-anchor" aria-label="Permalink for this section"></a></h5><ol>
+<li>
+<p><strong>Port Basics</strong>: Ports identify specific network applications on a host. If an IP address is like an apartment complex address, ports are the individual unit numbers that direct traffic to specific applications.</p>
+</li>
+<li>
+<p><strong>TCP Protocol</strong>: TCP is one of the most common network protocols used on the Internet. It&rsquo;s essentially a language with specific rules that computers follow for communication.</p>
+</li>
+<li>
+<p><strong>3-Way Handshake</strong>: TCP connections always begin with this essential sequence:</p>
+<ul>
+<li>Client sends <strong>SYN</strong> (synchronize)</li>
+<li>Server responds with <strong>SYN/ACK</strong> (synchronize/acknowledge)</li>
+<li>Client finalizes with <strong>ACK</strong> (acknowledge)</li>
+</ul>
+</li>
+<li>
+<p><strong>Scanning Advantage</strong>: This predictable handshake makes TCP port scanning efficient - if a port is open, the service will respond to a connection request (SYN) following this protocol.</p>
+</li>
+<li>
+<p><strong>Nmap Application</strong>: Nmap leverages this TCP behavior during its port scanning phase to determine which ports are open, closed, or filtered on target systems.</p>
+</li>
+</ol>
+<h5>4. Nmap Scan Ports<span class="hx-absolute -hx-mt-20" id="4-nmap-scan-ports"></span>
+    <a href="#4-nmap-scan-ports" class="subheading-anchor" aria-label="Permalink for this section"></a></h5><ul>
+<li>(-sT) Explained</li>
+</ul>
+<ol>
+<li>
+<p><strong>Full Handshake</strong>: The <code>-sT</code> option in Nmap performs a TCP connect scan, also known as a &ldquo;full-open&rdquo; or &ldquo;Connect&rdquo; scan.</p>
+</li>
+<li>
+<p><strong>Complete Process</strong>: Unlike some other scan types, this scan completes the entire TCP three-way handshake sequence with target ports.</p>
+</li>
+<li>
+<p><strong>Connection Sequence</strong>:</p>
+<ul>
+<li>Client sends SYN packet</li>
+<li>Server responds with SYN/ACK if port is open</li>
+<li>Client completes handshake with ACK</li>
+<li>Client immediately terminates the connection with RST (reset)</li>
+</ul>
+</li>
+<li>
+<p><strong>Advantages</strong>: This scan is reliable and doesn&rsquo;t require special privileges to run, making it accessible for all users.</p>
+</li>
+<li>
+<p><strong>Disadvantages</strong>: It&rsquo;s more easily detected by intrusion detection systems and firewalls because it creates full connections, and it&rsquo;s typically slower than other scan types like SYN scans.</p>
+</li>
+</ol>
+<h3>Verify Nmap is installed or not<span class="hx-absolute -hx-mt-20" id="verify-nmap-is-installed-or-not"></span>
+    <a href="#verify-nmap-is-installed-or-not" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>➜  ~ nmap
+Nmap 7.95 ( https://nmap.org )
+Usage: nmap [Scan Type(s)] [Options] {target specification}
+TARGET SPECIFICATION:
+  Can pass hostnames, IP addresses, networks, etc.
+  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+  -iL &lt;inputfilename&gt;: Input from list of hosts/networks
+  -iR &lt;num hosts&gt;: Choose random targets
+  --exclude &lt;host1[,host2][,host3],...&gt;: Exclude hosts/networks
+  --excludefile &lt;exclude_file&gt;: Exclude list from file
+HOST DISCOVERY:
+  -sL: List Scan - simply list targets to scan
+  -sn: Ping Scan - disable port scan
+  -Pn: Treat all hosts as online -- skip host discovery
+  -PS/PA/PU/PY[portlist]: TCP SYN, TCP ACK, UDP or SCTP discovery to given ports
+  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes
+  -PO[protocol list]: IP Protocol Ping
+  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]
+  --dns-servers &lt;serv1[,serv2],...&gt;: Specify custom DNS servers
+  --system-dns: Use OS&#39;s DNS resolver
+  --traceroute: Trace hop path to each host
+SCAN TECHNIQUES:
+  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+  -sU: UDP Scan
+  -sN/sF/sX: TCP Null, FIN, and Xmas scans
+  --scanflags &lt;flags&gt;: Customize TCP scan flags
+  -sI &lt;zombie host[:probeport]&gt;: Idle scan
+  -sY/sZ: SCTP INIT/COOKIE-ECHO scans
+  -sO: IP protocol scan
+  -b &lt;FTP relay host&gt;: FTP bounce scan
+PORT SPECIFICATION AND SCAN ORDER:
+  -p &lt;port ranges&gt;: Only scan specified ports
+    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+  --exclude-ports &lt;port ranges&gt;: Exclude the specified ports from scanning
+  -F: Fast mode - Scan fewer ports than the default scan
+  -r: Scan ports sequentially - don&#39;t randomize
+  --top-ports &lt;number&gt;: Scan &lt;number&gt; most common ports
+  --port-ratio &lt;ratio&gt;: Scan ports more common than &lt;ratio&gt;
+SERVICE/VERSION DETECTION:
+  -sV: Probe open ports to determine service/version info
+  --version-intensity &lt;level&gt;: Set from 0 (light) to 9 (try all probes)
+  --version-light: Limit to most likely probes (intensity 2)
+  --version-all: Try every single probe (intensity 9)
+  --version-trace: Show detailed version scan activity (for debugging)
+SCRIPT SCAN:
+  -sC: equivalent to --script=default
+  --script=&lt;Lua scripts&gt;: &lt;Lua scripts&gt; is a comma separated list of
+           directories, script-files or script-categories
+  --script-args=&lt;n1=v1,[n2=v2,...]&gt;: provide arguments to scripts
+  --script-args-file=filename: provide NSE script args in a file
+  --script-trace: Show all data sent and received
+  --script-updatedb: Update the script database.
+  --script-help=&lt;Lua scripts&gt;: Show help about scripts.
+           &lt;Lua scripts&gt; is a comma-separated list of script-files or
+           script-categories.
+OS DETECTION:
+  -O: Enable OS detection
+  --osscan-limit: Limit OS detection to promising targets
+  --osscan-guess: Guess OS more aggressively
+TIMING AND PERFORMANCE:
+  Options which take &lt;time&gt; are in seconds, or append &#39;ms&#39; (milliseconds),
+  &#39;s&#39; (seconds), &#39;m&#39; (minutes), or &#39;h&#39; (hours) to the value (e.g. 30m).
+  -T&lt;0-5&gt;: Set timing template (higher is faster)
+  --min-hostgroup/max-hostgroup &lt;size&gt;: Parallel host scan group sizes
+  --min-parallelism/max-parallelism &lt;numprobes&gt;: Probe parallelization
+  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout &lt;time&gt;: Specifies
+      probe round trip time.
+  --max-retries &lt;tries&gt;: Caps number of port scan probe retransmissions.
+  --host-timeout &lt;time&gt;: Give up on target after this long
+  --scan-delay/--max-scan-delay &lt;time&gt;: Adjust delay between probes
+  --min-rate &lt;number&gt;: Send packets no slower than &lt;number&gt; per second
+  --max-rate &lt;number&gt;: Send packets no faster than &lt;number&gt; per second
+FIREWALL/IDS EVASION AND SPOOFING:
+  -f; --mtu &lt;val&gt;: fragment packets (optionally w/given MTU)
+  -D &lt;decoy1,decoy2[,ME],...&gt;: Cloak a scan with decoys
+  -S &lt;IP_Address&gt;: Spoof source address
+  -e &lt;iface&gt;: Use specified interface
+  -g/--source-port &lt;portnum&gt;: Use given port number
+  --proxies &lt;url1,[url2],...&gt;: Relay connections through HTTP/SOCKS4 proxies
+  --data &lt;hex string&gt;: Append a custom payload to sent packets
+  --data-string &lt;string&gt;: Append a custom ASCII string to sent packets
+  --data-length &lt;num&gt;: Append random data to sent packets
+  --ip-options &lt;options&gt;: Send packets with specified ip options
+  --ttl &lt;val&gt;: Set IP time-to-live field
+  --spoof-mac &lt;mac address/prefix/vendor name&gt;: Spoof your MAC address
+  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum
+OUTPUT:
+  -oN/-oX/-oS/-oG &lt;file&gt;: Output scan in normal, XML, s|&lt;rIpt kIddi3,
+     and Grepable format, respectively, to the given filename.
+  -oA &lt;basename&gt;: Output in the three major formats at once
+  -v: Increase verbosity level (use -vv or more for greater effect)
+  -d: Increase debugging level (use -dd or more for greater effect)
+  --reason: Display the reason a port is in a particular state
+  --open: Only show open (or possibly open) ports
+  --packet-trace: Show all packets sent and received
+  --iflist: Print host interfaces and routes (for debugging)
+  --append-output: Append to rather than clobber specified output files
+  --resume &lt;filename&gt;: Resume an aborted scan
+  --noninteractive: Disable runtime interactions via keyboard
+  --stylesheet &lt;path/URL&gt;: XSL stylesheet to transform XML output to HTML
+  --webxml: Reference stylesheet from Nmap.Org for more portable XML
+  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output
+MISC:
+  -6: Enable IPv6 scanning
+  -A: Enable OS detection, version detection, script scanning, and traceroute
+  --datadir &lt;dirname&gt;: Specify custom Nmap data file location
+  --send-eth/--send-ip: Send using raw ethernet frames or IP packets
+  --privileged: Assume that the user is fully privileged
+  --unprivileged: Assume the user lacks raw socket privileges
+  -V: Print version number
+  -h: Print this help summary page.
+EXAMPLES:
+  nmap -v -A scanme.nmap.org
+  nmap -v -sn 192.168.0.0/16 10.0.0.0/8
+  nmap -v -iR 10000 -Pn -p 80
+SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>try `-sT&rsquo; option</p>
+<p><code>nmap -sT IP_ADDRESS</code></p>
+<p>Lets setup basic lab using Docker</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>sudo apt update &amp;&amp; sudo apt install docker.io docker-compose </code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>create docker compose file to setup lab</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>version: &#39;3.8&#39;
+
+services:
+  web-server:
+    image: nginx:alpine
+    container_name: web-server
+    ports:
+      - &#34;80:80&#34;
+    networks:
+      nmap-network:
+        ipv4_address: 172.28.0.2
+
+  ftp-server:
+    image: delfer/alpine-ftp-server
+    container_name: ftp-server
+    environment:
+      - USERS=user:password:1000:1000
+    ports:
+      - &#34;21:21&#34;
+      - &#34;21000-21010:21000-21010&#34;
+    networks:
+      nmap-network:
+        ipv4_address: 172.28.0.3
+
+  ssh-server:
+    image: linuxserver/openssh-server
+    container_name: ssh-server
+    platform: linux/arm64/v8
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PASSWORD_ACCESS=true
+      - USER_PASSWORD=password
+      - USER_NAME=user
+    ports:
+      - &#34;2222:2222&#34;
+    networks:
+      nmap-network:
+        ipv4_address: 172.28.0.4
+
+  mysql-server:
+    image: mariadb:latest
+    container_name: db-server
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+    ports:
+      - &#34;3306:3306&#34;
+    networks:
+      nmap-network:
+        ipv4_address: 172.28.0.5
+
+networks:
+  nmap-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>start docker container</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>docker-compose -f nmap-lab.yml up -d</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>lets see open ports and services on docker containers</p>
+<p>Note &gt;</p>
+<pre><code>•	-sT: TCP connect scan.
+•	-Pn: skip host discovery (assume hosts are up).
+•	-p 1-65535: scan all ports.
+</code></pre>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>nmap -sT -Pn -p 80 172.28.0.2          # Nginx
+nmap -sT -Pn -p 21,21000-21010 172.28.0.3  # FTP Server
+nmap -sT -Pn -p 2222 172.28.0.4        # SSH Server
+nmap -sT -Pn -p 3306 172.28.0.5        # MySQL (MariaDB)
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 03:56 IST
+Nmap scan report for 172.28.0.2
+Host is up.
+
+PORT   STATE    SERVICE
+80/tcp filtered http
+
+Nmap done: 1 IP address (1 host up) scanned in 2.05 seconds
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 03:56 IST
+Nmap scan report for 172.28.0.3
+Host is up.
+
+PORT      STATE    SERVICE
+21/tcp    filtered ftp
+21000/tcp filtered irtrans
+21001/tcp filtered unknown
+21002/tcp filtered unknown
+21003/tcp filtered unknown
+21004/tcp filtered unknown
+21005/tcp filtered unknown
+21006/tcp filtered unknown
+21007/tcp filtered unknown
+21008/tcp filtered unknown
+21009/tcp filtered unknown
+21010/tcp filtered notezilla-lan
+
+Nmap done: 1 IP address (1 host up) scanned in 7.08 seconds
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 03:56 IST
+Nmap scan report for 172.28.0.4
+Host is up.
+
+PORT     STATE    SERVICE
+2222/tcp filtered EtherNetIP-1
+
+Nmap done: 1 IP address (1 host up) scanned in 2.05 seconds
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 03:56 IST
+Nmap scan report for 172.28.0.5
+Host is up.
+
+PORT     STATE    SERVICE
+3306/tcp filtered mysql
+
+Nmap done: 1 IP address (1 host up) scanned in 2.04 seconds</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>or you can simply do</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>nmap -sT -Pn -p 80,21,21000-21010,2222,3306 localhost
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 03:59 IST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00032s latency).
+Other addresses for localhost (not scanned): ::1
+
+PORT      STATE SERVICE
+21/tcp    open  ftp
+80/tcp    open  http
+2222/tcp  open  EtherNetIP-1
+3306/tcp  open  mysql
+21000/tcp open  irtrans
+21001/tcp open  unknown
+21002/tcp open  unknown
+21003/tcp open  unknown
+21004/tcp open  unknown
+21005/tcp open  unknown
+21006/tcp open  unknown
+21007/tcp open  unknown
+21008/tcp open  unknown
+21009/tcp open  unknown
+21010/tcp open  notezilla-lan
+
+Nmap done: 1 IP address (1 host up) scanned in 0.03 seconds</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>This is the default scan if running Nmap without root privileges, so the following command is equivalent.</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>nmap localhost                                       
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 04:00 IST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000040s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 989 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+21/tcp    open  ftp
+80/tcp    open  http
+2222/tcp  open  EtherNetIP-1
+3306/tcp  open  mysql
+5000/tcp  open  upnp
+5678/tcp  open  rrac
+7000/tcp  open  afs3-fileserver
+9010/tcp  open  sdr
+9080/tcp  open  glrpc
+9100/tcp  open  jetdirect
+49152/tcp open  unknown</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<h3>TCP SYN Scan (-sS) – Quick recap:<span class="hx-absolute -hx-mt-20" id="tcp-syn-scan--ss--quick-recap"></span>
+    <a href="#tcp-syn-scan--ss--quick-recap" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>•	Common name: SYN stealth scan, “half-open” scan.
+•	Handshake steps: SYN → SYN/ACK → immediate RST (reset), no final ACK.
+•	Why “half-open”? The TCP handshake is deliberately left incomplete.
+•	Logging/Stealth:
+•	Typically not logged by applications because connections aren’t fully established.
+•	However, modern firewall and IDS/IPS solutions often detect and flag these “incomplete” TCP connections.
+•	Benefits:
+•	Speed (much faster than full connection scans).
+•	Lower bandwidth (fewer packets).
+•	Privileges required: Root/administrator access.</p>
+<p>⸻</p>
+<p>🔍 How it compares (-sS vs. -sT):</p>
+<p>🚀 Recommended use-case:</p>
+<p>Use -sS scans when you:
+•	Want quick results with lower network overhead.
+•	Prefer application-layer stealth (though security systems might still detect it).
+•	Have root privileges available.</p>
+<p>Example:</p>
+<p>sudo nmap -sS -Pn -p 80,443 target_ip</p>
+<p>This scan provides a balanced mix of speed, stealth (at the application layer), and resource efficiency.</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>sudo nmap -sS -Pn -p 80,443 localhost                
+Password:
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 04:04 IST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000089s latency).
+Other addresses for localhost (not scanned): ::1
+
+PORT    STATE  SERVICE
+80/tcp  open   http
+443/tcp closed https
+
+Nmap done: 1 IP address (1 host up) scanned in 0.02 seconds</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<h4>UDP(<a href="https://www.rfc-editor.org/rfc/rfc768.txt" target="_blank" rel="noopener">https://www.rfc-editor.org/rfc/rfc768.txt</a>) Scan (-sU)<span class="hx-absolute -hx-mt-20" id="udp-scan--su"></span>
+    <a href="#udp-scan--su" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><ul>
+<li>
+<p>most popular services on internets run ocer TCP protocol , UDP services are widelt deolyed DNS , SNMP and DHCP (rgisted port 53,161/162 and 67/68) are three of the most common</p>
+</li>
+<li>
+<p>UDP scanning is generally slower and more difficult than TCP , some security auditors ignore these ports this is a mistake as exploitable UDP services are quire common and attackers certainly don&rsquo;t ignore the whole protocol. Fortunately , Nmap can help inventort UDP ports</p>
+</li>
+</ul>
+<p>map also provides some more niche scanning options, including -sA (ACK scan) which may be used to map firewalls, and -sU (UDP scan) for exploring UDP ports. However, these are used much less frequently than the half- or full-connect scans discussed above.</p>
+<h3>Nmap Port States<span class="hx-absolute -hx-mt-20" id="nmap-port-states"></span>
+    <a href="#nmap-port-states" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>These are the three primary port states that Nmap will report. They are defined as follows.</p>
+<ul>
+<li>Open – the port is reachable and a service is listening on it.</li>
+<li>Closed – the port is reachable and no service is listening on it.</li>
+<li>Filtered – the port is not reachable so I cannot tell (usually indicates a firewall).</li>
+</ul>
+<p>Invoking our previous example, you can see one open port, one filtered port, and 998 closed ports (note that Nmap scans the top 1000 most common ports by default).</p>
+<h3>Nmap Options<span class="hx-absolute -hx-mt-20" id="nmap-options"></span>
+    <a href="#nmap-options" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Deteerming which of the 1000 most common ports might have services listening on them is a good start, but what if we want to check other ports?
+of we want to known more about ports we have identified or the services running on them ?</p>
+<p>Port specification</p>
+<ul>
+<li>`-p <port num>&rsquo; - Specifies port(s) to scan. can be a single port , a range , a comma-seprated list or ant combination of those</li>
+</ul>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>sudo nmap -p 80,443,8080,8443 localhost</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>looking for wev servers? Running Running nmap -p 80,443,8080,8443 is a good net to cast.</p>
+<ul>
+<li>`&ndash;top-ports <number of ports>&rsquo; Select the top <number> common ports</li>
+</ul>
+<p>if your starting big network and scanning the default top 1000 ports to each IP address</p>
+<p>Running <code>nmap --top-ports 50 </code></p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code> sudo nmap --top-ports 50 localhost </code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>or</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>sudo nmap -f  localhost 
+Warning: Packet fragmentation selected on a host other than Linux, OpenBSD, FreeBSD, or NetBSD.  This may or may not work.
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 05:01 IST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000013s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 989 closed tcp ports (reset)
+PORT      STATE SERVICE
+21/tcp    open  ftp
+80/tcp    open  http
+2222/tcp  open  EtherNetIP-1
+3306/tcp  open  mysql
+5000/tcp  open  upnp
+5678/tcp  open  rrac
+7000/tcp  open  afs3-fileserver
+9010/tcp  open  sdr
+9080/tcp  open  glrpc
+9100/tcp  open  jetdirect
+49152/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 0.05 seconds</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<h3>Host Discovery<span class="hx-absolute -hx-mt-20" id="host-discovery"></span>
+    <a href="#host-discovery" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><ul>
+<li><code>-sn</code> - Disables port-scanning (so that only host discovery is performed)</li>
+</ul>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>sudo nmap -sn  localhost 
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 05:03 IST
+Nmap scan report for localhost (127.0.0.1)
+Host is up.
+Other addresses for localhost (not scanned): ::1
+Nmap done: 1 IP address (1 host up) scanned in 0.02 seconds</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<ul>
+<li><code>-Pn</code> - Disables host discovery (treats all hosts as online )</li>
+</ul>
+<p>Nmap won’t scan a target that wasn’t found in the host discovery phase. If you suspect a target is blocking Nmap’s host discovery probes, tell Nmap to skip discovery and dive straight at those ports.</p>
+<h2>fingerprint Operating system &amp; Services<span class="hx-absolute -hx-mt-20" id="fingerprint-operating-system--services"></span>
+    <a href="#fingerprint-operating-system--services" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li>`-0&rsquo; - Detect the OS ruuning on the hosy</li>
+</ul>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>sudo nmap -O --osscan-guess localhost 
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 05:10 IST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00011s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 989 closed tcp ports (reset)
+PORT      STATE SERVICE
+21/tcp    open  ftp
+80/tcp    open  http
+2222/tcp  open  EtherNetIP-1
+3306/tcp  open  mysql
+5000/tcp  open  upnp
+5678/tcp  open  rrac
+7000/tcp  open  afs3-fileserver
+9010/tcp  open  sdr
+9080/tcp  open  glrpc
+9100/tcp  open  jetdirect
+49152/tcp open  unknown
+Device type: general purpose
+Running: Apple macOS 12.X
+OS CPE: cpe:/o:apple:mac_os_x:12
+OS details: Apple macOS 12 (Monterey) (Darwin 21.1.0 - 21.6.0)
+Network Distance: 0 hops
+
+OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1.63 seconds</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>sV - Detect the network service and version running on a host’s open ports.</p>
+<p>This provides some additional information about the host operating system, though the primary aim is to identify vulnerable services (for patching or exploiting, depending on your role)</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>sudo nmap -sV localhost
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-01 05:11 IST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000050s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 989 closed tcp ports (reset)
+PORT      STATE SERVICE        VERSION
+21/tcp    open  ftp            vsftpd 2.0.8 or later
+80/tcp    open  http           nginx 1.27.4
+2222/tcp  open  ssh            OpenSSH 9.9 (protocol 2.0)
+3306/tcp  open  mysql          MariaDB 11.7.2
+5000/tcp  open  rtsp
+5678/tcp  open  rrac?
+7000/tcp  open  rtsp
+9010/tcp  open  websocket      WebSocket&#43;&#43; 0.8.2
+9080/tcp  open  glrpc?
+9100/tcp  open  jetdirect?
+49152/tcp open  bandwidth-test MikroTik bandwidth-test server
+4 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port5000-TCP:V=7.95%I=7%D=4/1%Time=67EB2828%P=arm-apple-darwin24.2.0%r(
+SF:GetRequest,8E,&#34;HTTP/1\.1\x20403\x20Forbidden\r\nContent-Length:\x200\r\
+SF:nServer:\x20AirTunes/845\.5\.1\r\nX-Apple-ProcessingTime:\x200\r\nX-App
+SF:le-RequestReceivedTimestamp:\x2010396788\r\n\r\n&#34;)%r(RTSPRequest,8E,&#34;RT
+SF:SP/1\.0\x20403\x20Forbidden\r\nContent-Length:\x200\r\nServer:\x20AirTu
+SF:nes/845\.5\.1\r\nX-Apple-ProcessingTime:\x200\r\nX-Apple-RequestReceive
+SF:dTimestamp:\x2010396793\r\n\r\n&#34;)%r(HTTPOptions,8E,&#34;HTTP/1\.1\x20403\x2
+SF:0Forbidden\r\nContent-Length:\x200\r\nServer:\x20AirTunes/845\.5\.1\r\n
+SF:X-Apple-ProcessingTime:\x200\r\nX-Apple-RequestReceivedTimestamp:\x2010
+SF:401800\r\n\r\n&#34;)%r(FourOhFourRequest,8E,&#34;HTTP/1\.1\x20403\x20Forbidden\
+SF:r\nContent-Length:\x200\r\nServer:\x20AirTunes/845\.5\.1\r\nX-Apple-Pro
+SF:cessingTime:\x200\r\nX-Apple-RequestReceivedTimestamp:\x2010401803\r\n\
+SF:r\n&#34;)%r(SIPOptions,A0,&#34;RTSP/1\.0\x20403\x20Forbidden\r\nContent-Length:
+SF:\x200\r\nServer:\x20AirTunes/845\.5\.1\r\nCSeq:\x2042\x20OPTIONS\r\nX-A
+SF:pple-ProcessingTime:\x200\r\nX-Apple-RequestReceivedTimestamp:\x2010401
+SF:807\r\n\r\n&#34;);
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port5678-TCP:V=7.95%I=7%D=4/1%Time=67EB282D%P=arm-apple-darwin24.2.0%r(
+SF:GetRequest,8DC,&#34;HTTP/1\.1\x20200\x20OK\r\nAccept-Ranges:\x20bytes\r\nCa
+SF:che-Control:\x20public,\x20max-age=86400\r\nLast-Modified:\x20Mon,\x203
+SF:1\x20Mar\x202025\x2022:12:04\x20GMT\r\nETag:\x20W/\&#34;7b7-195ee43047b\&#34;\r
+SF:\nContent-Type:\x20text/html;\x20charset=UTF-8\r\nContent-Length:\x2019
+SF:75\r\nVary:\x20Accept-Encoding\r\nDate:\x20Mon,\x2031\x20Mar\x202025\x2
+SF:023:41:33\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20html&gt;\n&lt;ht
+SF:ml\x20lang=\&#34;en\&#34;&gt;\n\t&lt;head&gt;\n\t\t&lt;script\x20type=\&#34;module\&#34;\x20crossor
+SF:igin\x20src=\&#34;/assets/polyfills-C7eMRNFe\.js\&#34;&gt;&lt;/script&gt;\n\n\t\t&lt;meta\x
+SF:20charset=\&#34;utf-8\&#34;\x20/&gt;\n\t\t&lt;meta\x20http-equiv=\&#34;X-UA-Compatible\&#34;\
+SF:x20content=\&#34;IE=edge\&#34;\x20/&gt;\n\t\t&lt;meta\x20name=\&#34;viewport\&#34;\x20content
+SF:=\&#34;width=device-width,initial-scale=1\.0\&#34;\x20/&gt;\n\t\t&lt;link\x20rel=\&#34;ic
+SF:on\&#34;\x20href=\&#34;/favicon\.ico\&#34;\x20/&gt;\n\t\t&lt;style&gt;@media\x20\(prefers-co
+SF:lor-scheme:\x20dark\)\x20{\x20body\x20{\x20background-color:\x20rgb\(45
+SF:,\x2046,\x2046\)\x20}\x20}&lt;/style&gt;\n\t\t&lt;script\x20type=\&#34;text/javascri
+SF:pt\&#34;&gt;\n\t\t\twindow\.BASE_PATH\x20=\x20&#39;/&#39;;\n\t\t\twindow\.REST_ENDPOIN
+SF:T\x20=\x20&#39;rest&#39;;\n\t\t&lt;/script&gt;\n\t\t&lt;script\x20src=\&#34;/rest/sentry\.js
+SF:\&#34;&gt;&lt;/script&gt;\n\t\t&lt;script&gt;!function\(t,e\){var\x20o,n,&#34;)%r(HTTPOptions,
+SF:183,&#34;HTTP/1\.1\x20404\x20Not\x20Found\r\nContent-Security-Policy:\x20de
+SF:fault-src\x20&#39;none&#39;\r\nX-Content-Type-Options:\x20nosniff\r\nContent-Ty
+SF:pe:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x20143\r\nVary:\x
+SF:20Accept-Encoding\r\nDate:\x20Mon,\x2031\x20Mar\x202025\x2023:41:33\x20
+SF:GMT\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20html&gt;\n&lt;html\x20lang=\&#34;
+SF:en\&#34;&gt;\n&lt;head&gt;\n&lt;meta\x20charset=\&#34;utf-8\&#34;&gt;\n&lt;title&gt;Error&lt;/title&gt;\n&lt;/hea
+SF:d&gt;\n&lt;body&gt;\n&lt;pre&gt;Cannot\x20OPTIONS\x20/&lt;/pre&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n&#34;)%r(R
+SF:TSPRequest,183,&#34;HTTP/1\.1\x20404\x20Not\x20Found\r\nContent-Security-Po
+SF:licy:\x20default-src\x20&#39;none&#39;\r\nX-Content-Type-Options:\x20nosniff\r\
+SF:nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x20143
+SF:\r\nVary:\x20Accept-Encoding\r\nDate:\x20Mon,\x2031\x20Mar\x202025\x202
+SF:3:41:33\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20html&gt;\n&lt;html
+SF:\x20lang=\&#34;en\&#34;&gt;\n&lt;head&gt;\n&lt;meta\x20charset=\&#34;utf-8\&#34;&gt;\n&lt;title&gt;Error&lt;/ti
+SF:tle&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;pre&gt;Cannot\x20OPTIONS\x20/&lt;/pre&gt;\n&lt;/body&gt;\n&lt;/ht
+SF:ml&gt;\n&#34;);
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port7000-TCP:V=7.95%I=7%D=4/1%Time=67EB282D%P=arm-apple-darwin24.2.0%r(
+SF:RTSPRequest,8E,&#34;RTSP/1\.0\x20403\x20Forbidden\r\nContent-Length:\x200\r
+SF:\nServer:\x20AirTunes/845\.5\.1\r\nX-Apple-ProcessingTime:\x200\r\nX-Ap
+SF:ple-RequestReceivedTimestamp:\x2010396766\r\n\r\n&#34;)%r(GetRequest,8E,&#34;HT
+SF:TP/1\.1\x20403\x20Forbidden\r\nContent-Length:\x200\r\nServer:\x20AirTu
+SF:nes/845\.5\.1\r\nX-Apple-ProcessingTime:\x200\r\nX-Apple-RequestReceive
+SF:dTimestamp:\x2010401772\r\n\r\n&#34;)%r(HTTPOptions,8E,&#34;HTTP/1\.1\x20403\x2
+SF:0Forbidden\r\nContent-Length:\x200\r\nServer:\x20AirTunes/845\.5\.1\r\n
+SF:X-Apple-ProcessingTime:\x200\r\nX-Apple-RequestReceivedTimestamp:\x2010
+SF:401780\r\n\r\n&#34;)%r(FourOhFourRequest,8E,&#34;HTTP/1\.1\x20403\x20Forbidden\
+SF:r\nContent-Length:\x200\r\nServer:\x20AirTunes/845\.5\.1\r\nX-Apple-Pro
+SF:cessingTime:\x200\r\nX-Apple-RequestReceivedTimestamp:\x2010401784\r\n\
+SF:r\n&#34;)%r(SIPOptions,A0,&#34;RTSP/1\.0\x20403\x20Forbidden\r\nContent-Length:
+SF:\x200\r\nServer:\x20AirTunes/845\.5\.1\r\nCSeq:\x2042\x20OPTIONS\r\nX-A
+SF:pple-ProcessingTime:\x201\r\nX-Apple-RequestReceivedTimestamp:\x2010401
+SF:787\r\n\r\n&#34;);
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port9080-TCP:V=7.95%I=7%D=4/1%Time=67EB2828%P=arm-apple-darwin24.2.0%r(
+SF:GetRequest,9C,&#34;HTTP/1\.0\x20404\x20Not\x20Found\r\nContent-Length:\x208
+SF:5\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Not\x20Found&lt;
+SF:/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;404\x20Not\x20Found&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;)%r(Gene
+SF:ricLines,A2,&#34;HTTP/1\.0\x20400\x20Bad\x20Request\r\nContent-Length:\x208
+SF:9\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Bad\x20Reques
+SF:t&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;400\x20Bad\x20Request&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;)%r(
+SF:HTTPOptions,9C,&#34;HTTP/1\.0\x20404\x20Not\x20Found\r\nContent-Length:\x20
+SF:85\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Not\x20Found
+SF:&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;404\x20Not\x20Found&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;)%r(RTS
+SF:PRequest,A2,&#34;HTTP/1\.0\x20400\x20Bad\x20Request\r\nContent-Length:\x208
+SF:9\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Bad\x20Reques
+SF:t&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;400\x20Bad\x20Request&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;)%r(
+SF:RPCCheck,A2,&#34;HTTP/1\.0\x20400\x20Bad\x20Request\r\nContent-Length:\x208
+SF:9\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Bad\x20Reques
+SF:t&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;400\x20Bad\x20Request&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;)%r(
+SF:DNSVersionBindReqTCP,A2,&#34;HTTP/1\.0\x20400\x20Bad\x20Request\r\nContent-
+SF:Length:\x2089\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;B
+SF:ad\x20Request&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;400\x20Bad\x20Request&lt;/h1&gt;&lt;/body&gt;
+SF:&lt;/html&gt;&#34;)%r(DNSStatusRequestTCP,A2,&#34;HTTP/1\.0\x20400\x20Bad\x20Request\
+SF:r\nContent-Length:\x2089\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;he
+SF:ad&gt;&lt;title&gt;Bad\x20Request&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;400\x20Bad\x20Request&lt;
+SF:/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;)%r(Help,A2,&#34;HTTP/1\.0\x20400\x20Bad\x20Request\r\nC
+SF:ontent-Length:\x2089\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;
+SF:title&gt;Bad\x20Request&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;400\x20Bad\x20Request&lt;/h1&gt;
+SF:&lt;/body&gt;&lt;/html&gt;&#34;)%r(SSLSessionReq,A2,&#34;HTTP/1\.0\x20400\x20Bad\x20Request
+SF:\r\nContent-Length:\x2089\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;&lt;h
+SF:ead&gt;&lt;title&gt;Bad\x20Request&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;400\x20Bad\x20Request
+SF:&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;)%r(TerminalServerCookie,A2,&#34;HTTP/1\.0\x20400\x20Ba
+SF:d\x20Request\r\nContent-Length:\x2089\r\nContent-Type:\x20text/html\r\n
+SF:\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Bad\x20Request&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;400\x20Ba
+SF:d\x20Request&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;);
+Service Info: Host: Welcome
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 18.70 seconds</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>Timing</p>
+<p>The following options can be used to control the speed of your Nmap scan.</p>
+<p>-T1-5 - Timing templates for adjusting your scan speed. These templates are categorized as Paranoid (0) | Sneaky (1) | Polite (2) | Normal (3) | Aggressive (4) | Insane (5).</p>
+<p>The default is Normal (3). You may want to speed up your scan because you’re impatient (T5 - insane!) or slow it right down so that you don’t trip any filters that will give you a bad read (T0 - paranoid&hellip;).</p>
+
+        </div>
+        <div class="hx-mt-16"></div>
+        
+        
+      </main>
+    </article>
+  </div>
+
+      <footer class="hextra-footer hx-bg-gray-100 hx-pb-[env(safe-area-inset-bottom)] dark:hx-bg-neutral-900 print:hx-bg-transparent"><div
+      class="hextra-custom-footer hx-max-w-screen-xl hx-pl-[max(env(safe-area-inset-left),1.5rem)] hx-pr-[max(env(safe-area-inset-right),1.5rem)] hx-text-gray-600 dark:hx-text-gray-400"
+    ></div></footer>
+    
+    <script defer src="/js/main.js" integrity=""></script>
+
+
+<script defer src="/lib/flexsearch/flexsearch.bundle.min.0425860527cc9968f9f049421c7a56b39327d475e2e3a8f550416be3a9134327.js" integrity="sha256-BCWGBSfMmWj58ElCHHpWs5Mn1HXi46j1UEFr46kTQyc="></script>
+    <script defer src="/en.search.js" integrity=""></script>
+
+
+  </body>
+</html>
