@@ -22,7 +22,7 @@ width: full
 
 <div class="hx-mb-12">
 {{< hextra/hero-subtitle >}}
-  Place where you can learn &nbsp;<br class="sm:hx-block hx-hidden" /> about AI and Data > Community Driven 
+  Place where you can learn &nbsp;<br class="sm:hx-block hx-hidden" /> about AI and Data 
 {{< /hextra/hero-subtitle >}}
 </div>
 
