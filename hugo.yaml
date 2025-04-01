@@ -2,9 +2,6 @@
 title: aidatafoundation
 baseURL: "https://aidatafoundation.github.io/"
 
-
-
-
 # import hextra as module
 module:
   imports:
@@ -15,14 +12,13 @@ module:
 
 
 markup:
-  # allow raw html
+  highlight:
+    noClasses: false
   goldmark:
     renderer:
       unsafe: true
-
-  # enable hextra syntax highlight
-  highlight:
-    noClasses: false
+  
+enableInlineShortcodes: true
 
 menu:
   main:
