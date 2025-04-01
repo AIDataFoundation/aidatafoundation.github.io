@@ -1,5 +1,5 @@
-module github.com/imfing/hextra/exampleSite
+module github.com/CloudSecCorner/cloudseccorner.github.io
 
-go 1.20
+go 1.23.4
 
-replace github.com/imfing/hextra => ../
+require github.com/imfing/hextra v0.9.3 // indirect
