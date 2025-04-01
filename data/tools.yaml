@@ -5,17 +5,13 @@
     description: Parallel computing with task scheduling
   - name: Infer.net
     url: github.com/dotnet/infer
-    description: Infer.NET is a framework for running Bayesian inference in graphical
-      models
+    description: Infer.NET is a framework for running Bayesian inference in graphical models
   - name: Julia
     url: github.com/JuliaLang/julia
     description: The Julia Programming Language
   - name: Kompute
     url: github.com/KomputeProject/kompute
-    description: General purpose GPU compute framework built on Vulkan to support
-      1000s of cross vendor graphics cards (AMD, Qualcomm, NVIDIA & friends). Blazing
-      fast, mobile-enabled, asynchronous and optimized for advanced GPU data processing
-      usecases. Backed by the Linux Foundation.
+    description: General purpose GPU compute framework built on Vulkan to support 1000s of cross vendor graphics cards (AMD, Qualcomm, NVIDIA & friends).
   - name: MARS
     url: github.com/mars-project/mars
     description: Mars is a tensor-based unified framework for large-scale data computation
@@ -53,9 +49,7 @@
     description: A programming language to skip the things you have already computed
   - name: Stan
     url: github.com/stan-dev/stan
-    description: Stan development repository. The master branch contains the current
-      release. The develop branch contains the latest stable development. See the
-      Developer Process Wiki for details.
+    description: Stan development repository
 - category: Machine Learning - Framework
   tools:
   - name: Autogen
@@ -66,25 +60,17 @@
     description: Minimalist ML framework for Rust
   - name: LightGBM
     url: https://github.com/Microsoft/LightGBM
-    description: A fast, distributed, high performance gradient boosting (GBT, GBDT,
-      GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking,
-      classification and many other machine learning tasks.
+    description: A fast, distributed, high performance gradient boosting (GBT, GBDT,GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking,classification and many other machine learning tasks.
   - name: mahout
     url: github.com/apache/mahout
-    description: Apache Mahout(TM) is a distributed linear algebra framework and mathematically
-      expressive Scala DSL designed to let mathematicians, statisticians, and data
-      scientists quickly implement their own algorithms. Apache Spark is the recommended
-      out-of-the-box distributed back-end, or can be extended to other distributed
-      backends.
+    description: Apache Mahout(TM) is a distributed linear algebra framework and mathematically expressive Scala DSL designed to let mathematicians, statisticians, and data scientists quickly implement their own algorithms.
   - name: ML.NET
     url: https://github.com/dotnet/machinelearning
     description: ML.NET is an open source and cross-platform machine learning framework
       for .NET.
   - name: Ray
     url: https://github.com/ray-project/ray
-    description: Ray is a unified framework for scaling AI and Python applications.
-      Ray consists of a core distributed runtime and a set of AI Libraries for accelerating
-      ML workloads.
+    description: Ray is a unified framework for scaling AI and Python applications.Ray consists of a core distributed runtime and a set of AI Libraries for accelerating ML workloads.
   - name: ZenML
     url: github.com/zenml-io/zenml
     description: 'ZenML 🙏: Build portable, production-ready MLOps pipelines.'
@@ -92,12 +78,10 @@
   tools:
   - name: Alink
     url: https://github.com/alibaba/Alink
-    description: Alink is the Machine Learning algorithm platform based on Flink,
-      developed by the PAI team of Alibaba computing platform.
+    description: Alink is the Machine Learning algorithm platform based on Flink,developed by the PAI team of Alibaba computing platform.
   - name: Angel
     url: github.com/Angel-ML/angel
-    description: A Flexible and Powerful Parameter Server for large-scale machine
-      learning
+    description: A Flexible and Powerful Parameter Server for large-scale machine learning
   - name: Systemds
     url: github.com/apache/systemds
     description: An open source ML system for the end-to-end data science lifecycle
@@ -112,11 +96,7 @@
     description: ForestFlow is a policy-driven Machine Learning Model Server
   - name: H203
     url: github.com/h2oai/h2o-3
-    description: 'H2O is an Open Source, Distributed, Fast & Scalable Machine Learning
-      Platform: Deep Learning, Gradient Boosting (GBM) & XGBoost, Random Forest, Generalized
-      Linear Modeling (GLM with Elastic Net), K-Means, PCA, Generalized Additive Models
-      (GAM), RuleFit, Support Vector Machine (SVM), Stacked Ensembles, Automatic Machine
-      Learning (AutoML), etc.'
+    description: H2O is an Open Source, Distributed, Fast & Scalable Machine Learning
   - name: Kubeflow
     url: github.com/kubeflow/kubeflow
     description: Machine Learning Toolkit for Kubernetes
