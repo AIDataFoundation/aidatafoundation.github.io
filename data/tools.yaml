@@ -1,0 +1,193 @@
+- category: Dynamic Analysis
+  tools: 
+    - name: Black
+      description: The uncompromising Python code formatter
+      url: https://black.readthedocs.io/en/stable
+    - name: MegaLinter
+      description: 🦙 MegaLinter analyzes 50 languages, 22 formats, 21 tooling formats, excessive copy-pastes, spelling mistakes and security issues in your repository sources with a GitHub Action, other CI tools or locally.
+      url: https://github.com/oxsecurity/megalinter
+    - name: mypy
+      description: Optional static typing for Python
+      url: https://github.com/python/mypy
+    - name: Semgrep
+      description: Lightweight static analysis for many languages. Find bugs, enforce code standards, and block insecure code.
+      url: https://semgrep.dev/
+    - name: ESLint
+      description: Find and fix problems in your JavaScript code.
+      url: https://eslint.org/
+    - name: Pylint
+      description: A Python static code analyzer that looks for programming errors, helps enforce a coding standard, and sniffs for code smells.
+      url: https://pylint.pycqa.org/
+    - name: Flake8
+      description: A wrapper around pycodestyle, pyflakes, and McCabe for checking the style guide enforcement in Python code.
+      url: https://flake8.pycqa.org/
+    - name: Bandit
+      description: A security-oriented static analyzer for Python code to find common security issues.
+      url: https://bandit.readthedocs.io/
+    - name: CodeQL
+      description: Semantic code analysis engine from GitHub to query code like data.
+      url: https://github.com/github/codeql
+    - name: SonarQube
+      description: Continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities.
+      url: https://www.sonarsource.com/products/sonarqube/
+    - name: Teamscale
+      description: Continuous code quality management platform that automatically finds and fixes issues in code.
+      url: https://www.teamscale.com/
+    - name: Clippy 
+      description: A code linter for Rust that helps you write idiomatic code.
+      url: https://rust-lang.github.io/rust-clippy/
+    - name: go vet
+      description: Examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string.
+      url: https://pkg.go.dev/cmd/vet
+    - name: phpstan
+      description: PHP Static Analysis Tool - discover bugs in your code without running it!
+      url: https://phpstan.org/
+    - name: Bearer 
+      description: API security testing tool that helps you discover and fix security vulnerabilities in your APIs.
+      url: https://github.com/bearer/bearer
+    - name: cppcheck 
+      description: A static analysis tool for C/C++ code.
+      url: https://cppcheck.sourceforge.io
+    - name: Pylint
+      description: A Python static code analyzer that looks for programming errors, helps enforce a coding standard, and sniffs for code smells.
+      url: https://pylint.readthedocs.io/en/latest/
+    - name: Psalm
+      description: A static analysis tool for finding errors in PHP applications.
+      url: https://psalm.dev/
+    - name: clang-tidy
+      description: A clang-based C++ "linter" tool that provides an extensible framework for diagnosing and fixing typical programming errors.
+      url: https://clang.llvm.org/extra/clang-tidy/
+    - name: Rubocop 
+      description: A Ruby static code analyzer and formatter, based on the community Ruby style guide.
+      url: https://rubocop.org/
+    - name: GitGuardian ggshield 
+      description: ggshield is a CLI application that runs in your local environment or in a CI environment to help you detect more than 350+ types of secrets, as well as other potential security vulnerabilities or policy breaks affecting your codebase.
+      url: https://www.gitguardian.com/ggshield
+    - name: Cognicrypt
+      description: CogniCrypt is a plugin for the Eclipse IDE that supports developers in using cryptography in their Java applications.
+      url: https://www.eclipse.org/cognicrypt/    
+    - name: Rust-analyzer
+      description: A language server for Rust.
+      url: https://rust-analyzer.github.io/
+    - name: GolangCI-Lint
+      description: GolangCI-Lint is a linters aggregator.
+      url: https://golangci-lint.run/
+    - name: ruff 
+      description: Fast Python linter, written in Rust. 10-100x faster than existing linters. Compatible with Python 3.10. Supports file watcher.
+      url : https://github.com/astral-sh
+    - name: staticcheck
+      description: staticcheck is a go vet on steroids, applying static analysis to your Go code.
+      url: https://staticcheck.dev
+    - name: PVS-Studio
+      description: PVS-Studio is a tool for bug detection in the source code of programs, written in C, C++, and C#.
+      url: https://pvs-studio.com
+    - name: Prettier 
+      description: An opinionated code formatter.
+      url: https://prettier.io/
+    - name: cargo-audit 
+      description: Audit Cargo.lock for crates with security vulnerabilities reported to the RustSec Advisory Database.
+      url: https://rustsec.org
+    - name: SAST online 
+      description: SAST Online is a static application security testing tool that helps you find security vulnerabilities in your code.
+      url: https://sast.online
+    - name: PHP coding standards fixer
+      description: A tool to automatically fix PHP coding standards issues.
+      url: https://cs.symfony.com/
+    - name: diktat 
+      description: Strict coding standard for Kotlin and a linter that detects and auto-fixes code smells.
+      url: https://diktat.saveourtool.com
+    - name: Sigrid 
+      description: Sigrid helps you to improve your software by measuring your system's code quality, and then compares the results against a benchmark of thousands of industry systems to give you concrete advice on areas where you can improve
+      url: https://www.softwareimprovementgroup.com/sigrid-software-excellence-platform/
+    - name: CodeScene 
+      description: CodeScene is a quality visualization tool that helps you prioritize technical debt, detect delivery risks, and manage the social aspects of your codebase.
+      url: https://codescene.com
+    - name: phan 
+      description: A modern static analyzer from etsy 
+      url: https://github.com/phan/phan/wiki
+    - name: rustfmt 
+      description: A tool for formatting Rust code according to style guidelines.
+      url: https://github.com/rust-lang/rustfmt
+    - name: brakeman 
+      description: A static analysis security vulnerability scanner for Ruby on Rails applications.
+      url: https://brakemanscanner.org/
+    - name: composer-dependency-analyser 
+      description: A tool to analyse the dependencies of your PHP project.
+      url: https://github.com/shipmonk-rnd/composer-dependency-analyser
+    - name: Frama-C
+      description: A sound and extensible static analyzer for C code.
+      url: https://frama-c.com/
+    - name: Php Inspections (EA Extended) 
+      description: A static code analysis tool for PHP.
+      url: https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-
+    - name: TypeScript Call Graph 
+      description: CLI to generate an interactive graph of functions and calls from your TypeScript files
+      url: https://github.com/whyboris/TypeScript-Call-Graph
+    - name: pyright 
+      description: Static type checker for Python, created to address gaps in existing tools like mypy.
+      url: https://github.com/microsoft/pyright
+    - name: trunk 
+      description: A fast, efficient, and correct Rust build system.
+      url: https://trunk.io
+    - name: Coverity 
+      description: Static analysis tool for C, C++, C#, and Java codebases.
+      url: https://www.blackduck.com
+    - name: DeepSource 
+      description: Static code analysis tool for Python, Go, Ruby, and JavaScript.
+      url: https://deepsource.com
+    - name: gofmt -s 
+      description: Simplifies Go code by removing extraneous whitespace and ensuring proper indentation.
+      url: https://pkg.go.dev/cmd/gofmt
+    - name: SQLFluff 
+      description: SQLFluff is a dialect-flexible and configurable SQL linter.
+      url: https://www.sqlfluff.com
+    - name: SwiftLint 
+      description: A tool to enforce Swift style and conventions.
+      url: https://realm.github.io/SwiftLint/ 
+    - name: jedi 
+      description: Autocompletion/static analysis library for Python.
+      url: https://jedi.readthedocs.io/en/latest/
+    - name: mythril 
+      description: Security analysis tool for Ethereum smart contracts.
+      url: https://github.com/ConsenSysDiligence/mythril
+- category: Static Analysis
+  tools: 
+    - name: Microsoft IntelliTest 
+      description: Generate a candidate suite of tests for your .NET code.
+      url: https://black.readthedocs.io/en/stable 
+    - name: Pex and Moles
+      description: Pex automatically generates test suites with high code coverage using automated white box analysis.
+      url: https://www.microsoft.com/en-us/research/project/pex-and-moles-isolation-and-white-box-unit-testing-for-net/
+    - name: chap
+      description: Analyzes un-instrumented ELF core files for leaks, memory growth, and corruption. It helps explain memory growth, can identify some forms of corruption, and  supplements a debugger by giving the status of various memory locations
+      url: https://github.com/vmware/chap
+    - name: KLEE
+      description: Symbolic virtual machine built on top of the LLVM compiler infrastructure.
+      url: https://github.com/klee/klee
+    - name: LDRA
+      description: LDRA Testbed is a software analysis and testing tool suite that provides static and dynamic analysis, and unit testing for embedded applications.
+      url: https://ldra.com
+    - name: LLVM/Clang 
+      description: A collection of modular and reusable compiler and toolchain technologies.
+      url: https://clang.llvm.org/
+    - name: Valgrind 
+      description: A programming tool for memory debugging, memory leak detection, and profiling.
+      url: https://www.valgrind.org/
+    - name: statsviz 
+      description: A runtime statistics visualization tool for Go.
+      url: https://github.com/arl/statsviz 
+    - name: JAVA PathFinder 
+      description: A model checker for Java bytecode programs.
+      url: https://github.com/javapathfinder/jpf-core)
+    - name: Parasoft Jtest
+      description: Automated Java software testing and static analysis tool.
+      url: https://www.parasoft.com/products/jtest/
+    - name: Iroh.js 
+      description: A dynamic code analysis tool for JavaScript. Iroh allows to record your code flow in realtime, intercept runtime informations and manipulate program behaviour on the fly.
+      url: https://github.com/maierfelix/Iroh
+    - name: Jalang12 
+      description: Jalangi2 is a popular framework for writing dynamic analyses for JavaScript.
+      url: https://github.com/Samsung/jalangi2
+    
+    
+    
