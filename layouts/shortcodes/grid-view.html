@@ -6,7 +6,7 @@
     <h2 class="text-3xl font-semibold mt-12 mb-6 category-title text-gray-800 dark:text-gray-200 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
       {{ $categoryData.category }}
     </h2>
-    <div class="hx-grid md:hx-grid-cols-2 lg:hx-grid-cols-3 hx-gap-6 category-grid">
+    <div class="hx:grid md:hx:grid-cols-2 lg:hx:grid-cols-3 hx:gap-6 category-grid">
       {{ range $index, $tool := $categoryData.tools }}
       {{- $isGithubRepo := false -}}
       {{- $stars := 0 -}}
