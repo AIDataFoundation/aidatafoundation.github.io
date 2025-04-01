@@ -4,15 +4,15 @@
       <h2 class="text-3xl font-semibold mt-12 mb-6 category-title text-gray-800 dark:text-gray-200 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
         {{ $categoryData.category }}
       </h2>
-
-      <div class="hx:grid md:hx:grid-cols-2 lg:hx:grid-cols-3 hx:gap-6 category-grid">
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 category-grid">
         {{ range $tool := $categoryData.tools }}
           {{- $cardParams := dict
             "link" $tool.url
             "title" $tool.name
             "subtitle" $tool.description
           -}}
-
+          
           {{- partial "shortcodes/card.html" $cardParams -}}
         {{ end }}
       </div>
@@ -23,24 +23,24 @@
 <script>
   const searchInput = document.getElementById('categorySearch');
   const categorySections = document.querySelectorAll('.category-section');
-
+  
   searchInput?.addEventListener('input', () => {
     const searchTerm = searchInput.value.toLowerCase();
-
+    
     categorySections.forEach(section => {
       const titleText = section.querySelector('.category-title').textContent.toLowerCase();
       const cards = section.querySelectorAll('.hextra-card');
       let anyCardVisible = false;
-
+      
       cards.forEach(card => {
         const cardTitle = card.querySelector('.font-semibold')?.textContent.toLowerCase() || '';
         const cardSubtitle = card.querySelector('.hextra-card-subtitle')?.textContent.toLowerCase() || '';
-
+        
         const match = cardTitle.includes(searchTerm) || cardSubtitle.includes(searchTerm) || titleText.includes(searchTerm);
         card.style.display = match ? 'block' : 'none';
         if (match) anyCardVisible = true;
       });
-
+      
       section.style.display = anyCardVisible ? 'block' : 'none';
     });
   });

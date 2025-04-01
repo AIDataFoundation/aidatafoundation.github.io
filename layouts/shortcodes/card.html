@@ -1,57 +1,48 @@
-{{- $link := .Get "link" -}}
-{{- $title := .Get "title" | default "Untitled" -}}
-{{- $icon := .Get "icon" -}}
-{{- $subtitle := .Get "subtitle" | default "No description available." -}}
-{{- $image := .Get "image" -}}
-{{- $imageStyle := .Get "imageStyle" -}}
-
-{{/* Image Processing (local only) */}}
-{{- $width := 0 -}}
-{{- $height := 0 -}}
-{{- $method := .Get "method" | default "Resize" | humanize -}}
-{{- $options := .Get "options" | default "800x webp q80" -}}
-
-{{- if and $image (not (urls.Parse $image).Scheme) -}}
-  {{- with resources.Get $image -}}
-    {{- $processed := "" -}}
-    {{- if eq $method "Resize" }}{{ $processed = (.Resize $options) }}
-    {{- else if eq $method "Fit" }}{{ $processed = (.Fit $options) }}
-    {{- else if eq $method "Fill" }}{{ $processed = (.Fill $options) }}
-    {{- else if eq $method "Crop" }}{{ $processed = (.Crop $options) }}
-    {{- else }}{{ errorf "Invalid image processing method." }}
-    {{- end }}
-    {{- $width = $processed.Width -}}
-    {{- $height = $processed.Height -}}
-    {{- $image = $processed.RelPermalink -}}
-  {{- end }}
-{{- end }}
-
-{{- $external := strings.HasPrefix $link "http" -}}
-{{- $href := cond (strings.HasPrefix $link "/") ($link | relURL) $link -}}
-
-<div class="hextra-card group flex flex-col justify-start overflow-hidden rounded-lg border border-gray-200 text-current no-underline dark:shadow-none hover:shadow-gray-100 dark:hover:shadow-none shadow-gray-100 active:shadow-sm active:shadow-gray-200 transition-all duration-200 bg-transparent shadow-sm dark:border-neutral-800 hover:bg-slate-50 hover:shadow-md dark:hover:border-neutral-700 dark:hover:bg-neutral-900">
-  <a href="{{ $href }}" {{ with $external }}target="_blank" rel="noreferrer"{{ end }} class="block">
-    {{- with $image }}
-      <img
-        alt="{{ $title }}"
-        loading="lazy"
-        decoding="async"
-        src="{{ $image | safeURL }}"
-        {{ with $width }}width="{{ . }}"{{ end }}
-        {{ with $height }}height="{{ . }}"{{ end }}
-        {{ with $imageStyle }}style="{{ . | safeCSS }}"{{ end }}
-        class="w-full object-cover h-48"
-      />
-    {{- end }}
-
-    <div class="hextra-card-content p-4">
-      <span class="hextra-card-icon flex font-semibold items-start gap-2 text-gray-700 hover:text-gray-900 dark:text-neutral-200 dark:hover:text-neutral-50">
-        {{- with $icon }}{{ partial "utils/icon.html" (dict "name" $icon) }}{{ end }}
-        {{- $title }}
-      </span>
-      <div class="hextra-card-subtitle line-clamp-3 text-sm font-normal text-gray-500 dark:text-gray-400 mt-2">
-        {{ $subtitle | markdownify }}
+<div id="categoryGrid" class="container mx-auto">
+  {{- range $categoryData := .Site.Data.tools }}
+    <div class="category-section mb-12">
+      <h2 class="text-3xl font-semibold mt-12 mb-6 category-title text-gray-800 dark:text-gray-200 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
+        {{ $categoryData.category }}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 category-grid">
+        {{ range $tool := $categoryData.tools }}
+          {{- $cardParams := dict
+            "link" $tool.url
+            "title" $tool.name
+            "subtitle" $tool.description
+            "image" $tool.image
+          -}}
+          
+          {{- partial "shortcodes/card.html" $cardParams -}}
+        {{ end }}
       </div>
     </div>
-  </a>
+  {{ end }}
 </div>
+
+<script>
+  const searchInput = document.getElementById('categorySearch');
+  const categorySections = document.querySelectorAll('.category-section');
+  
+  searchInput?.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    
+    categorySections.forEach(section => {
+      const titleText = section.querySelector('.category-title').textContent.toLowerCase();
+      const cards = section.querySelectorAll('.hextra-card');
+      let anyCardVisible = false;
+      
+      cards.forEach(card => {
+        const cardTitle = card.querySelector('.font-semibold')?.textContent.toLowerCase() || '';
+        const cardSubtitle = card.querySelector('.hextra-card-subtitle')?.textContent.toLowerCase() || '';
+        
+        const match = cardTitle.includes(searchTerm) || cardSubtitle.includes(searchTerm) || titleText.includes(searchTerm);
+        card.style.display = match ? 'block' : 'none';
+        if (match) anyCardVisible = true;
+      });
+      
+      section.style.display = anyCardVisible ? 'block' : 'none';
+    });
+  });
+</script>
