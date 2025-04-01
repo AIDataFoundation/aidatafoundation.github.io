@@ -2,7 +2,7 @@
 set -e
 
 # Specify the base URL
-BASE_URL=${1:-"http://localhost:1313"}
+BASE_URL=${1:-"https://aidatafoundation.github.io"}
 
 echo "Using base URL: $BASE_URL"
 
