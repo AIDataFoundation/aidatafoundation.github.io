@@ -8,10 +8,10 @@ echo "Using base URL: $BASE_URL"
 
 # Version configuration - modify these arrays to specify versions to build
 # Format: "ref:display_name" (ref can be tag, branch, or commit hash, display name is what will appear in URL)
-MAIN_VERSION="v0.9.6:latest"
+MAIN_VERSION="main:latest"
 VERSIONS=(
-  "main:latest" # latest version always builds from main
-  "v0.9.6:v0.9"
+  "main:latest"  # latest version always builds from main
+  "existing_tag_or_branch:v0.9"  # Replace with an existing tag or branch
   "v0.8.6:v0.8"
 )
 
