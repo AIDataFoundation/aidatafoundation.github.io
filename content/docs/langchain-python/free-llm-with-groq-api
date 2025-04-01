@@ -1,0 +1,25 @@
+## free LLMs with the Groq API 
+
+create enivoment variable 
+
+```
+GROQ_API_KEY = Give your key 
+```
+
+write simple code 
+
+```
+from langchain_groq import ChatGroq
+llm = ChatGroq(model="llama-3.3-70b-versatile")
+messages=[{"role": "system", "content": "You are a helpful assistant."}]
+user_message = {"role": "user", "content": "Hi, my name is Alex."}
+response = llm.invoke(messages)
+print(response.content)
+
+```
+Output
+```
+How can I help you today? Do you have any questions, need assistance with a task, or just want to chat? I'm here to provide information and support.
+
+```
+

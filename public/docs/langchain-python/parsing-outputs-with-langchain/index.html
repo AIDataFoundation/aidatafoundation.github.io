@@ -10,17 +10,59 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Docs – AIDATA Foundation.</title>
-  <meta name="description" content="" /><link rel="canonical" href="//localhost:1313/docs/" itemprop="url" />
+<title>AIDATA Foundation.</title>
+  <meta name="description" content="Parsing Outputs with LangChain
+LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
+Lab 1 - Promt Templating and parcing date and time
+from langchain_groq import ChatGroq from langchain_core.prompts import PromptTemplate from langchain.output_parsers import DatetimeOutputParser llm = ChatGroq(model=&#34;llama3-8b-8192&#34;) parser_dateTime = DatetimeOutputParser() prompt_dateTime = PromptTemplate.from_template( template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;, input_vairables = [&#34;question&#34;], partial_variables = {&#34;format_instructions&#34;: parser_dateTime.get_format_instructions()} ) prompt_value = prompt_dateTime.invoke({&#34;question&#34;: &#34;When was the iPhone released&#34;}) response = llm.invoke(prompt_value) print(response.content) returned_object = parser_dateTime.parse(response.content) print(type(returned_object)) Output" /><link rel="canonical" href="//localhost:1313/docs/langchain-python/parsing-outputs-with-langchain/" itemprop="url" />
 
-<meta property="og:title" content="Docs" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="//localhost:1313/docs/" />
+<meta property="og:title" content="" />
+<meta property="og:description" content="Parsing Outputs with LangChain
+LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
+Lab 1 - Promt Templating and parcing date and time
 
-  <meta itemprop="name" content="Docs">
+
+from langchain_groq import ChatGroq
+from langchain_core.prompts import PromptTemplate
+from langchain.output_parsers import DatetimeOutputParser
+llm = ChatGroq(model=&#34;llama3-8b-8192&#34;)
+parser_dateTime = DatetimeOutputParser()
+prompt_dateTime = PromptTemplate.from_template(
+    template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;,
+    input_vairables = [&#34;question&#34;],
+    partial_variables = {&#34;format_instructions&#34;: parser_dateTime.get_format_instructions()}
+)
+
+prompt_value = prompt_dateTime.invoke({&#34;question&#34;: &#34;When was the iPhone released&#34;})
+response = llm.invoke(prompt_value)
+print(response.content)
+
+returned_object = parser_dateTime.parse(response.content)
+print(type(returned_object))
+  
+    
+    
+  
+
+
+Output" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//localhost:1313/docs/langchain-python/parsing-outputs-with-langchain/" /><meta property="article:section" content="docs" />
+
+
+
+  <meta itemprop="name" content="AIDATA Foundation.">
+  <meta itemprop="description" content="Parsing Outputs with LangChain
+LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
+Lab 1 - Promt Templating and parcing date and time
+from langchain_groq import ChatGroq from langchain_core.prompts import PromptTemplate from langchain.output_parsers import DatetimeOutputParser llm = ChatGroq(model=&#34;llama3-8b-8192&#34;) parser_dateTime = DatetimeOutputParser() prompt_dateTime = PromptTemplate.from_template( template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;, input_vairables = [&#34;question&#34;], partial_variables = {&#34;format_instructions&#34;: parser_dateTime.get_format_instructions()} ) prompt_value = prompt_dateTime.invoke({&#34;question&#34;: &#34;When was the iPhone released&#34;}) response = llm.invoke(prompt_value) print(response.content) returned_object = parser_dateTime.parse(response.content) print(type(returned_object)) Output">
+  <meta itemprop="wordCount" content="544">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Docs">
+  <meta name="twitter:title" content="AIDATA Foundation.">
+  <meta name="twitter:description" content="Parsing Outputs with LangChain
+LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.
+Lab 1 - Promt Templating and parcing date and time
+from langchain_groq import ChatGroq from langchain_core.prompts import PromptTemplate from langchain.output_parsers import DatetimeOutputParser llm = ChatGroq(model=&#34;llama3-8b-8192&#34;) parser_dateTime = DatetimeOutputParser() prompt_dateTime = PromptTemplate.from_template( template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;, input_vairables = [&#34;question&#34;], partial_variables = {&#34;format_instructions&#34;: parser_dateTime.get_format_instructions()} ) prompt_value = prompt_dateTime.invoke({&#34;question&#34;: &#34;When was the iPhone released&#34;}) response = llm.invoke(prompt_value) print(response.content) returned_object = parser_dateTime.parse(response.content) print(type(returned_object)) Output">
 
     <link href="/css/compiled/main.css" rel="stylesheet" />
 
@@ -158,13 +200,12 @@
     </a></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/"
     
   >Docs
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
-    </a>
-  <div class="ltr:hx-pr-0 hx-overflow-hidden">
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
         <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
@@ -189,13 +230,14 @@
   >How Langchain Work
     </a>
               
-            </li><li class="hx-flex hx-flex-col "><a
+            </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/langchain-python/parsing-outputs-with-langchain/"
     
   >Parsing Outputs With Lang Chain
     </a>
+  
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
@@ -263,9 +305,9 @@
     
   >How Langchain Work
     </a></li>
-          <li class=""><a
+          <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/langchain-python/parsing-outputs-with-langchain/"
     
   >Parsing Outputs With Lang Chain
@@ -316,7 +358,7 @@
     
 <nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
     <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4">
-      <div class=" hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400"><a class="hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50" href="https://github.com/AIDataFoundation/aidatafoundation.github.io/edit/main/content" target="_blank" rel="noreferrer">Edit this page on GitHub →</a>
+      <div class=" hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400"><a class="hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50" href="https://github.com/AIDataFoundation/aidatafoundation.github.io/edit/main/content/docs/langchain-python/Parsing%20Outputs-with-LangChain.md" target="_blank" rel="noreferrer">Edit this page on GitHub →</a>
         <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx-transition-all hx-duration-75 hx-opacity-0 hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50">
           <span>Scroll to top</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hx-inline ltr:hx-ml-1 rtl:hx-mr-1 hx-h-3.5 hx-w-3.5 hx-border hx-rounded-full hx-border-gray-500 hover:hx-border-gray-900 dark:hx-border-gray-400 dark:hover:hx-border-gray-100 contrast-more:hx-border-gray-800 contrast-more:dark:hx-border-gray-50">
@@ -331,15 +373,213 @@
     <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
       <main class="hx-w-full hx-min-w-0 hx-max-w-6xl hx-px-6 hx-pt-4 md:hx-px-12">
         
-  <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current"><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Docs</div>
+  <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current">
+        <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
+          <a href="/docs/">Docs</a>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Parsing Outputs With Lang Chain</div>
   </div>
 
         <div class="content">
-          <h1>Docs</h1>
           
+          <p>Parsing Outputs with LangChain</p>
+<p>LLMs typically provide a string of text as an output. However, when creating an LLM-powered application, we might need a more structured and formatted output that provides us with concise information rather than reading the complete response.</p>
+<p>Lab 1 - Promt Templating and parcing date and time</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>from langchain_groq import ChatGroq
+from langchain_core.prompts import PromptTemplate
+from langchain.output_parsers import DatetimeOutputParser
+llm = ChatGroq(model=&#34;llama3-8b-8192&#34;)
+parser_dateTime = DatetimeOutputParser()
+prompt_dateTime = PromptTemplate.from_template(
+    template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;,
+    input_vairables = [&#34;question&#34;],
+    partial_variables = {&#34;format_instructions&#34;: parser_dateTime.get_format_instructions()}
+)
+
+prompt_value = prompt_dateTime.invoke({&#34;question&#34;: &#34;When was the iPhone released&#34;})
+response = llm.invoke(prompt_value)
+print(response.content)
+
+returned_object = parser_dateTime.parse(response.content)
+print(type(returned_object))</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>Output</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>2007-06-29T19:00:00.000000Z
+&lt;class &#39;datetime.datetime&#39;&gt;</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>Lab 2 - Promt Templating and list output parcer</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>from langchain_groq import ChatGroq
+from langchain_core.prompts import PromptTemplate
+from langchain.output_parsers import CommaSeparatedListOutputParser
+
+llm = ChatGroq(model=&#34;llama3-8b-8192&#34;)
+
+parser_list = CommaSeparatedListOutputParser()
+prompt_list = PromptTemplate.from_template(
+    template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;,
+    input_vairables = [&#34;question&#34;],
+    partial_variables = {&#34;format_instructions&#34;: parser_list.get_format_instructions()},
+)
+
+prompt_value = prompt_list.invoke({&#34;question&#34;: &#34;List 4 chocolate brands&#34;})
+response = llm.invoke(prompt_value)
+print(response.content)
+
+returned_object = parser_list.parse(response.content)
+print(type(returned_object))</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>output</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>Nestle, Lindt, Ghirardelli, Hershey
+&lt;class &#39;list&#39;&gt;</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>Pydantic parser</p>
+<p>So far, we’ve seen some examples of output parsers that convert the input string to a single specific format. To extract multiple fields from the output string of an LLM, we can use the PydanticOutputParser. This parser parses the response into a defined TypedDict class, JSON schema or a Pydantic class.</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>from langchain_groq import ChatGroq
+from langchain_core.prompts import PromptTemplate
+from langchain.output_parsers import PydanticOutputParser
+from pydantic import BaseModel, Field
+
+llm = ChatGroq(model=&#34;llama3-8b-8192&#34;)
+
+class Author(BaseModel):
+    name: str = Field(description=&#34;The name of the author&#34;)
+    number: int = Field(description=&#34;The number of books written by the author&#34;)
+    books: list[str] = Field(description=&#34;The list of books they wrote&#34;)
+
+output_parser = PydanticOutputParser(pydantic_object=Author)
+
+prompt_list = PromptTemplate.from_template(
+    template = &#34;Answer the question.\n{format_instructions}\n{question}&#34;,
+    input_vairables = [&#34;question&#34;],
+    partial_variables = {&#34;format_instructions&#34;: output_parser.get_format_instructions()},
+)
+
+prompt_value = prompt_list.invoke({&#34;question&#34;: &#34;Generate the books written by Dan Brown&#34;})
+response = llm.invoke(prompt_value)
+
+returned_object = output_parser.parse(response.content)
+print(f&#34;{returned_object.name} wrote {returned_object.number} books.&#34;)
+print(returned_object.books)</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>output</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>
+Dan Brown wrote 18 books.
+[&#39;Digital Fortress&#39;, &#39;Angels &amp; Demons&#39;, &#39;The Da Vinci Code&#39;, &#39;The Lost Symbol&#39;, &#39;Inferno&#39;, &#39;Origin&#39;, &#39;The Solomon Key&#39;, &#39;Deception Point&#39;, &#39;The Bourne Legacy&#39;, &#39;The Last Symbol&#39;, &#34;The Patriot&#39;s Warning&#34;, &#39;The Third Secret&#39;, &#39;The Last Man&#39;, &#39;The Rite&#39;, &#39;The Lost City&#39;, &#39;The Oracle&#39;, &#39;The Infernal&#39;, &#39;Wild Signs and Wicked City&#39;]</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>Notice at the end of the code above we can access the members of the Author class once the output has been parsed by the output_parser.</p>
+<p>.with_structured_output() method</p>
+<p>The .with_structured_output() method is an easier and simpler way to get structured output from the model. This is supported by most models and greatly reduces the complexity with getting a structured output. Let’s modify our existing code to use this new method.</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>from langchain_groq import ChatGroq
+from pydantic import BaseModel, Field
+
+llm = ChatGroq(model=&#34;llama3-8b-8192&#34;)
+
+class Author(BaseModel):
+    name: str = Field(description=&#34;The name of the author&#34;)
+    number: int = Field(description=&#34;The number of books written by the author&#34;)
+    books: list[str] = Field(description=&#34;The list of books they wrote&#34;)
+
+structured_llm = llm.with_structured_output(Author)
+returned_object = structured_llm.invoke(&#34;Generate the books written by Dan Brown&#34;)
+
+print(f&#34;{returned_object.name} wrote {returned_object.number} books.&#34;)
+print(returned_object.books)</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+<p>ouput</p>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+
+<pre><code>Dan Brown wrote 17 books.
+[&#39;Digital Fortress&#39;, &#34;Angel&#39;s &amp; Demons&#34;, &#39;Deception Point&#39;, &#39;The Da Vinci Code&#39;, &#39;The Lost Symbol&#39;, &#39;Inferno&#39;, &#39;Origin&#39;, &#39;Wild Sign&#39;, &#39;The Solomon Key&#39;, &#39;The Last Symbol&#39;, &#39;The Third Secret&#39;, &#39;The New Atlantis&#39;, &#39;Angels &amp; Demons&#39;, &#39;The Paris Affair&#39;, &#39;The Lost City&#39;, &#39;The Sacred Code&#39;]</code></pre><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+  <button
+    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+    title="Copy code"
+  >
+    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
+    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
+  </button>
+</div>
+</div>
+
         </div>
         <div class="hx-mt-16"></div>
-        
+        <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
+        href="/docs/langchain-python/how-langchain-work/"
+        title="How Langchain Work"
+        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
+      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>How Langchain Work</a><a
+        href="/docs/langchain-python/prompt-templates/"
+        title="Prompt Templates"
+        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-ml-auto ltr:hx-pl-4 ltr:hx-text-right rtl:hx-mr-auto rtl:hx-pr-4 rtl:hx-text-left"
+      >Prompt Templates<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
         
       </main>
     </article>
