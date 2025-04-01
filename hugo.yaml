@@ -2,10 +2,17 @@
 title: aidatafoundation
 baseURL: "https://aidatafoundation.github.io/"
 
+
+
+
 # import hextra as module
 module:
   imports:
-  - path: github.com/imfing/hextra
+  - path: github.com/imfing/hextramodule
+  hugoVersion:
+    extended: true
+    min: "0.134.0"
+
 
 markup:
   # allow raw html
