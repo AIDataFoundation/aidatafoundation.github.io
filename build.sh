@@ -44,7 +44,7 @@ for VERSION in "${VERSIONS[@]}"; do
   mkdir -p "public/versions/$NAME"
   hugo \
     --minify \
-    --themesDir=../.. --source=exampleSite \
+    --themesDir=../..
     --baseURL "$BASE_URL/versions/$NAME/" \
     --destination="../public/versions/$NAME"
 done
