@@ -1,6 +1,10 @@
-# CloudSecCorner Community website 
+AI Data foundation 
 
-Table of Content 
 
-1. Basics of Linux Security 
-2. Basics of Networking 
+Todo list 
+- [ ] Python3
+- [ ] DSA Python3  
+- [X] Langchain Using Python
+- [ ] LangGraph Using Python
+- [ ] Vector Databases
+- [ ] MCP Servers
