@@ -37,6 +37,10 @@ width: full
 
 {{% steps %}}
 
+### Python 101 
+
+1. python101(./docs/python101)
+
 ### Langchain 
 
 1. Introduction to Langchain
