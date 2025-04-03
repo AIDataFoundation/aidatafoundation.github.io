@@ -3,7 +3,7 @@ toc: false
 width: full
 ---
 
-{{< hextra/hero-container image="/images/logo-page.png" 
+{{< hextra/hero-container image="/images/AIDATA.png"
  imageClass="hx-block hx-overflow-hidden hx-rounded-3xl"
  imageWidth="300" imageHeight="300">}}
 
