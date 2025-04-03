@@ -39,7 +39,7 @@ width: full
 
 ### Python 101 
 
-1. python101(./docs/python101)
+1. [python101](./docs/python101)
 
 ### Langchain 
 
