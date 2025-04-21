@@ -455,6 +455,8 @@ const getCategoryVariant = (category) => {
 
 // Main Labs component
 function Labs() {
+  const { labId } = useParams();
+
   return (
     <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4 text-center">AI Data Foundation Labs</h1>
@@ -477,8 +479,8 @@ function Labs() {
         </a>
       </div>
       
-      {/* Use window.location.pathname.startsWith to determine which component to render */}
-      {window.location.pathname === "/labs" ? <LabsList /> : <LabDetail />}
+      {/* Check if we have a labId parameter to determine which component to render */}
+      {!labId ? <LabsList /> : <LabDetail />}
     </div>
   );
 }
