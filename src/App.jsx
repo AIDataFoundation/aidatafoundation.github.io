@@ -12,33 +12,35 @@ function App() {
     <Router>
       <div className="bg-bgPrimary min-h-screen">
         <Nav />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/tools" element={
-            <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-              <h1 className="text-3xl font-bold mb-8 text-center">AI Tools Collection</h1>
-              <ToolsSection />
-            </div>
-          } />
-          <Route path="/labs" element={<Labs />} />
-          <Route path="/labs/:labId" element={<Labs />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:postId" element={<Blog />} />
-          <Route path="/about" element={
-            <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-              <h1 className="text-3xl font-bold mb-8 text-center">About AI Data Foundation</h1>
-              <p className="text-grayFill text-lg mb-6">
-                AI Data Foundation is a non-profit organization dedicated to advancing the field of artificial intelligence through high-quality data resources and research.
-              </p>
-              <p className="text-grayFill text-lg mb-6">
-                Our mission is to democratize access to AI data, enabling researchers and developers from all backgrounds to participate in and contribute to the advancement of AI technology.
-              </p>
-              <p className="text-grayFill text-lg">
-                Founded in 2023, we collaborate with academic institutions, industry partners, and individual contributors to build a more inclusive and responsible AI ecosystem.
-              </p>
-            </div>
-          } />
-        </Routes>
+        <div className="pt-16">
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/tools" element={
+              <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
+                <h1 className="text-3xl font-bold mb-8 text-center">AI Tools Collection</h1>
+                <ToolsSection />
+              </div>
+            } />
+            <Route path="/labs" element={<Labs />} />
+            <Route path="/labs/:labId" element={<Labs />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:postId" element={<Blog />} />
+            <Route path="/about" element={
+              <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
+                <h1 className="text-3xl font-bold mb-8 text-center">About AI Data Foundation</h1>
+                <p className="text-grayFill text-lg mb-6">
+                  AI Data Foundation is a non-profit organization dedicated to advancing the field of artificial intelligence through high-quality data resources and research.
+                </p>
+                <p className="text-grayFill text-lg mb-6">
+                  Our mission is to democratize access to AI data, enabling researchers and developers from all backgrounds to participate in and contribute to the advancement of AI technology.
+                </p>
+                <p className="text-grayFill text-lg">
+                  Founded in 2023, we collaborate with academic institutions, industry partners, and individual contributors to build a more inclusive and responsible AI ecosystem.
+                </p>
+              </div>
+            } />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>
