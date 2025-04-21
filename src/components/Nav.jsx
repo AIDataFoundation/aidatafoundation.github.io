@@ -135,9 +135,6 @@ function Nav() {
           </a>
         </div>
       </div>
-      
-      {/* Add padding to body content to account for fixed navbar */}
-      <div className="h-16"></div>
     </nav>
   );
 }
