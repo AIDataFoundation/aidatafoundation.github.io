@@ -13,33 +13,32 @@ function Blog() {
 
   // Fallback data in case the fetch fails
   const fallbackBlogData = [
-  
-      {
-        "id": "1",
-        "title": "Cloud Native Tools Collection",
-        "date": "May 10, 2023",
-        "excerpt": "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
-        "author": "AI Data Foundation",
-        "file": "/blog/cloud-native-tools-collection.md"
-      },
-      {
-        "id": "2",
-        "title": "Quick Start Guide",
-        "date": "June 15, 2023",
-        "excerpt": "Get started with our platform quickly and easily with this comprehensive guide.",
-        "author": "AI Data Foundation",
-        "file": "/blog/quick-start-guide.md"
-      },
-      {
-        "id": "3",
-        "title": "Categories and Contributing",
-        "date": "July 23, 2023", 
-        "excerpt": "Explore our tool categories and learn how to contribute to the project.",
-        "author": "AI Data Foundation",
-        "file": "/blog/categories-and-contributing.md"
-      }
-    ] 
-  
+    {
+      "id": "1",
+      "title": "Cloud Native Tools Collection",
+      "date": "May 10, 2023",
+      "excerpt": "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
+      "author": "AI Data Foundation",
+      "file": "cloud-native-tools-collection.md"
+    },
+    {
+      "id": "2",
+      "title": "Quick Start Guide",
+      "date": "June 15, 2023",
+      "excerpt": "Get started with our platform quickly and easily with this comprehensive guide.",
+      "author": "AI Data Foundation",
+      "file": "quick-start-guide.md"
+    },
+    {
+      "id": "3",
+      "title": "Categories and Contributing",
+      "date": "July 23, 2023", 
+      "excerpt": "Explore our tool categories and learn how to contribute to the project.",
+      "author": "AI Data Foundation",
+      "file": "categories-and-contributing.md"
+    }
+  ];
+
   // Load blog index
   useEffect(() => {
     const fetchBlogIndex = async () => {

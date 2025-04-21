@@ -1,68 +1,60 @@
 ---
-id: "3"
-title: "Categories and Contributing"
-date: "July 23, 2023"
-excerpt: "Explore our tool categories and learn how to contribute to the project."
-author: "AI Data Foundation"
+title: Categories and Contributing
+date: July 23, 2023
+author: AI Data Foundation
 ---
 
-## 📚 Categories
+# Categories and Contributing
 
-The collection includes resources for:
+This guide explains our tool categorization system and how you can contribute to the AI Data Foundation platform.
 
-- Machine Learning
-- Deep Learning
-- Natural Language Processing
-- Computer Vision
-- Data Quality
-- Federated Learning
-- Synthetic Data
-- Privacy-Preserving ML
-- Large Language Models
-- Multimodal Learning
-- Explainable AI
-- And more...
+## Tool Categories
 
-## 🤝 Contributing
+Our tools are organized into the following main categories:
 
-We welcome contributions from the community! Here's how you can contribute:
+### 1. Machine Learning Frameworks
+Tools that provide comprehensive environments for building, training, and deploying machine learning models.
+
+### 2. Data Processing & ETL
+Tools for extracting, transforming, and loading data for AI applications.
+
+### 3. Computer Vision
+Tools specifically designed for image and video analysis, object detection, and visual understanding.
+
+### 4. Natural Language Processing
+Tools for text analysis, language understanding, translation, and text generation.
+
+### 5. MLOps & Infrastructure
+Tools for operationalizing AI models, including deployment, monitoring, and scaling.
+
+### 6. Explainable AI
+Tools that help interpret and explain how AI models make decisions.
+
+### 7. Privacy-Preserving ML
+Tools designed to maintain data privacy and security in machine learning workflows.
+
+## How to Contribute
 
 ### Adding a New Tool
 
 1. Fork the repository
-2. Edit `src/data/entries.js` and add your tool in the appropriate category:
-   ```javascript
-   {
-     title: "Your Tool Name",
-     link: "https://link-to-tool",
-     description: "Brief description of the tool",
-     github: "github-username/repo", // Optional
-     tag: "Category Name"
-   }
-   ```
-3. Create a pull request with your changes
+2. Create a new branch: `git checkout -b add-new-tool`
+3. Add the tool details to the appropriate category file
+4. Submit a pull request with a clear description of the tool
 
-### Adding a New Blog Post
+### Updating Existing Tools
 
 1. Fork the repository
-2. Create a new markdown file in the `public/blog` directory with the following format: `[number]-[slug].md`
-3. Include frontmatter at the top of your file:
-   ```yaml
-   ---
-   id: "unique-id"
-   title: "Your Blog Post Title"
-   date: "Month Day, Year"
-   excerpt: "A brief summary of your blog post"
-   author: "Your Name"
-   ---
-   ```
-4. Write your content using Markdown syntax
-5. Create a pull request with your changes
+2. Create a new branch: `git checkout -b update-tool-info`
+3. Make your changes to the tool information
+4. Submit a pull request with details of your update
 
-### Guidelines
+### Contribution Guidelines
 
-- Make sure the tool is relevant to the AI/ML ecosystem
-- Provide a concise and accurate description
-- Include the appropriate category/tag
-- Ensure there are no duplicates
-- For blog posts, use proper Markdown formatting and keep content focused on AI/ML topics 
+- Provide accurate and up-to-date information
+- Include relevant links (GitHub, documentation, etc.)
+- Follow the existing format for tool entries
+- Add appropriate tags for easy searching
+- Be objective in your descriptions
+
+We value every contribution and look forward to building this resource together as a community! 
