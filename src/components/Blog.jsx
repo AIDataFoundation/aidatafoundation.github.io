@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
+import DebugInfo from "./DebugInfo";
 
 function Blog() {
   const { postId } = useParams();
@@ -10,22 +11,83 @@ function Blog() {
   const [currentPost, setCurrentPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showDebug, setShowDebug] = useState(false);
 
   // Load blog index
   useEffect(() => {
     const fetchBlogIndex = async () => {
-      try {
-        const response = await fetch('/blog/index.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog index');
+      // Try multiple possible locations for the blog index
+      const possiblePaths = [
+        '/blog/index.json',
+        '/blog.json',
+        './blog/index.json',
+        './blog.json',
+      ];
+      
+      let data = null;
+      let fetchError = null;
+      
+      // Try each path until one works
+      for (const path of possiblePaths) {
+        try {
+          console.log(`Attempting to fetch blog index from: ${path}`);
+          const response = await fetch(path, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            cache: 'no-store'
+          });
+          
+          if (response.ok) {
+            data = await response.json();
+            console.log('Blog posts loaded from:', path, data);
+            break; // Exit the loop if successful
+          }
+        } catch (err) {
+          console.error(`Error fetching from ${path}:`, err);
+          fetchError = err;
         }
-        const data = await response.json();
+      }
+      
+      if (data) {
         setBlogPosts(data);
         setLoading(false);
-      } catch (err) {
-        console.error('Error fetching blog index:', err);
+      } else {
+        console.error('All fetch attempts failed:', fetchError);
         setError('Failed to load blog posts. Please try again later.');
         setLoading(false);
+        
+        // Fallback to hardcoded data if all fetch attempts fail
+        const fallbackData = [
+          {
+            id: "1",
+            title: "Cloud Native Tools Collection",
+            date: "May 10, 2023",
+            excerpt: "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
+            author: "AI Data Foundation",
+            file: "1-cloud-native-tools-collection.md"
+          },
+          {
+            id: "2",
+            title: "Quick Start Guide",
+            date: "June 15, 2023",
+            excerpt: "Get started with our platform quickly and easily with this comprehensive guide.",
+            author: "AI Data Foundation",
+            file: "2-quick-start-guide.md"
+          },
+          {
+            id: "3",
+            title: "Categories and Contributing",
+            date: "July 23, 2023", 
+            excerpt: "Explore our tool categories and learn how to contribute to the project.",
+            author: "AI Data Foundation",
+            file: "3-categories-and-contributing.md"
+          }
+        ];
+        
+        console.log('Using fallback blog data');
+        setBlogPosts(fallbackData);
       }
     };
 
@@ -131,13 +193,39 @@ function Blog() {
         return;
       }
 
-      try {
-        const response = await fetch(`/blog/${post.file}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog post');
+      // Try multiple possible paths for the blog post markdown file
+      const possiblePaths = [
+        `/blog/${post.file}`,
+        `./blog/${post.file}`,
+        // Add more path variations if needed
+      ];
+      
+      let content = null;
+      let fetchError = null;
+      
+      // Try each path until one works
+      for (const path of possiblePaths) {
+        try {
+          console.log(`Attempting to fetch blog post from: ${path}`);
+          const response = await fetch(path, {
+            headers: {
+              'Accept': 'text/plain, text/markdown'
+            },
+            cache: 'no-store'
+          });
+          
+          if (response.ok) {
+            content = await response.text();
+            console.log('Blog post content loaded successfully from:', path);
+            break; // Exit the loop if successful
+          }
+        } catch (err) {
+          console.error(`Error fetching from ${path}:`, err);
+          fetchError = err;
         }
-        const content = await response.text();
-        
+      }
+      
+      if (content) {
         // Extract frontmatter and content
         const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
         if (frontmatterMatch) {
@@ -164,13 +252,18 @@ function Blog() {
             content: content
           });
         }
+      } else {
+        console.error('All fetch attempts failed:', fetchError);
+        setError('Failed to load blog post content. Using fallback display.');
         
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching blog post:', err);
-        setError('Failed to load blog post. Please try again later.');
-        setLoading(false);
+        // Fallback content for demonstration if all fetch attempts fail
+        setCurrentPost({
+          ...post,
+          content: `# ${post.title}\n\n${post.excerpt}\n\nThis content is being displayed as a fallback.`
+        });
       }
+      
+      setLoading(false);
     };
 
     fetchBlogPost();
@@ -219,6 +312,16 @@ function Blog() {
         <p className="text-grayFill text-center max-w-[800px] mx-auto">
           Stay updated with the latest AI research, tools, and insights from our team and community contributors.
         </p>
+        
+        {/* Debug toggle button */}
+        <div className="flex justify-center mt-2">
+          <button 
+            onClick={() => setShowDebug(!showDebug)}
+            className="text-xs text-gray-500 hover:text-gray-400 px-2 py-1 rounded"
+          >
+            {showDebug ? 'Hide Debug Info' : 'Show Debug Info'}
+          </button>
+        </div>
       </div>
       
       <div className="mb-12">
@@ -238,6 +341,9 @@ function Blog() {
         
         <BlogList blogPosts={blogPosts} />
       </div>
+      
+      {/* Debug information panel */}
+      <DebugInfo show={showDebug} />
       
       <div className="bg-bgGray rounded-xl p-8 border border-gray-800">
         <h2 className="text-xl font-semibold text-primary mb-4">Want to Contribute?</h2>
@@ -289,6 +395,9 @@ function Blog() {
 function BlogPostDetail({ post }) {
   const navigate = useNavigate();
   
+  // If post has no content, show a message
+  const hasContent = post.content && post.content.trim().length > 0;
+  
   return (
     <div className="bg-bgGray p-8 rounded-xl shadow-md">
       <Button 
@@ -311,9 +420,19 @@ function BlogPostDetail({ post }) {
       <h2 className="text-2xl font-bold mb-4 text-primary">{post.title}</h2>
       
       <div className="prose prose-invert max-w-none">
-        <ReactMarkdown>
-          {post.content}
-        </ReactMarkdown>
+        {hasContent ? (
+          <ReactMarkdown>
+            {post.content}
+          </ReactMarkdown>
+        ) : (
+          <div className="text-grayFill">
+            <p>{post.excerpt}</p>
+            <div className="mt-8 p-4 border border-gray-700 rounded-md bg-gray-800/50">
+              <p className="text-yellow-400 mb-2">⚠️ Content loading issue</p>
+              <p>The content for this post could not be loaded. Please try again later or visit our GitHub repository to view the source markdown.</p>
+            </div>
+          </div>
+        )}
       </div>
       
       <div className="mt-8 pt-6 border-t border-gray-700">
@@ -356,6 +475,7 @@ function BlogPostDetail({ post }) {
 // Blog list component
 function BlogList({ blogPosts }) {
   const navigate = useNavigate();
+  const [jsonView, setJsonView] = useState(false);
   
   // Sort posts by date (newest first)
   const sortedPosts = [...blogPosts].sort((a, b) => {
@@ -363,38 +483,58 @@ function BlogList({ blogPosts }) {
   });
   
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {sortedPosts.map(post => (
-        <div 
-          key={post.id} 
-          className="bg-bgGray rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-blue-500/30 hover:translate-y-[-2px] flex flex-col h-full border border-gray-800"
+    <div>
+      {/* Toggle for JSON view */}
+      <div className="flex justify-end mb-4">
+        <button 
+          onClick={() => setJsonView(!jsonView)}
+          className="text-xs text-blue-500 hover:text-blue-400 px-2 py-1 rounded border border-blue-500/20"
         >
-          <div className="p-6 flex-grow">
-            <div className="mb-2">
-              <span className="text-xs font-medium text-blue-500 bg-blue-500/10 py-1 px-2 rounded-full">{post.date}</span>
-            </div>
-            <h2 className="text-xl font-bold mb-3 text-primary leading-tight">{post.title}</h2>
-            <p className="text-grayFill text-sm mb-4 line-clamp-3">{post.excerpt}</p>
-          </div>
-          
-          <div className="px-6 py-4 border-t border-gray-800 bg-bgGray/50 mt-auto">
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-grayFill">
-                {post.author && `By ${post.author}`}
-              </div>
-              <button 
-                onClick={() => navigate(`/blog/${post.id}`)} 
-                className="text-blue-500 text-sm font-medium hover:text-blue-400 transition-colors flex items-center"
-              >
-                Read More
-                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </button>
-            </div>
-          </div>
+          {jsonView ? 'Card View' : 'JSON View'}
+        </button>
+      </div>
+      
+      {jsonView ? (
+        <div className="bg-gray-900 p-4 rounded-lg shadow-inner">
+          <pre className="text-xs text-gray-300 overflow-auto max-h-[500px]">
+            {JSON.stringify(sortedPosts, null, 2)}
+          </pre>
         </div>
-      ))}
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sortedPosts.map(post => (
+            <div 
+              key={post.id} 
+              className="bg-bgGray rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-blue-500/30 hover:translate-y-[-2px] flex flex-col h-full border border-gray-800"
+            >
+              <div className="p-6 flex-grow">
+                <div className="mb-2">
+                  <span className="text-xs font-medium text-blue-500 bg-blue-500/10 py-1 px-2 rounded-full">{post.date}</span>
+                </div>
+                <h2 className="text-xl font-bold mb-3 text-primary leading-tight">{post.title}</h2>
+                <p className="text-grayFill text-sm mb-4 line-clamp-3">{post.excerpt}</p>
+              </div>
+              
+              <div className="px-6 py-4 border-t border-gray-800 bg-bgGray/50 mt-auto">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-grayFill">
+                    {post.author && `By ${post.author}`}
+                  </div>
+                  <button 
+                    onClick={() => navigate(`/blog/${post.id}`)} 
+                    className="text-blue-500 text-sm font-medium hover:text-blue-400 transition-colors flex items-center"
+                  >
+                    Read More
+                    <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
