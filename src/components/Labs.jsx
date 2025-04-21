@@ -3,10 +3,14 @@ import ReactMarkdown from "react-markdown";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 function Labs() {
   const [selectedLab, setSelectedLab] = useState(null);
   const [content, setContent] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("all");
   
   const labs = [
     {
@@ -15,7 +19,8 @@ function Labs() {
       description: "A comprehensive framework for assessing and improving the quality of training data for large language models.",
       category: "Data Quality",
       path: "/labs/data-quality-metrics.md",
-      contributors: ["alex.chen", "maria.rodriguez"]
+      contributors: ["alex.chen", "maria.rodriguez"],
+      tags: ["data quality", "metrics", "LLM", "assessment"]
     },
     {
       id: "ethical-synthetic-data",
@@ -23,7 +28,8 @@ function Labs() {
       description: "Addressing privacy, bias, and fairness concerns in the creation and use of synthetic datasets for AI training.",
       category: "Ethics",
       path: "/labs/ethical-synthetic-data.md",
-      contributors: ["james.wilson", "aisha.patel"]
+      contributors: ["james.wilson", "aisha.patel"],
+      tags: ["ethics", "synthetic data", "privacy", "bias", "fairness"]
     },
     {
       id: "llm-evaluation",
@@ -31,9 +37,35 @@ function Labs() {
       description: "Open source methodology for evaluating large language models across multiple dimensions.",
       category: "Evaluation",
       path: "/labs/llm-evaluation.md",
-      contributors: ["robin.zhang"]
+      contributors: ["robin.zhang"],
+      tags: ["evaluation", "LLM", "benchmarks", "methodology"]
+    },
+    {
+      id: "reinforcement-learning",
+      title: "Reinforcement Learning Lab",
+      description: "Developing intelligent agents that learn optimal decision-making strategies through interaction with their environment.",
+      category: "Reinforcement Learning",
+      path: "/labs/reinforcement-learning.md",
+      contributors: ["alex-kumar", "olivia-chen"],
+      tags: ["reinforcement learning", "RL", "agents", "decision-making"]
     }
   ];
+
+  // Get all unique categories
+  const categories = ["all", ...new Set(labs.map(lab => lab.category))];
+
+  // Filter labs based on search query and active category
+  const filteredLabs = labs.filter(lab => {
+    const matchesSearch = 
+      searchQuery === "" || 
+      lab.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      lab.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      lab.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    const matchesCategory = activeCategory === "all" || lab.category === activeCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
 
   useEffect(() => {
     if (selectedLab) {
@@ -84,9 +116,26 @@ ${selectedLab.contributors.join(', ')}
     }
   }, [selectedLab]);
 
+  // Helper function to get badge variant based on category
+  const getCategoryVariant = (category) => {
+    const categoryMap = {
+      "Data Quality": "data",
+      "Ethics": "mcpAI",
+      "Evaluation": "ml",
+      "NLP": "llmFramework",
+      "Reinforcement Learning": "reinforcement",
+      "Computer Vision": "llmVector",
+      "Multimodal": "llmModel",
+      "Tools": "llmTool",
+      "Infrastructure": "mcpCore",
+    };
+    
+    return categoryMap[category] || "default";
+  };
+
   return (
     <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4 text-center">AI Labs</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">AI Data Foundation Labs</h1>
       <p className="text-grayFill text-lg mb-8 text-center max-w-3xl mx-auto">
         Explore our experimental AI labs where we test new ideas, methodologies, and technologies.
         Anyone can contribute to these projects through markdown files.
@@ -94,7 +143,7 @@ ${selectedLab.contributors.join(', ')}
       
       <div className="mb-8 text-center">
         <a 
-          href="https://github.com/aidata-foundation/labs" 
+          href="https://github.com/AIDataFoundation/aidatafoundation.github.io" 
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition"
@@ -119,106 +168,242 @@ ${selectedLab.contributors.join(', ')}
             Back to Labs
           </Button>
           
+          <div className="mb-6 flex flex-wrap items-center gap-2">
+            <Badge variant={getCategoryVariant(selectedLab.category)} className="text-sm">
+              {selectedLab.category}
+            </Badge>
+            {selectedLab.tags && selectedLab.tags.map((tag, index) => (
+              <Badge key={index} variant="outline" className="text-xs bg-bgGray/30">
+                {tag}
+              </Badge>
+            ))}
+            <div className="text-grayFill text-sm ml-auto">
+              {selectedLab.contributors.length > 0 && (
+                <span>Contributors: {selectedLab.contributors.join(', ')}</span>
+              )}
+            </div>
+          </div>
+          
           <div className="prose prose-invert max-w-none">
             <ReactMarkdown>{content}</ReactMarkdown>
           </div>
+
+          <div className="mt-10 pt-6 border-t border-gray-700">
+            <h3 className="text-xl font-semibold mb-4">Want to contribute to this lab?</h3>
+            <div className="flex flex-wrap gap-4">
+              <a 
+                href={`https://github.com/AIDataFoundation/aidatafoundation.github.io/edit/main${selectedLab.path}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition"
+              >
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                </svg>
+                Edit this page
+              </a>
+              <a 
+                href="https://github.com/AIDataFoundation/aidatafoundation.github.io/issues/new?title=Feedback on lab: {{selectedLab.title}}"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-blue-600/70 hover:bg-blue-700 text-white rounded-md transition"
+              >
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
+                </svg>
+                Provide Feedback
+              </a>
+              <a 
+                href="/labs/CONTRIBUTING.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition"
+              >
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
+                </svg>
+                View contribution guidelines
+              </a>
+            </div>
+          </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {labs.map((lab) => (
-            <Card 
-              key={lab.id} 
-              className="hover:shadow-lg transition duration-300 hover:border-blue-500/30 cursor-pointer"
-              onClick={() => setSelectedLab(lab)}
-            >
-              <CardHeader>
-                <div className="flex justify-between items-start mb-2">
-                  <Badge variant={
-                    lab.category === "Data Quality" ? "data" : 
-                    lab.category === "Ethics" ? "mcpAI" : 
-                    "ml"
-                  }>
-                    {lab.category}
-                  </Badge>
-                </div>
-                <CardTitle>{lab.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="mb-4">{lab.description}</CardDescription>
-                <div className="flex flex-wrap gap-2">
-                  {lab.contributors.map((contributor, index) => (
-                    <Badge key={index} variant="outline" className="bg-bgGray/50">
-                      @{contributor}
-                    </Badge>
+        <>
+          <div className="mb-8">
+            <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
+              <Tabs defaultValue="all" className="w-full md:w-auto" onValueChange={setActiveCategory}>
+                <TabsList className="mb-4 md:mb-0 grid grid-cols-2 sm:grid-cols-3 md:flex">
+                  {categories.map(category => (
+                    <TabsTrigger key={category} value={category} className="capitalize">
+                      {category}
+                    </TabsTrigger>
                   ))}
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="ghost" className="text-blue-500 p-0 hover:text-blue-400">
-                  Explore lab
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </TabsList>
+              </Tabs>
+              
+              <div className="w-full md:w-64">
+                <Input
+                  type="text"
+                  placeholder="Search labs..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-bgGray/50 border-gray-700"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold mb-6">Available Labs</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredLabs.length === 0 ? (
+                <div className="col-span-full text-center py-12 border border-dashed border-gray-700 rounded-lg">
+                  <svg className="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      )}
-      
-      {!selectedLab && (
-        <div className="mt-16 bg-bgGray rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-4">How to Contribute</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card>
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-white font-semibold text-lg">1</span>
+                  <p className="text-grayFill text-lg">No labs found matching your criteria</p>
+                  <Button 
+                    variant="outline" 
+                    className="mt-4"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setActiveCategory("all");
+                    }}
+                  >
+                    Clear filters
+                  </Button>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Fork the Repository</h3>
-                <p className="text-grayFill">
-                  Start by forking our GitHub repository to create your own copy of the project.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-white font-semibold text-lg">2</span>
+              ) : (
+                filteredLabs.map((lab) => (
+                  <Card 
+                    key={lab.id} 
+                    className="hover:shadow-lg transition duration-300 hover:border-blue-500/30 cursor-pointer overflow-hidden flex flex-col"
+                    onClick={() => setSelectedLab(lab)}
+                  >
+                    <CardHeader className="pb-2 relative">
+                      <div className="absolute top-4 right-4">
+                        <Badge variant={getCategoryVariant(lab.category)}>
+                          {lab.category}
+                        </Badge>
+                      </div>
+                      <CardTitle className="pr-24 mb-2">{lab.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="py-2 flex-grow">
+                      <CardDescription className="mb-4 text-sm line-clamp-3">{lab.description}</CardDescription>
+                      
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {lab.tags && lab.tags.map((tag, index) => (
+                          <Badge key={index} variant="outline" className="text-xs bg-bgGray/30">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                    <CardFooter className="pt-2 border-t border-gray-800 bg-bgGray/30 flex justify-between items-center">
+                      <div className="flex flex-wrap gap-1">
+                        {lab.contributors.map((contributor, index) => (
+                          <Badge key={index} variant="outline" className="bg-bgGray/50 text-xs">
+                            @{contributor}
+                          </Badge>
+                        ))}
+                      </div>
+                      <Button variant="ghost" className="text-blue-500 p-0 hover:text-blue-400 text-xs">
+                        Explore
+                        <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div className="mb-16 border border-dashed border-gray-700 rounded-lg p-8 hover:border-blue-500/30 transition duration-300">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="mb-6 md:mb-0 md:mr-8">
+                <div className="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  </svg>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Create or Edit Markdown</h3>
-                <p className="text-grayFill">
-                  Add your content in markdown format following our templates and guidelines.
+              </div>
+              <div className="text-center md:text-left flex-grow">
+                <h3 className="text-xl font-semibold mb-2">Propose a New Lab</h3>
+                <p className="text-grayFill mb-6 max-w-2xl">
+                  Have an idea for a new AI research project? Propose a new lab and invite others to collaborate on cutting-edge AI research and development.
                 </p>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-white font-semibold text-lg">3</span>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Submit a Pull Request</h3>
-                <p className="text-grayFill">
-                  Submit your changes for review, and our team will review and merge your contribution.
-                </p>
-              </CardContent>
-            </Card>
+              </div>
+              <div>
+                <a 
+                  href="https://github.com/AIDataFoundation/aidatafoundation.github.io/issues/new?labels=new-lab&template=new-lab-proposal.md&title=Lab Proposal: [Your Lab Title]" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition"
+                >
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  Propose a Lab
+                </a>
+              </div>
+            </div>
           </div>
           
-          <div className="mt-8 p-6 border border-blue-500/30 rounded-lg bg-blue-500/10">
-            <h3 className="text-lg font-semibold mb-2 flex items-center">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
-              </svg>
-              Markdown Format
-            </h3>
-            <p className="text-grayFill mb-4">
-              Each lab project uses markdown files to store content. Here's our basic structure:
-            </p>
-            <pre className="bg-bgPrimary p-4 rounded-md overflow-x-auto text-sm">
-              <code>{
+          {!selectedLab && (
+            <div className="mt-16 bg-bgGray rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">How to Contribute</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <Card className="bg-bgGray/50">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+                      <span className="text-white font-semibold text-lg">1</span>
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">Fork the Repository</h3>
+                    <p className="text-grayFill">
+                      Start by forking our GitHub repository to create your own copy where you can make changes.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-bgGray/50">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+                      <span className="text-white font-semibold text-lg">2</span>
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">Create or Edit Markdown</h3>
+                    <p className="text-grayFill">
+                      Add your content in markdown format following our templates and guidelines for structure.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-bgGray/50">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+                      <span className="text-white font-semibold text-lg">3</span>
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2">Submit a Pull Request</h3>
+                    <p className="text-grayFill">
+                      Submit your changes for review, and our team will review and merge your contribution.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+              
+              <div className="mt-8 p-6 border border-blue-500/30 rounded-lg bg-blue-500/10">
+                <h3 className="text-lg font-semibold mb-2 flex items-center">
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
+                  </svg>
+                  Markdown Format
+                </h3>
+                <p className="text-grayFill mb-4">
+                  Each lab project uses markdown files to store content. Here's our basic structure:
+                </p>
+                <pre className="bg-bgPrimary p-4 rounded-md overflow-x-auto text-sm">
+                  <code>{
 `# Lab Title
 
 ## Overview
@@ -231,28 +416,30 @@ Brief description of the lab project
 ## Methodology
 Detailed explanation...
 
-## Results
-Current findings...
+## Current Progress
+Ongoing work and achievements...
 
 ## How to Contribute
 Specific guidelines for this lab...`
-              }</code>
-            </pre>
-            
-            <div className="mt-6">
-              <a 
-                href="/labs/CONTRIBUTING.md" 
-                target="_blank"
-                className="text-blue-400 hover:text-blue-300 flex items-center"
-              >
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clipRule="evenodd" />
-                </svg>
-                View Full Contributing Guidelines
-              </a>
+                  }</code>
+                </pre>
+                
+                <div className="mt-6">
+                  <a 
+                    href="/labs/CONTRIBUTING.md" 
+                    target="_blank"
+                    className="text-blue-400 hover:text-blue-300 flex items-center"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clipRule="evenodd" />
+                    </svg>
+                    View Full Contributing Guidelines
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )}
+        </>
       )}
     </div>
   );

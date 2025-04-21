@@ -12,7 +12,7 @@ function Nav() {
     <nav className="bg-bgGray p-4 shadow-md">
       <div className="max-w-[1280px] mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <Link to="/" className="text-primary text-xl font-bold">AIData Foundation</Link>
+          <Link to="/" className="text-primary text-xl font-bold">AI Data Foundation</Link>
         </div>
         
         {/* Mobile menu button */}
@@ -38,7 +38,7 @@ function Nav() {
           <Link to="/labs" className="text-primary hover:text-gray-300 transition-colors">Labs</Link>
           <Link to="/blog" className="text-primary hover:text-gray-300 transition-colors">Blog</Link>
           <Link to="/about" className="text-primary hover:text-gray-300 transition-colors">About</Link>
-          <a href="https://github.com/aidata-foundation" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-gray-300 transition-colors">GitHub</a>
+          <a href="https://github.com/AIDataFoundation" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-gray-300 transition-colors">GitHub</a>
         </div>
       </div>
       
@@ -50,7 +50,7 @@ function Nav() {
           <Link to="/labs" className="text-primary hover:text-gray-300 transition-colors">Labs</Link>
           <Link to="/blog" className="text-primary hover:text-gray-300 transition-colors">Blog</Link>
           <Link to="/about" className="text-primary hover:text-gray-300 transition-colors">About</Link>
-          <a href="https://github.com/aidata-foundation" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-gray-300 transition-colors">GitHub</a>
+          <a href="https://github.com/AIDataFoundation" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-gray-300 transition-colors">GitHub</a>
         </div>
       )}
     </nav>

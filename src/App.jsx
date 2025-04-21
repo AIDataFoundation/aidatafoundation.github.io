@@ -24,9 +24,9 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={
             <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-              <h1 className="text-3xl font-bold mb-8 text-center">About AIData Foundation</h1>
+              <h1 className="text-3xl font-bold mb-8 text-center">About AI Data Foundation</h1>
               <p className="text-grayFill text-lg mb-6">
-                AIData Foundation is a non-profit organization dedicated to advancing the field of artificial intelligence through high-quality data resources and research.
+                AI Data Foundation is a non-profit organization dedicated to advancing the field of artificial intelligence through high-quality data resources and research.
               </p>
               <p className="text-grayFill text-lg mb-6">
                 Our mission is to democratize access to AI data, enabling researchers and developers from all backgrounds to participate in and contribute to the advancement of AI technology.
