@@ -34,7 +34,7 @@ function Nav() {
         {/* Desktop menu */}
         <div className="hidden md:flex space-x-8">
           <Link to="/" className="text-primary hover:text-gray-300 transition-colors">Home</Link>
-          <Link to="/datasets" className="text-primary hover:text-gray-300 transition-colors">Tools</Link>
+          <Link to="/tools" className="text-primary hover:text-gray-300 transition-colors">Tools</Link>
           <Link to="/labs" className="text-primary hover:text-gray-300 transition-colors">Labs</Link>
           <Link to="/blog" className="text-primary hover:text-gray-300 transition-colors">Blog</Link>
           <Link to="/about" className="text-primary hover:text-gray-300 transition-colors">About</Link>
@@ -46,7 +46,7 @@ function Nav() {
       {isMenuOpen && (
         <div className="md:hidden mt-4 flex flex-col space-y-4 px-4 py-2">
           <Link to="/" className="text-primary hover:text-gray-300 transition-colors">Home</Link>
-          <Link to="/datasets" className="text-primary hover:text-gray-300 transition-colors">Tools</Link>
+          <Link to="/tools" className="text-primary hover:text-gray-300 transition-colors">Tools</Link>
           <Link to="/labs" className="text-primary hover:text-gray-300 transition-colors">Labs</Link>
           <Link to="/blog" className="text-primary hover:text-gray-300 transition-colors">Blog</Link>
           <Link to="/about" className="text-primary hover:text-gray-300 transition-colors">About</Link>

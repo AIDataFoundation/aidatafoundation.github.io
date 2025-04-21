@@ -14,13 +14,14 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/datasets" element={
+          <Route path="/tools" element={
             <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-              <h1 className="text-3xl font-bold mb-8 text-center">AI Datasets Collection</h1>
+              <h1 className="text-3xl font-bold mb-8 text-center">AI Tools Collection</h1>
               <ToolsSection />
             </div>
           } />
           <Route path="/labs" element={<Labs />} />
+          <Route path="/labs/:labId" element={<Labs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={
             <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
