@@ -1,13 +1,13 @@
-# Cloud Native Tools Collection
+# AI Data Foundation
 
-A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.
+A comprehensive resource for AI tools, frameworks, and methodologies, presented in an easy-to-browse web interface.
 
-![Cloud Native Tools Collection Preview](./src/assets/Tools.png)
+![AI Data Foundation Preview](./src/assets/Tools.png)
 
 ## 🌟 Features
 
-- **Comprehensive Tool Directory**: Browse hundreds of tools for Kubernetes and cloud native development
-- **Categorized Browsing**: Filter tools by categories like Cluster Management, Security, Monitoring, and more
+- **Comprehensive AI Directory**: Browse tools and frameworks for artificial intelligence and machine learning
+- **Categorized Browsing**: Filter resources by categories like Machine Learning, Natural Language Processing, Computer Vision, and more
 - **Search Functionality**: Quickly find tools based on name or description
 - **GitHub Integration**: View GitHub stars for each project
 - **Modern UI**: Clean and responsive interface for desktop and mobile devices
@@ -23,8 +23,8 @@ A curated collection of tools for Kubernetes and the cloud native ecosystem, pre
 
 1. Clone the repository:
    ```
-   git clone https://github.com/sangam14/cloudnativetools.git
-   cd cloudnativetools
+   git clone https://github.com/aidatafoundation/aidatafoundation.github.io.git
+   cd aidatafoundation.github.io
    ```
 
 2. Install dependencies:
@@ -43,24 +43,24 @@ A curated collection of tools for Kubernetes and the cloud native ecosystem, pre
 
 - `npm run dev` - Start the development server
 - `npm run build` - Build the project for production
-- `npm run serve` - Serve the production build locally
+- `npm run preview` - Preview the production build locally
+- `npm run deploy` - Deploy to GitHub Pages
 
 ## 📚 Categories
 
-The collection includes tools for:
+The collection includes resources for:
 
-- Cluster Management
-- Pods Management
-- Debugging & Troubleshooting
-- Security Tools
-- Monitoring & Observability
-- Service Mesh
-- Auto Scaling
-- Development Tools
-- Artificial Intelligence
-- Continuous Integration & Delivery
-- Platform Engineering
-- Networking
+- Machine Learning
+- Deep Learning
+- Natural Language Processing
+- Computer Vision
+- Data Quality
+- Federated Learning
+- Synthetic Data
+- Privacy-Preserving ML
+- Large Language Models
+- Multimodal Learning
+- Explainable AI
 - And more...
 
 ## 🤝 Contributing
@@ -91,7 +91,7 @@ We welcome contributions from the community! Here's how you can contribute:
 
 ### Guidelines
 
-- Make sure the tool is relevant to the Kubernetes/cloud native ecosystem
+- Make sure the tool is relevant to the AI/ML ecosystem
 - Provide a concise and accurate description
 - Include the appropriate category/tag
 - Ensure there are no duplicates
@@ -108,7 +108,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Maintainers
 
-- [Sangam Biradar](https://twitter.com/sangamtwts)
+- [AI Data Foundation Team](https://github.com/aidatafoundation)
 
 ---
 
