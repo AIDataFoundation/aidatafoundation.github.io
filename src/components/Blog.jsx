@@ -43,6 +43,16 @@ function Blog() {
   useEffect(() => {
     const fetchBlogIndex = async () => {
       try {
+        // On GitHub Pages, sometimes JSON files are served with wrong content type
+        // Try using the fallback data immediately to prevent raw JSON display
+        if (window.location.hostname.includes('github.io')) {
+          console.log('GitHub Pages detected, using fallback blog data');
+          setBlogPosts(fallbackBlogData);
+          setLoading(false);
+          return;
+        }
+        
+        // For local development, still try to fetch
         // Try multiple potential locations for the data
         const potentialUrls = [
           '/data/blog.json',  // New primary location
@@ -197,6 +207,44 @@ function Blog() {
       }
 
       try {
+        // GitHub Pages detection for static content
+        if (window.location.hostname.includes('github.io')) {
+          // Since we can't guarantee proper content-type on GitHub Pages, 
+          // let's try to load the markdown file directly with the expected path
+          try {
+            const markdownPath = `/blog/${post.file}`;
+            const timestamp = new Date().getTime();
+            const response = await fetch(`${markdownPath}?_=${timestamp}`);
+            
+            if (response.ok) {
+              const content = await response.text();
+              
+              // Extract frontmatter if it exists
+              const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+              if (frontmatterMatch) {
+                const frontmatterText = frontmatterMatch[1];
+                const markdown = frontmatterMatch[2];
+                
+                setCurrentPost({
+                  ...post,
+                  content: markdown
+                });
+              } else {
+                setCurrentPost({
+                  ...post,
+                  content: content
+                });
+              }
+              
+              setLoading(false);
+              return;
+            }
+          } catch (err) {
+            console.error('Error fetching from GitHub Pages:', err);
+            // Continue to fallback paths
+          }
+        }
+      
         // Add a cache-busting parameter to prevent caching
         const timestamp = new Date().getTime();
         
