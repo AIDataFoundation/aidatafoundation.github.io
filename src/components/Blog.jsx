@@ -15,24 +15,47 @@ function Blog() {
   useEffect(() => {
     const fetchBlogIndex = async () => {
       try {
+        // Try multiple potential locations for the data
+        const potentialUrls = [
+          '/data/blog.json',  // New primary location
+          '/blog/index.json', // Original location (as fallback)
+          `${window.location.origin}/data/blog.json`,
+          `${window.location.origin}/blog/index.json`
+        ];
+        
+        let fetchSuccess = false;
+        
         // Add a cache-busting parameter to prevent caching and direct display of JSON
         const timestamp = new Date().getTime();
-        const response = await fetch(`/blog/index.json?_=${timestamp}`, {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            // Add headers to prevent browsers from displaying the raw JSON
-            'X-Requested-With': 'XMLHttpRequest'
-          }
-        });
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog index');
+        // Try each URL in sequence
+        for (const url of potentialUrls) {
+          try {
+            const response = await fetch(`${url}?_=${timestamp}`, {
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                // Add headers to prevent browsers from displaying the raw JSON
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            });
+            
+            if (response.ok) {
+              const data = await response.json();
+              setBlogPosts(data);
+              setLoading(false);
+              fetchSuccess = true;
+              break;
+            }
+          } catch (err) {
+            console.log(`Failed to fetch from ${url}:`, err);
+            // Continue to next URL
+          }
         }
         
-        const data = await response.json();
-        setBlogPosts(data);
-        setLoading(false);
+        if (!fetchSuccess) {
+          throw new Error('Failed to fetch blog index from any location');
+        }
       } catch (err) {
         console.error('Error fetching blog index:', err);
         setError('Failed to load blog posts. Please try again later.');
@@ -145,19 +168,39 @@ function Blog() {
       try {
         // Add a cache-busting parameter to prevent caching
         const timestamp = new Date().getTime();
-        const response = await fetch(`/blog/${post.file}?_=${timestamp}`, {
-          headers: {
-            // Set content type to text to prevent browsers from displaying raw markdown
-            'Accept': 'text/plain',
-            'X-Requested-With': 'XMLHttpRequest'
-          }
-        });
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog post');
+        // Try both potential locations for the markdown file
+        const potentialPaths = [
+          `/blog/${post.file}`,
+          `/data/blog/${post.file}`
+        ];
+        
+        let content = null;
+        
+        // Try each path in sequence
+        for (const path of potentialPaths) {
+          try {
+            const response = await fetch(`${path}?_=${timestamp}`, {
+              headers: {
+                // Set content type to text to prevent browsers from displaying raw markdown
+                'Accept': 'text/plain',
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            });
+            
+            if (response.ok) {
+              content = await response.text();
+              break;
+            }
+          } catch (err) {
+            console.log(`Failed to fetch from ${path}:`, err);
+            // Continue to next path
+          }
         }
         
-        const content = await response.text();
+        if (!content) {
+          throw new Error(`Failed to fetch blog post content from any location`);
+        }
         
         // Extract frontmatter and content
         const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
