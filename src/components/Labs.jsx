@@ -7,68 +7,37 @@ import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
-// Labs data - in a real app, this would come from an API
-const labsData = [
-  {
-    id: "data-quality-metrics",
-    title: "Data Quality Metrics for Large Language Models",
-    description: "A comprehensive framework for assessing and improving the quality of training data for large language models.",
-    category: "Data Quality",
-    path: "/labs/data-quality-metrics.md",
-    contributors: ["alex.chen", "maria.rodriguez"],
-    tags: ["data quality", "metrics", "LLM", "assessment"]
-  },
-  {
-    id: "ethical-synthetic-data",
-    title: "Ethical Considerations in Synthetic Data Generation",
-    description: "Addressing privacy, bias, and fairness concerns in the creation and use of synthetic datasets for AI training.",
-    category: "Ethics",
-    path: "/labs/ethical-synthetic-data.md",
-    contributors: ["james.wilson", "aisha.patel"],
-    tags: ["ethics", "synthetic data", "privacy", "bias", "fairness"]
-  },
-  {
-    id: "llm-evaluation",
-    title: "LLM Evaluation Framework",
-    description: "Open source methodology for evaluating large language models across multiple dimensions.",
-    category: "Evaluation",
-    path: "/labs/llm-evaluation.md",
-    contributors: ["robin.zhang"],
-    tags: ["evaluation", "LLM", "benchmarks", "methodology"]
-  },
-  {
-    id: "reinforcement-learning",
-    title: "Reinforcement Learning Lab",
-    description: "Developing intelligent agents that learn optimal decision-making strategies through interaction with their environment.",
-    category: "Reinforcement Learning",
-    path: "/labs/reinforcement-learning.md",
-    contributors: ["alex-kumar", "olivia-chen"],
-    tags: ["reinforcement learning", "RL", "agents", "decision-making"]
-  }
-];
-
-// Helper function to get badge variant based on category
-const getCategoryVariant = (category) => {
-  const categoryMap = {
-    "Data Quality": "data",
-    "Ethics": "mcpAI",
-    "Evaluation": "ml",
-    "NLP": "llmFramework",
-    "Reinforcement Learning": "reinforcement",
-    "Computer Vision": "llmVector",
-    "Multimodal": "llmModel",
-    "Tools": "llmTool",
-    "Infrastructure": "mcpCore",
-  };
-  
-  return categoryMap[category] || "default";
-};
-
 // Lab list component
 function LabsList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [labsData, setLabsData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    // Fetch labs data from the JSON file
+    const fetchLabsData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/data/labs.json');
+        if (response.ok) {
+          const data = await response.json();
+          setLabsData(data.labs || []);
+        } else {
+          console.error("Failed to fetch labs data");
+          setLabsData([]);
+        }
+      } catch (error) {
+        console.error("Error fetching labs data:", error);
+        setLabsData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchLabsData();
+  }, []);
   
   // Get all unique categories
   const categories = ["all", ...new Set(labsData.map(lab => lab.category))];
@@ -79,12 +48,20 @@ function LabsList() {
       searchQuery === "" || 
       lab.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       lab.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      lab.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      (lab.tags && lab.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
     
     const matchesCategory = activeCategory === "all" || lab.category === activeCategory;
     
     return matchesSearch && matchesCategory;
   });
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -160,7 +137,7 @@ function LabsList() {
                 </CardContent>
                 <CardFooter className="pt-2 border-t border-gray-800 bg-bgGray/30 flex justify-between items-center">
                   <div className="flex flex-wrap gap-1">
-                    {lab.contributors.map((contributor, index) => (
+                    {lab.contributors && lab.contributors.map((contributor, index) => (
                       <Badge key={index} variant="outline" className="bg-bgGray/50 text-xs">
                         @{contributor}
                       </Badge>
@@ -305,31 +282,36 @@ function LabDetail() {
   const { labId } = useParams();
   const [content, setContent] = useState("");
   const [lab, setLab] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Find the lab data
-    const selectedLab = labsData.find(lab => lab.id === labId);
-    
-    if (!selectedLab) {
-      navigate("/labs");
-      return;
-    }
-    
-    setLab(selectedLab);
-    
-    // Fetch the markdown content
-    const fetchContent = async () => {
+    // Fetch labs data and find the selected lab
+    const fetchLabData = async () => {
       try {
-        const response = await fetch(selectedLab.path);
-        
+        setLoading(true);
+        const response = await fetch('/data/labs.json');
         if (response.ok) {
-          const text = await response.text();
-          setContent(text);
-        } else {
-          // If the file doesn't exist yet, show a placeholder
-          setContent(`# ${selectedLab.title}
+          const data = await response.json();
+          const selectedLab = data.labs.find(lab => lab.id === labId);
           
+          if (!selectedLab) {
+            navigate("/labs");
+            return;
+          }
+          
+          setLab(selectedLab);
+          
+          // Fetch the markdown content
+          const markdownResponse = await fetch(selectedLab.path);
+          
+          if (markdownResponse.ok) {
+            const text = await markdownResponse.text();
+            setContent(text);
+          } else {
+            // If the file doesn't exist yet, show a placeholder
+            setContent(`# ${selectedLab.title}
+            
 ## Overview
 
 ${selectedLab.description}
@@ -352,15 +334,28 @@ This lab is still in early stages. You can help by:
 
 ${selectedLab.contributors.join(', ')}
 `);
+          }
+        } else {
+          navigate("/labs");
         }
       } catch (error) {
-        console.error("Error fetching lab content:", error);
+        console.error("Error fetching lab data:", error);
         setContent("# Error loading content\n\nPlease try again later.");
+      } finally {
+        setLoading(false);
       }
     };
     
-    fetchContent();
+    fetchLabData();
   }, [labId, navigate]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   if (!lab) {
     return <div>Loading...</div>;
@@ -441,6 +436,23 @@ ${selectedLab.contributors.join(', ')}
   );
 }
 
+// Helper function to get badge variant based on category
+const getCategoryVariant = (category) => {
+  const categoryMap = {
+    "Data Quality": "data",
+    "Ethics": "mcpAI",
+    "Evaluation": "ml",
+    "NLP": "llmFramework",
+    "Reinforcement Learning": "reinforcement",
+    "Computer Vision": "llmVector",
+    "Multimodal": "llmModel",
+    "Tools": "llmTool",
+    "Infrastructure": "mcpCore",
+  };
+  
+  return categoryMap[category] || "default";
+};
+
 // Main Labs component
 function Labs() {
   return (
@@ -465,7 +477,7 @@ function Labs() {
         </a>
       </div>
       
-      {/* Use useParams to determine which component to render */}
+      {/* Use window.location.pathname.startsWith to determine which component to render */}
       {window.location.pathname === "/labs" ? <LabsList /> : <LabDetail />}
     </div>
   );
