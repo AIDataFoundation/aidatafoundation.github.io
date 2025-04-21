@@ -23,6 +23,7 @@ function App() {
           <Route path="/labs" element={<Labs />} />
           <Route path="/labs/:labId" element={<Labs />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:postId" element={<Blog />} />
           <Route path="/about" element={
             <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
               <h1 className="text-3xl font-bold mb-8 text-center">About AI Data Foundation</h1>
