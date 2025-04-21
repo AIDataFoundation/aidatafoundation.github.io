@@ -53,7 +53,7 @@ function LandingPage() {
             <div className="flex flex-col md:flex-row justify-center gap-5 mt-6">
               <Button 
                 text={"Explore Tools"} 
-                link={"/datasets"} 
+                link={"/tools"} 
               />
               <Button 
                 text={"Join Our Community"} 
@@ -161,7 +161,7 @@ function LandingPage() {
                   </CardDescription>
                 </CardContent>
                 <CardFooter className="p-8 pt-4">
-                  <Link to={`/datasets/${tool.id}`} className="text-blue-500 hover:text-blue-400 flex items-center text-sm">
+                  <Link to={`/tools/${tool.id}`} className="text-blue-500 hover:text-blue-400 flex items-center text-sm">
                     Explore Tool
                     <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -173,7 +173,7 @@ function LandingPage() {
           </div>
           
           <div className="text-center mt-12">
-            <Link to="/datasets" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition">
+            <Link to="/tools" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition">
               View All Tools
             </Link>
           </div>
