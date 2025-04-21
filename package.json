@@ -1,9 +1,9 @@
 {
-  "name": "kubeDailyTools",
+  "name": "ai-data-foundation",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kubedaily.com/Kubernetes-CloudNative-Toolkits/",
+  "homepage": "https://aidatafoundation.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
