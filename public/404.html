@@ -7,11 +7,23 @@
     // Single Page Apps for GitHub Pages
     // MIT License
     // https://github.com/rafgraph/spa-github-pages
-    // This script takes the current URL and redirects to the index.html with the 
-    // path as a query parameter that the client-side router can use
+    // This script takes the current URL and converts the path and query
+    // string into just a query string, and then redirects the browser
+    // to the new URL with only a query string and hash fragment,
+    // e.g. https://aidatafoundation.github.io/foo/bar?baz=quux#hash ->
+    // https://aidatafoundation.github.io/?/foo/bar&baz=quux#hash
+    // Note: this 404.html file must be at least 512 bytes for it to work
+    // with Internet Explorer (it is currently > 512 bytes)
 
-    // Get the current path and redirect to the index.html with it
+    // If you're creating a Project Pages site and NOT using a custom domain,
+    // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
+    // This way the code will only replace the route part of the path, and not
+    // the real directory in which the app resides, for example:
+    // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
+    // https://username.github.io/repo-name/?/one/two&a=b&c=d#qwe
+    // Otherwise, leave pathSegmentsToKeep as 0.
     var pathSegmentsToKeep = 0;
+
     var l = window.location;
     l.replace(
       l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +

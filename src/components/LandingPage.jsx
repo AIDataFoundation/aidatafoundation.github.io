@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
@@ -29,6 +29,43 @@ function LandingPage() {
       stars: 62300
     }
   ];
+
+  // Add structured data for SEO
+  useEffect(() => {
+    // Create JSON-LD structured data
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AI Data Foundation",
+      "url": "https://aidatafoundation.github.io/",
+      "logo": "https://aidatafoundation.github.io/android-icon-192x192.png",
+      "description": "AI Data Foundation is dedicated to creating, curating, and promoting high-quality tools that power the next generation of AI research and applications.",
+      "sameAs": [
+        "https://github.com/aidatafoundation"
+      ],
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://aidatafoundation.github.io/"
+      },
+      "keywords": "AI, artificial intelligence, machine learning, deep learning, natural language processing, computer vision, AI tools, data science",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://aidatafoundation.github.io/tools?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    };
+
+    // Add the structured data to the document head
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    // Clean up the script tag when component unmounts
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="bg-bgPrimary min-h-screen">

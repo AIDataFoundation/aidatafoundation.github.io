@@ -5,13 +5,44 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/android-icon-192x192.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ultimate Open Source Kubernetes & Cloud Native Tools </title>
+  
+  <!-- Primary Meta Tags -->
+  <title>AI Data Foundation | AI Tools, Research & Resources</title>
+  <meta name="title" content="AI Data Foundation | AI Tools, Research & Resources">
+  <meta name="description" content="A comprehensive resource for AI tools, frameworks, datasets, and methodologies. Explore the latest in machine learning, natural language processing, computer vision, and more.">
+  <meta name="keywords" content="ai, artificial intelligence, machine learning, deep learning, nlp, computer vision, data science, data foundation, ai tools, ai research, large language models, llm, ai datasets, federated learning, ml frameworks, ai community">
+  <meta name="author" content="AI Data Foundation">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aidatafoundation.github.io/">
+  <meta property="og:title" content="AI Data Foundation | AI Tools, Research & Resources">
+  <meta property="og:description" content="A comprehensive resource for AI tools, frameworks, datasets, and methodologies. Explore the latest in machine learning, natural language processing, computer vision, and more.">
+  <meta property="og:image" content="https://aidatafoundation.github.io/og-image.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://aidatafoundation.github.io/">
+  <meta property="twitter:title" content="AI Data Foundation | AI Tools, Research & Resources">
+  <meta property="twitter:description" content="A comprehensive resource for AI tools, frameworks, datasets, and methodologies. Explore the latest in machine learning, natural language processing, computer vision, and more.">
+  <meta property="twitter:image" content="https://aidatafoundation.github.io/og-image.png">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://aidatafoundation.github.io/">
   
   <!-- Handle GitHub Pages SPA redirects -->
   <script type="text/javascript">
     // Single Page Apps for GitHub Pages
     // MIT License
     // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
     (function(l) {
       if (l.search[1] === '/' ) {
         var decoded = l.search.slice(1).split('&').map(function(s) { 
@@ -22,6 +53,28 @@
         );
       }
     }(window.location))
+  </script>
+  
+  <!-- Prevent JSON files from being displayed directly -->
+  <script type="text/javascript">
+    // Check if the URL ends with .json and redirect to the appropriate page
+    (function() {
+      var path = window.location.pathname;
+      if (path.endsWith('.json')) {
+        // For blog/index.json, redirect to /blog
+        if (path.includes('/blog/') || path === '/blog/index.json') {
+          window.location.href = '/blog';
+        } 
+        // For labs/index.json, redirect to /labs
+        else if (path.includes('/labs/') || path === '/labs/index.json') {
+          window.location.href = '/labs';
+        }
+        // For any other JSON file, redirect to home
+        else {
+          window.location.href = '/';
+        }
+      }
+    })();
   </script>
 </head>
 

@@ -15,10 +15,21 @@ function Blog() {
   useEffect(() => {
     const fetchBlogIndex = async () => {
       try {
-        const response = await fetch('/blog/index.json');
+        // Add a cache-busting parameter to prevent caching and direct display of JSON
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/blog/index.json?_=${timestamp}`, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            // Add headers to prevent browsers from displaying the raw JSON
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+        
         if (!response.ok) {
           throw new Error('Failed to fetch blog index');
         }
+        
         const data = await response.json();
         setBlogPosts(data);
         setLoading(false);
@@ -31,6 +42,90 @@ function Blog() {
 
     fetchBlogIndex();
   }, []);
+
+  // Add structured data for the blog list
+  useEffect(() => {
+    if (!blogPosts.length || postId) return;
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "AI Data Foundation Blog",
+      "url": "https://aidatafoundation.github.io/blog",
+      "description": "Stay updated with the latest AI research, tools, and insights from our team and community contributors.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "AI Data Foundation",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aidatafoundation.github.io/android-icon-192x192.png"
+        }
+      },
+      "blogPost": blogPosts.map(post => ({
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.excerpt,
+        "datePublished": new Date(post.date).toISOString(),
+        "author": {
+          "@type": "Person",
+          "name": post.author || "AI Data Foundation"
+        },
+        "url": `https://aidatafoundation.github.io/blog/${post.id}`
+      }))
+    };
+
+    // Add structured data to head
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [blogPosts, postId]);
+
+  // Add structured data for individual blog post
+  useEffect(() => {
+    if (!currentPost) return;
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": currentPost.title,
+      "description": currentPost.excerpt,
+      "image": "https://aidatafoundation.github.io/og-image.png",
+      "datePublished": new Date(currentPost.date).toISOString(),
+      "dateModified": new Date(currentPost.date).toISOString(),
+      "author": {
+        "@type": "Person",
+        "name": currentPost.author || "AI Data Foundation"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "AI Data Foundation",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aidatafoundation.github.io/android-icon-192x192.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `https://aidatafoundation.github.io/blog/${currentPost.id}`
+      },
+      "keywords": "AI, artificial intelligence, machine learning, data science, AI tools, AI research"
+    };
+
+    // Add structured data to head
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [currentPost]);
 
   // Load individual blog post when postId changes
   useEffect(() => {
@@ -48,10 +143,20 @@ function Blog() {
       }
 
       try {
-        const response = await fetch(`/blog/${post.file}`);
+        // Add a cache-busting parameter to prevent caching
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/blog/${post.file}?_=${timestamp}`, {
+          headers: {
+            // Set content type to text to prevent browsers from displaying raw markdown
+            'Accept': 'text/plain',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+        
         if (!response.ok) {
           throw new Error('Failed to fetch blog post');
         }
+        
         const content = await response.text();
         
         // Extract frontmatter and content
