@@ -93,7 +93,7 @@ function ToolCard({ title, link, description, github, githubStars, isLoading, fo
             Learn
           </a>
         </Button>
-        {github && (
+          {github && (
           <Button
             asChild
             variant="secondary"
@@ -108,8 +108,8 @@ function ToolCard({ title, link, description, github, githubStars, isLoading, fo
               GitHub
             </a>
           </Button>
-        )}
-        {renderStarCount()}
+          )}
+          {renderStarCount()}
       </CardFooter>
     </Card>
   );

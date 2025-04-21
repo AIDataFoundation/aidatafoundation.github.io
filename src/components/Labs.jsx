@@ -71,21 +71,10 @@ function LabsList() {
         
         let fetchSuccess = false;
         
-        // Add a cache-busting parameter to prevent caching
-        const timestamp = new Date().getTime();
-        
         // Try each URL in sequence
         for (const url of potentialUrls) {
           try {
-            const response = await fetch(`${url}?_=${timestamp}`, {
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                // Add headers to prevent browsers from displaying the raw JSON
-                'X-Requested-With': 'XMLHttpRequest'
-              }
-            });
-            
+            const response = await fetch(url);
             if (response.ok) {
               const data = await response.json();
               setLabsData(data.labs || []);
@@ -355,94 +344,130 @@ Specific guidelines for this lab...`
 // Lab detail component
 function LabDetail() {
   const { labId } = useParams();
+  const [content, setContent] = useState("");
   const [lab, setLab] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch lab data
+    // Fetch labs data and find the selected lab
     const fetchLabData = async () => {
-      setLoading(true);
-      
       try {
-        // First, fetch the labs index to find the correct lab
-        const timestamp = new Date().getTime();
-        const potentialIndexUrls = [
+        setLoading(true);
+        
+        // Try to get lab data from either the JSON file or use fallback
+        let labsData = [];
+        let fetchSuccess = false;
+        
+        // Try multiple potential locations for the data
+        const potentialUrls = [
           '/data/labs.json',
           '/labs/index.json',
           `${window.location.origin}/data/labs.json`,
           `${window.location.origin}/labs/index.json`
         ];
         
-        let lab = null;
-        
-        // Try to find the lab in the index
-        for (const url of potentialIndexUrls) {
+        // Try each URL in sequence
+        for (const url of potentialUrls) {
           try {
-            const response = await fetch(`${url}?_=${timestamp}`, {
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-              }
-            });
-            
+            const response = await fetch(url);
             if (response.ok) {
               const data = await response.json();
-              const foundLab = (data.labs || []).find(l => l.id === labId);
-              if (foundLab) {
-                lab = foundLab;
-                break;
-              }
+              labsData = data.labs || [];
+              fetchSuccess = true;
+              break;
             }
           } catch (err) {
             console.log(`Failed to fetch from ${url}:`, err);
+            // Continue to next URL
           }
         }
         
-        // If lab not found in any index, use fallback
-        if (!lab) {
-          lab = fallbackLabsData.find(l => l.id === labId);
+        // If all fetches fail, use the fallback data
+        if (!fetchSuccess) {
+          console.warn("All fetch attempts failed, using fallback data");
+          labsData = fallbackLabsData;
         }
         
-        // If lab still not found, set error
-        if (!lab) {
-          setError("Lab not found");
-          setLoading(false);
+        const selectedLab = labsData.find(lab => lab.id === labId);
+        
+        if (!selectedLab) {
+          navigate("/labs");
           return;
         }
         
-        // Now fetch the lab content using the path from the lab object
+        setLab(selectedLab);
+        
+        // Fetch the markdown content
         try {
-          const response = await fetch(`${lab.path}?_=${timestamp}`, {
-            headers: {
-              'Accept': 'text/plain',
-              'X-Requested-With': 'XMLHttpRequest'
-            }
-          });
+          const markdownResponse = await fetch(selectedLab.path);
           
-          if (!response.ok) {
-            throw new Error(`Failed to fetch lab content from ${lab.path}`);
+          if (markdownResponse.ok) {
+            const text = await markdownResponse.text();
+            setContent(text);
+          } else {
+            // If the file doesn't exist yet, show a placeholder
+            setContent(`# ${selectedLab.title}
+            
+## Overview
+
+${selectedLab.description}
+
+## Goals
+
+- Create standardized metrics for evaluation
+- Develop tools for analysis and improvement
+- Establish guidelines for best practices
+
+## How to Contribute
+
+This lab is still in early stages. You can help by:
+
+1. Fork the repository
+2. Create or edit the markdown file at \`${selectedLab.path}\`
+3. Submit a pull request with your contributions
+
+## Current Contributors
+
+${selectedLab.contributors.join(', ')}
+`);
           }
+        } catch (markdownError) {
+          console.error("Error fetching markdown:", markdownError);
+          // Use placeholder content
+          setContent(`# ${selectedLab.title}
           
-          const content = await response.text();
-          setLab({
-            ...lab,
-            content
-          });
-        } catch (contentErr) {
-          console.error("Error fetching lab content:", contentErr);
-          setError(`Could not load lab content. Please try again later.`);
+## Overview
+
+${selectedLab.description}
+
+## Goals
+
+- Create standardized metrics for evaluation
+- Develop tools for analysis and improvement
+- Establish guidelines for best practices
+
+## How to Contribute
+
+This lab is still in early stages. You can help by:
+
+1. Fork the repository
+2. Create or edit the markdown file at \`${selectedLab.path}\`
+3. Submit a pull request with your contributions
+
+## Current Contributors
+
+${selectedLab.contributors.join(', ')}
+`);
         }
-      } catch (err) {
-        console.error("Error in lab fetching process:", err);
-        setError("Failed to load lab data. Please try again later.");
+      } catch (error) {
+        console.error("Error fetching lab data:", error);
+        setContent("# Error loading content\n\nPlease try again later.");
       } finally {
         setLoading(false);
       }
     };
-
+    
     fetchLabData();
   }, [labId, navigate]);
 
@@ -454,115 +479,81 @@ function LabDetail() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="max-w-[900px] mx-auto py-8">
-        <Card className="bg-red-500/10 text-red-400 border-red-500/20">
-          <CardContent className="p-8 text-center">
-            <svg className="w-16 h-16 mx-auto mb-4 text-red-400/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <h2 className="text-xl font-bold mb-4">{error}</h2>
-            <Button 
-              onClick={() => navigate('/labs')}
-              variant="outline"
-              className="mt-2"
-            >
-              Back to Labs
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
   if (!lab) {
-    return (
-      <div className="flex justify-center items-center py-20">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mb-4">Lab not found</h2>
-          <Button 
-            onClick={() => navigate('/labs')}
-            variant="outline"
-            className="mt-2"
-          >
-            Back to Labs
-          </Button>
-        </div>
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   return (
-    <div className="max-w-[900px] mx-auto">
-      <div className="mb-8">
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate('/labs')}
-          className="mb-4"
-        >
-          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Back to Labs
-        </Button>
-        
-        <div className="flex items-center justify-between mb-6">
-          <Badge variant={getCategoryVariant(lab.category)} className="mb-2">
-            {lab.category}
+    <div>
+      <Button 
+        variant="ghost" 
+        className="mb-6"
+        onClick={() => navigate("/labs")}
+      >
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Labs
+      </Button>
+      
+      <div className="mb-6 flex flex-wrap items-center gap-2">
+        <Badge variant={getCategoryVariant(lab.category)} className="text-sm">
+          {lab.category}
+        </Badge>
+        {lab.tags && lab.tags.map((tag, index) => (
+          <Badge key={index} variant="outline" className="text-xs bg-bgGray/30">
+            {tag}
           </Badge>
-          <div className="flex gap-2">
-            <a
-              href={`https://github.com/aidatafoundation/aidatafoundation.github.io/edit/main${lab.path}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-sm text-blue-500 hover:text-blue-400"
-            >
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              Edit this lab
-            </a>
-          </div>
-        </div>
-        
-        <h1 className="text-3xl font-bold mb-6 text-primary">{lab.title}</h1>
-        <p className="text-grayFill text-lg mb-6">{lab.description}</p>
-        
-        <div className="flex flex-wrap gap-2 mb-8">
-          {lab.tags && lab.tags.map((tag, index) => (
-            <Badge key={index} variant="outline" className="bg-bgGray/30">
-              {tag}
-            </Badge>
-          ))}
+        ))}
+        <div className="text-grayFill text-sm ml-auto">
+          {lab.contributors && lab.contributors.length > 0 && (
+            <span>Contributors: {lab.contributors.join(', ')}</span>
+          )}
         </div>
       </div>
       
-      <Card className="mb-8">
-        <CardContent className="p-8">
-          <div className="prose prose-invert max-w-none">
-            <ReactMarkdown>
-              {lab.content || `# ${lab.title}\n\n${lab.description}`}
-            </ReactMarkdown>
-          </div>
-        </CardContent>
-      </Card>
-      
-      <Card className="mb-16">
-        <CardContent className="p-8">
-          <h2 className="text-xl font-semibold mb-4">Contributors</h2>
-          <div className="flex flex-wrap gap-3">
-            {lab.contributors && lab.contributors.map((contributor, index) => (
-              <div key={index} className="flex items-center gap-2 bg-bgGray/50 rounded-full px-4 py-2">
-                <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
-                  <span className="text-blue-500 font-medium text-sm">{contributor.charAt(0).toUpperCase()}</span>
-                </div>
-                <span className="text-sm">@{contributor}</span>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <div className="prose prose-invert max-w-none">
+        <ReactMarkdown>{content}</ReactMarkdown>
+      </div>
+
+      <div className="mt-10 pt-6 border-t border-gray-700">
+        <h3 className="text-xl font-semibold mb-4">Want to contribute to this lab?</h3>
+        <div className="flex flex-wrap gap-4">
+          <a 
+            href={`https://github.com/AIDataFoundation/aidatafoundation.github.io/edit/main${lab.path}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition"
+          >
+            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+            </svg>
+            Edit this page
+          </a>
+          <a 
+            href={`https://github.com/AIDataFoundation/aidatafoundation.github.io/issues/new?title=Feedback on lab: ${lab.title}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 py-2 bg-blue-600/70 hover:bg-blue-700 text-white rounded-md transition"
+          >
+            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
+            </svg>
+            Provide Feedback
+          </a>
+          <a 
+            href="/labs/CONTRIBUTING.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition"
+          >
+            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
+            </svg>
+            View contribution guidelines
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

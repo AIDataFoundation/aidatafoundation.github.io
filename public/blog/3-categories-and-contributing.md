@@ -1,4 +1,10 @@
-
+---
+id: "3"
+title: "Categories and Contributing"
+date: "July 23, 2023"
+excerpt: "Explore our tool categories and learn how to contribute to the project."
+author: "AI Data Foundation"
+---
 
 ## 📚 Categories
 

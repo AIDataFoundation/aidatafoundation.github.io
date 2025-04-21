@@ -11,7 +11,7 @@ function Button({ text, className, link }) {
       >
         {text}
       </ShadcnButton>
-    </a>
+      </a>
   );
 }
 

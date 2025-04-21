@@ -1,3 +1,10 @@
+---
+id: "2"
+title: "Quick Start Guide"
+date: "June 15, 2023"
+excerpt: "Get started with our platform quickly and easily with this comprehensive guide."
+author: "AI Data Foundation"
+---
 
 ## 🚀 Quick Start
 
