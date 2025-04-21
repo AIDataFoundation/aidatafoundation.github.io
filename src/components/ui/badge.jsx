@@ -31,7 +31,7 @@ const badgeVariants = cva(
         mcpDeveloper: "bg-cyan-900/50 text-cyan-300",
         mcpAI: "bg-fuchsia-900/50 text-fuchsia-300",
         mcpProductivity: "bg-lime-900/50 text-lime-300",
-        default: "bg-gray-700/50 text-gray-300",
+        plain: "bg-gray-700/50 text-gray-300",
       },
     },
     defaultVariants: {

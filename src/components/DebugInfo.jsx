@@ -12,7 +12,8 @@ function DebugInfo({ show = false }) {
     '/blog.json',
     './blog/index.json',
     './blog.json',
-    '/blog/1-cloud-native-tools-collection.md'
+    '/blog/1-cloud-native-tools-collection.md',
+    '/data/labs.json'
   ];
 
   useEffect(() => {

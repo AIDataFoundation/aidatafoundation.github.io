@@ -40,7 +40,9 @@ function Blog() {
           });
           
           if (response.ok) {
-            data = await response.json();
+            const jsonData = await response.json();
+            // Handle both formats: direct array or { blogs: [...] }
+            data = jsonData.blogs || jsonData;
             console.log('Blog posts loaded from:', path, data);
             break; // Exit the loop if successful
           }
@@ -66,7 +68,9 @@ function Blog() {
             date: "May 10, 2023",
             excerpt: "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
             author: "AI Data Foundation",
-            file: "1-cloud-native-tools-collection.md"
+            file: "1-cloud-native-tools-collection.md",
+            category: "Cloud Native",
+            tags: ["kubernetes", "cloud native", "tools", "open source"]
           },
           {
             id: "2",
@@ -74,7 +78,9 @@ function Blog() {
             date: "June 15, 2023",
             excerpt: "Get started with our platform quickly and easily with this comprehensive guide.",
             author: "AI Data Foundation",
-            file: "2-quick-start-guide.md"
+            file: "2-quick-start-guide.md",
+            category: "Guides",
+            tags: ["quick start", "guide", "tutorial", "getting started"]
           },
           {
             id: "3",
@@ -82,7 +88,9 @@ function Blog() {
             date: "July 23, 2023", 
             excerpt: "Explore our tool categories and learn how to contribute to the project.",
             author: "AI Data Foundation",
-            file: "3-categories-and-contributing.md"
+            file: "3-categories-and-contributing.md",
+            category: "Community",
+            tags: ["contributing", "open source", "community", "guidelines"]
           }
         ];
         
@@ -193,12 +201,26 @@ function Blog() {
         return;
       }
 
+      // Get the file path from post (may be in "file" or "path" field)
+      const postPath = post.path || post.file;
+      
+      if (!postPath) {
+        console.error('Post has no file or path:', post);
+        setError('Post has invalid configuration');
+        setLoading(false);
+        return;
+      }
+
       // Try multiple possible paths for the blog post markdown file
+      // Handle both relative and absolute paths
       const possiblePaths = [
-        `/blog/${post.file}`,
-        `./blog/${post.file}`,
-        // Add more path variations if needed
+        postPath,
+        postPath.startsWith('/') ? postPath.substring(1) : postPath,
+        `./public${postPath}`,
+        `.${postPath}`,
       ];
+      
+      console.log('Trying paths:', possiblePaths);
       
       let content = null;
       let fetchError = null;
@@ -476,16 +498,40 @@ function BlogPostDetail({ post }) {
 function BlogList({ blogPosts }) {
   const navigate = useNavigate();
   const [jsonView, setJsonView] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('All');
   
   // Sort posts by date (newest first)
   const sortedPosts = [...blogPosts].sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
   
+  // Get unique categories
+  const categories = ['All', ...new Set(blogPosts.map(post => post.category).filter(Boolean))];
+  
+  // Filter posts by active category
+  const filteredPosts = activeCategory === 'All' 
+    ? sortedPosts 
+    : sortedPosts.filter(post => post.category === activeCategory);
+  
   return (
     <div>
-      {/* Toggle for JSON view */}
-      <div className="flex justify-end mb-4">
+      {/* Category filter and JSON view toggle */}
+      <div className="flex flex-wrap justify-between items-center mb-6">
+        <div className="flex flex-wrap gap-2 mb-4 md:mb-0">
+          {categories.map(category => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-3 py-1 text-xs rounded-full transition-colors ${
+                activeCategory === category
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
         <button 
           onClick={() => setJsonView(!jsonView)}
           className="text-xs text-blue-500 hover:text-blue-400 px-2 py-1 rounded border border-blue-500/20"
@@ -497,22 +543,45 @@ function BlogList({ blogPosts }) {
       {jsonView ? (
         <div className="bg-gray-900 p-4 rounded-lg shadow-inner">
           <pre className="text-xs text-gray-300 overflow-auto max-h-[500px]">
-            {JSON.stringify(sortedPosts, null, 2)}
+            {JSON.stringify(filteredPosts, null, 2)}
           </pre>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sortedPosts.map(post => (
+          {filteredPosts.map(post => (
             <div 
               key={post.id} 
               className="bg-bgGray rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-blue-500/30 hover:translate-y-[-2px] flex flex-col h-full border border-gray-800"
             >
               <div className="p-6 flex-grow">
-                <div className="mb-2">
+                <div className="flex justify-between items-start mb-3">
                   <span className="text-xs font-medium text-blue-500 bg-blue-500/10 py-1 px-2 rounded-full">{post.date}</span>
+                  {post.category && (
+                    <span className="text-xs font-medium text-green-500 bg-green-500/10 py-1 px-2 rounded-full">
+                      {post.category}
+                    </span>
+                  )}
                 </div>
                 <h2 className="text-xl font-bold mb-3 text-primary leading-tight">{post.title}</h2>
                 <p className="text-grayFill text-sm mb-4 line-clamp-3">{post.excerpt}</p>
+                
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mt-3">
+                    {post.tags.slice(0, 3).map(tag => (
+                      <span 
+                        key={tag} 
+                        className="text-[10px] text-gray-400 bg-gray-800/50 px-2 py-0.5 rounded"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                    {post.tags.length > 3 && (
+                      <span className="text-[10px] text-gray-500 px-1">
+                        +{post.tags.length - 3} more
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
               
               <div className="px-6 py-4 border-t border-gray-800 bg-bgGray/50 mt-auto">
@@ -533,6 +602,12 @@ function BlogList({ blogPosts }) {
               </div>
             </div>
           ))}
+        </div>
+      )}
+      
+      {filteredPosts.length === 0 && (
+        <div className="bg-gray-800/50 rounded-lg p-8 text-center">
+          <p className="text-gray-400">No blog posts found in this category.</p>
         </div>
       )}
     </div>
