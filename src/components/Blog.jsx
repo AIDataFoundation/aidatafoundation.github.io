@@ -13,6 +13,7 @@ function Blog() {
   const [currentPost, setCurrentPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   // Fallback data in case the fetch fails
   const fallbackBlogData = [
@@ -41,6 +42,28 @@ function Blog() {
       "file": "categories-and-contributing.md"
     }
   ];
+
+  // Set initial load to false after component mounts
+  useEffect(() => {
+    // Small delay to ensure React has time to mount components
+    const timer = setTimeout(() => {
+      setInitialLoad(false);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Force GitHub Pages to use fallback data
+  useEffect(() => {
+    if (window.location.hostname.includes('github.io')) {
+      console.log('GitHub Pages detected, forcing fallback data usage');
+      // Pre-warm the BlogList and BlogDetail components by accessing the fallback data
+      const forceFallback = () => {
+        // This just accesses the data to warm it up
+        console.log(`Fallback data available: ${fallbackBlogData.length} posts`);
+      };
+      forceFallback();
+    }
+  }, []);
 
   // Load blog index
   useEffect(() => {
@@ -322,42 +345,7 @@ function Blog() {
     fetchBlogPost();
   }, [postId, blogPosts, navigate]);
 
-  // Loading state
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
-  // Error state
-  if (error) {
-    return (
-      <div className="max-w-[1280px] mx-auto px-4 py-8 text-center">
-        <div className="bg-red-500/10 text-red-500 p-4 rounded-xl mb-4">
-          <p>{error}</p>
-        </div>
-        <Button 
-          onClick={() => navigate("/blog")}
-          className="mt-4"
-        >
-          Back to Blog
-        </Button>
-      </div>
-    );
-  }
-
-  // If postId is provided, show the individual blog post
-  if (postId && currentPost) {
-    return (
-      <div className="max-w-[1280px] mx-auto px-4 py-8">
-        <BlogPostDetail post={currentPost} />
-      </div>
-    );
-  }
-
-  // Show blog list
+  // Check if we have a postId parameter to determine which component to render
   return (
     <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4 text-center">AI Data Foundation Blog</h1>
@@ -379,7 +367,14 @@ function Blog() {
         </a>
       </div>
       
-      {!postId ? <BlogList /> : <BlogDetail />}
+      {/* Check if we have a postId parameter to determine which component to render */}
+      {initialLoad ? (
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        </div>
+      ) : (
+        !postId ? <BlogList /> : <BlogDetail />
+      )}
     </div>
   );
 }
@@ -463,62 +458,42 @@ function BlogList() {
   useEffect(() => {
     const fetchBlogIndex = async () => {
       try {
-        // On GitHub Pages, sometimes JSON files are served with wrong content type
-        // Try using the fallback data immediately to prevent raw JSON display
+        // Always use fallback data on GitHub Pages to prevent raw JSON display
         if (window.location.hostname.includes('github.io')) {
-          console.log('GitHub Pages detected, using fallback blog data');
+          console.log('BlogList: GitHub Pages detected, using fallback blog data');
           setBlogPosts(fallbackBlogData);
           setLoading(false);
           return;
         }
         
-        // For local development, still try to fetch
-        // Try multiple potential locations for the data
-        const potentialUrls = [
-          '/data/blog.json',  // New primary location
-          '/blog/index.json', // Original location (as fallback)
-          `${window.location.origin}/data/blog.json`,
-          `${window.location.origin}/blog/index.json`
-        ];
-        
-        let fetchSuccess = false;
-        
-        // Add a cache-busting parameter to prevent caching and direct display of JSON
-        const timestamp = new Date().getTime();
-        
-        // Try each URL in sequence
-        for (const url of potentialUrls) {
-          try {
-            const response = await fetch(`${url}?_=${timestamp}`, {
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                // Add headers to prevent browsers from displaying the raw JSON
-                'X-Requested-With': 'XMLHttpRequest'
-              }
-            });
-            
-            if (response.ok) {
-              const data = await response.json();
-              setBlogPosts(data);
-              setLoading(false);
-              fetchSuccess = true;
-              break;
+        // For local development, try to fetch but with immediate fallback
+        try {
+          // Add a cache-busting parameter to prevent caching
+          const timestamp = new Date().getTime();
+          const response = await fetch(`/data/blog.json?_=${timestamp}`, {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest'
             }
-          } catch (err) {
-            console.log(`Failed to fetch from ${url}:`, err);
-            // Continue to next URL
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            setBlogPosts(data);
+          } else {
+            // Immediately use fallback if fetch fails
+            console.warn('BlogList: Fetch failed, using fallback data');
+            setBlogPosts(fallbackBlogData);
           }
+        } catch (err) {
+          console.error('BlogList: Error fetching data:', err);
+          setBlogPosts(fallbackBlogData);
         }
         
-        if (!fetchSuccess) {
-          console.warn('Failed to fetch blog index from any location, using fallback data');
-          setBlogPosts(fallbackBlogData);
-          setLoading(false);
-        }
+        setLoading(false);
       } catch (err) {
-        console.error('Error fetching blog index:', err);
-        console.warn('Using fallback blog data');
+        console.error('BlogList: Error in fetch process:', err);
         setBlogPosts(fallbackBlogData);
         setLoading(false);
       }
@@ -760,64 +735,19 @@ function BlogDetail() {
       setLoading(true);
       
       try {
-        // First, fetch the blog index to find the correct post
-        let blogPost = null;
-        
-        // On GitHub Pages, use the fallback data
+        // Always use fallback data on GitHub Pages
         if (window.location.hostname.includes('github.io')) {
-          blogPost = fallbackBlogData.find(p => p.id === postId);
-        } else {
-          // For local development, try to fetch the index
-          const timestamp = new Date().getTime();
-          const potentialIndexUrls = [
-            '/data/blog.json',
-            '/blog/index.json',
-            `${window.location.origin}/data/blog.json`,
-            `${window.location.origin}/blog/index.json`
-          ];
+          console.log('BlogDetail: GitHub Pages detected, using fallback data');
+          const blogPost = fallbackBlogData.find(p => p.id === postId);
           
-          // Try to find the post in the index
-          for (const url of potentialIndexUrls) {
-            try {
-              const response = await fetch(`${url}?_=${timestamp}`, {
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  'X-Requested-With': 'XMLHttpRequest'
-                }
-              });
-              
-              if (response.ok) {
-                const data = await response.json();
-                const foundPost = data.find(p => p.id === postId);
-                if (foundPost) {
-                  blogPost = foundPost;
-                  break;
-                }
-              }
-            } catch (err) {
-              console.log(`Failed to fetch from ${url}:`, err);
-            }
-          }
-          
-          // If post not found in any index, use fallback
           if (!blogPost) {
-            blogPost = fallbackBlogData.find(p => p.id === postId);
+            setError("Blog post not found");
+            setLoading(false);
+            return;
           }
-        }
-        
-        // If post still not found, set error
-        if (!blogPost) {
-          setError("Blog post not found");
-          setLoading(false);
-          return;
-        }
-        
-        // GitHub Pages detection for static content
-        if (window.location.hostname.includes('github.io')) {
-          // Since we can't guarantee proper content-type on GitHub Pages, 
-          // let's try to load the markdown file directly with the expected path
+
           try {
+            // Try to fetch the markdown content from the repository
             const markdownPath = `/blog/${blogPost.file}`;
             const timestamp = new Date().getTime();
             const response = await fetch(`${markdownPath}?_=${timestamp}`);
@@ -828,12 +758,9 @@ function BlogDetail() {
               // Extract frontmatter if it exists
               const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
               if (frontmatterMatch) {
-                const frontmatterText = frontmatterMatch[1];
-                const markdown = frontmatterMatch[2];
-                
                 setPost({
                   ...blogPost,
-                  content: markdown
+                  content: frontmatterMatch[2]
                 });
               } else {
                 setPost({
@@ -841,73 +768,66 @@ function BlogDetail() {
                   content: content
                 });
               }
-              
-              setLoading(false);
-              return;
+            } else {
+              // If can't fetch content, create a simple post with the available data
+              setPost({
+                ...blogPost,
+                content: `# ${blogPost.title}\n\n${blogPost.excerpt}\n\n*Content is currently being updated. Please check back soon.*`
+              });
             }
           } catch (err) {
-            console.error('Error fetching from GitHub Pages:', err);
-            // Continue to fallback paths
+            console.error('BlogDetail: Error fetching markdown on GitHub Pages:', err);
+            // Create a placeholder post if content can't be fetched
+            setPost({
+              ...blogPost,
+              content: `# ${blogPost.title}\n\n${blogPost.excerpt}\n\n*Content is currently being updated. Please check back soon.*`
+            });
           }
+          
+          setLoading(false);
+          return;
         }
         
-        // Now fetch the post content using the path from the post object
-        try {
-          const potentialPaths = [
-            `/blog/${blogPost.file}`,
-            `/data/blog/${blogPost.file}`
-          ];
-          
-          let content = null;
-          
-          // Try each path in sequence
-          for (const path of potentialPaths) {
-            try {
-              const timestamp = new Date().getTime();
-              const response = await fetch(`${path}?_=${timestamp}`, {
-                headers: {
-                  'Accept': 'text/plain',
-                  'X-Requested-With': 'XMLHttpRequest'
-                }
-              });
-              
-              if (response.ok) {
-                content = await response.text();
-                break;
-              }
-            } catch (err) {
-              console.log(`Failed to fetch from ${path}:`, err);
-              // Continue to next path
-            }
-          }
-          
-          if (!content) {
-            throw new Error(`Failed to fetch blog post content from any location`);
-          }
-          
-          // Extract frontmatter and content
-          const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-          if (frontmatterMatch) {
-            const frontmatterText = frontmatterMatch[1];
-            const markdown = frontmatterMatch[2];
-            
-            setPost({
-              ...blogPost,
-              content: markdown
-            });
-          } else {
-            setPost({
-              ...blogPost,
-              content: content
-            });
-          }
-          
-        } catch (contentErr) {
-          console.error("Error fetching blog content:", contentErr);
-          setError(`Could not load blog content. Please try again later.`);
+        // For local development
+        const blogPost = fallbackBlogData.find(p => p.id === postId);
+        if (!blogPost) {
+          setError("Blog post not found");
+          setLoading(false);
+          return;
         }
+        
+        try {
+          // Simplified path handling for local development
+          const markdownPath = `/blog/${blogPost.file}`;
+          const timestamp = new Date().getTime();
+          const response = await fetch(`${markdownPath}?_=${timestamp}`);
+          
+          if (response.ok) {
+            const content = await response.text();
+            
+            // Extract frontmatter if it exists
+            const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+            if (frontmatterMatch) {
+              setPost({
+                ...blogPost,
+                content: frontmatterMatch[2]
+              });
+            } else {
+              setPost({
+                ...blogPost,
+                content: content
+              });
+            }
+          } else {
+            throw new Error("Failed to fetch blog content");
+          }
+        } catch (contentErr) {
+          console.error("BlogDetail: Error fetching blog content:", contentErr);
+          setError("Failed to load blog post content. Please try again later.");
+        }
+        
       } catch (err) {
-        console.error("Error in blog fetching process:", err);
+        console.error("BlogDetail: Error in blog fetching process:", err);
         setError("Failed to load blog post. Please try again later.");
       } finally {
         setLoading(false);
