@@ -11,6 +11,35 @@ function Blog() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fallback data in case the fetch fails
+  const fallbackBlogData = [
+   
+        {
+          "id": "1",
+          "title": "Cloud Native Tools Collection",
+          "date": "May 10, 2023",
+          "excerpt": "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
+          "author": "AI Data Foundation",
+          "file": "blog/1-cloud-native-tools-collection.md"
+        },
+        {
+          "id": "2",
+          "title": "Quick Start Guide",
+          "date": "June 15, 2023",
+          "excerpt": "Get started with our platform quickly and easily with this comprehensive guide.",
+          "author": "AI Data Foundation",
+          "file": "blog/2-quick-start-guide.md"
+        },
+        {
+          "id": "3",
+          "title": "Categories and Contributing",
+          "date": "July 23, 2023", 
+          "excerpt": "Explore our tool categories and learn how to contribute to the project.",
+          "author": "AI Data Foundation",
+          "file": "blog/3-categories-and-contributing.md"
+        }
+      ] 
+  
   // Load blog index
   useEffect(() => {
     const fetchBlogIndex = async () => {
@@ -54,11 +83,14 @@ function Blog() {
         }
         
         if (!fetchSuccess) {
-          throw new Error('Failed to fetch blog index from any location');
+          console.warn('Failed to fetch blog index from any location, using fallback data');
+          setBlogPosts(fallbackBlogData);
+          setLoading(false);
         }
       } catch (err) {
         console.error('Error fetching blog index:', err);
-        setError('Failed to load blog posts. Please try again later.');
+        console.warn('Using fallback blog data');
+        setBlogPosts(fallbackBlogData);
         setLoading(false);
       }
     };
