@@ -7,6 +7,46 @@ import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
+// Fallback data in case the fetch fails
+const fallbackLabsData = [
+  {
+    id: "data-quality-metrics",
+    title: "Data Quality Metrics for Large Language Models",
+    description: "A comprehensive framework for assessing and improving the quality of training data for large language models.",
+    category: "Data Quality",
+    path: "/labs/data-quality-metrics.md",
+    contributors: ["alex.chen", "maria.rodriguez"],
+    tags: ["data quality", "metrics", "LLM", "assessment"]
+  },
+  {
+    id: "ethical-synthetic-data",
+    title: "Ethical Considerations in Synthetic Data Generation",
+    description: "Addressing privacy, bias, and fairness concerns in the creation and use of synthetic datasets for AI training.",
+    category: "Ethics",
+    path: "/labs/ethical-synthetic-data.md",
+    contributors: ["james.wilson", "aisha.patel"],
+    tags: ["ethics", "synthetic data", "privacy", "bias", "fairness"]
+  },
+  {
+    id: "llm-evaluation",
+    title: "LLM Evaluation Framework",
+    description: "Open source methodology for evaluating large language models across multiple dimensions.",
+    category: "Evaluation",
+    path: "/labs/llm-evaluation.md",
+    contributors: ["robin.zhang"],
+    tags: ["evaluation", "LLM", "benchmarks", "methodology"]
+  },
+  {
+    id: "reinforcement-learning",
+    title: "Reinforcement Learning Lab",
+    description: "Developing intelligent agents that learn optimal decision-making strategies through interaction with their environment.",
+    category: "Reinforcement Learning",
+    path: "/labs/reinforcement-learning.md",
+    contributors: ["alex-kumar", "olivia-chen"],
+    tags: ["reinforcement learning", "RL", "agents", "decision-making"]
+  }
+];
+
 // Lab list component
 function LabsList() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,17 +60,41 @@ function LabsList() {
     const fetchLabsData = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/data/labs.json');
-        if (response.ok) {
-          const data = await response.json();
-          setLabsData(data.labs || []);
-        } else {
-          console.error("Failed to fetch labs data");
-          setLabsData([]);
+        
+        // Try multiple potential locations for the data
+        const potentialUrls = [
+          '/data/labs.json',
+          '/labs/index.json', // Original location
+          `${window.location.origin}/data/labs.json`,
+          `${window.location.origin}/labs/index.json`
+        ];
+        
+        let fetchSuccess = false;
+        
+        // Try each URL in sequence
+        for (const url of potentialUrls) {
+          try {
+            const response = await fetch(url);
+            if (response.ok) {
+              const data = await response.json();
+              setLabsData(data.labs || []);
+              fetchSuccess = true;
+              break;
+            }
+          } catch (err) {
+            console.log(`Failed to fetch from ${url}:`, err);
+            // Continue to next URL
+          }
+        }
+        
+        // If all fetches fail, use the fallback data
+        if (!fetchSuccess) {
+          console.warn("All fetch attempts failed, using fallback data");
+          setLabsData(fallbackLabsData);
         }
       } catch (error) {
         console.error("Error fetching labs data:", error);
-        setLabsData([]);
+        setLabsData(fallbackLabsData);
       } finally {
         setLoading(false);
       }
@@ -290,19 +354,52 @@ function LabDetail() {
     const fetchLabData = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/data/labs.json');
-        if (response.ok) {
-          const data = await response.json();
-          const selectedLab = data.labs.find(lab => lab.id === labId);
-          
-          if (!selectedLab) {
-            navigate("/labs");
-            return;
+        
+        // Try to get lab data from either the JSON file or use fallback
+        let labsData = [];
+        let fetchSuccess = false;
+        
+        // Try multiple potential locations for the data
+        const potentialUrls = [
+          '/data/labs.json',
+          '/labs/index.json',
+          `${window.location.origin}/data/labs.json`,
+          `${window.location.origin}/labs/index.json`
+        ];
+        
+        // Try each URL in sequence
+        for (const url of potentialUrls) {
+          try {
+            const response = await fetch(url);
+            if (response.ok) {
+              const data = await response.json();
+              labsData = data.labs || [];
+              fetchSuccess = true;
+              break;
+            }
+          } catch (err) {
+            console.log(`Failed to fetch from ${url}:`, err);
+            // Continue to next URL
           }
-          
-          setLab(selectedLab);
-          
-          // Fetch the markdown content
+        }
+        
+        // If all fetches fail, use the fallback data
+        if (!fetchSuccess) {
+          console.warn("All fetch attempts failed, using fallback data");
+          labsData = fallbackLabsData;
+        }
+        
+        const selectedLab = labsData.find(lab => lab.id === labId);
+        
+        if (!selectedLab) {
+          navigate("/labs");
+          return;
+        }
+        
+        setLab(selectedLab);
+        
+        // Fetch the markdown content
+        try {
           const markdownResponse = await fetch(selectedLab.path);
           
           if (markdownResponse.ok) {
@@ -335,8 +432,33 @@ This lab is still in early stages. You can help by:
 ${selectedLab.contributors.join(', ')}
 `);
           }
-        } else {
-          navigate("/labs");
+        } catch (markdownError) {
+          console.error("Error fetching markdown:", markdownError);
+          // Use placeholder content
+          setContent(`# ${selectedLab.title}
+          
+## Overview
+
+${selectedLab.description}
+
+## Goals
+
+- Create standardized metrics for evaluation
+- Develop tools for analysis and improvement
+- Establish guidelines for best practices
+
+## How to Contribute
+
+This lab is still in early stages. You can help by:
+
+1. Fork the repository
+2. Create or edit the markdown file at \`${selectedLab.path}\`
+3. Submit a pull request with your contributions
+
+## Current Contributors
+
+${selectedLab.contributors.join(', ')}
+`);
         }
       } catch (error) {
         console.error("Error fetching lab data:", error);
@@ -384,7 +506,7 @@ ${selectedLab.contributors.join(', ')}
           </Badge>
         ))}
         <div className="text-grayFill text-sm ml-auto">
-          {lab.contributors.length > 0 && (
+          {lab.contributors && lab.contributors.length > 0 && (
             <span>Contributors: {lab.contributors.join(', ')}</span>
           )}
         </div>
