@@ -20,7 +20,7 @@ function Blog() {
         "date": "May 10, 2023",
         "excerpt": "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
         "author": "AI Data Foundation",
-        "file": "/blog/1-cloud-native-tools-collection.md"
+        "file": "/blog/cloud-native-tools-collection.md"
       },
       {
         "id": "2",
@@ -28,7 +28,7 @@ function Blog() {
         "date": "June 15, 2023",
         "excerpt": "Get started with our platform quickly and easily with this comprehensive guide.",
         "author": "AI Data Foundation",
-        "file": "/blog/2-quick-start-guide.md"
+        "file": "/blog/quick-start-guide.md"
       },
       {
         "id": "3",
@@ -36,7 +36,7 @@ function Blog() {
         "date": "July 23, 2023", 
         "excerpt": "Explore our tool categories and learn how to contribute to the project.",
         "author": "AI Data Foundation",
-        "file": "/blog/3-categories-and-contributing.md"
+        "file": "/blog/categories-and-contributing.md"
       }
     ] 
   
