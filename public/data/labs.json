@@ -1,11 +1,11 @@
 {
   "labs": [
     {
-      "id": "what-is-langchain",
-      "title": "What is LangChain?",
+      "id": "LangChain-Practical-Labs.md",
+      "title": "LangChain Practical Labs",
       "description": "LangChain is a framework for building LLM applications. It provides a way to connect LLMs to other tools and data sources.",
       "category": "LLM",
-      "path": "/labs/what-is-langchain.md",
+      "path": "/labs/LangChain-Practical-Labs.md",
       "contributors": ["Sangam Biradar"],
       "tags": ["LLM", "LangChain"]
     },
