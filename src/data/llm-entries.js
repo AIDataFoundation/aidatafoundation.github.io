@@ -144,6 +144,14 @@ export const llmEntries = [
   },
   
   // LLM Tools
+
+  {
+    title: "LangFlow",
+    link: "https://github.com/logspace-ai/langflow",
+    description: "An effortless way to experiment and prototype LangChain flows with drag-and-drop components and a chat interface.",
+    github: "logspace-ai",
+    tag: "LLM Tool"
+  },
   {
     title: "LMQL",
     link: "https://github.com/eth-sri/lmql",
@@ -596,5 +604,103 @@ export const llmEntries = [
   link: "https://deepinfra.com",
   description: "A platform for hosting AI inference services. Token cost applies.",
   tag: "LLM Hosting"
+},
+//LLM Prompt Management
+{
+  title: "PromptLayer",
+  link: "https://www.promptlayer.com",
+  description: "Prompt engineering platform. Collaborate, test, evaluate, and monitor your LLM applications.",
+  tag: "LLM Prompt Management"
+},
+{
+  title: "PromptDX",
+  link: "https://github.com/puzzlet-ai/promptdx",
+  description: "A declarative, extensible, and composable approach for developing LLM prompts using Markdown and JSX.",
+  github: "puzzlet-ai",
+  tag: "LLM Prompt Management"
+},
+{
+  title: "PromptHub",
+  link: "https://www.prompthub.us",
+  description: "Full stack prompt management tool designed to be usable by technical and non-technical team members. Test, version, collaborate, and deploy prompts.",
+  tag: "LLM Prompt Management"
+},
+{
+  title: "PromptFoundry",
+  link: "https://www.promptfoundry.ai",
+  description: "A simple prompt engineering and evaluation tool designed for developers building AI applications.",
+  tag: "LLM Prompt Management"
+},
+{
+  title: "PromptTools",
+  link: "https://github.com/hegelai/prompttools",
+  description: "Open-source tools for testing and experimenting with prompts. Evaluate prompts using metrics and automated tests.",
+  github: "hegelai",
+  tag: "LLM Prompt Management"
+},
+{
+  title: "PromptFlow",
+  link: "https://github.com/logspace-ai/langflow",
+  description: "An effortless way to prototype and manage LLM prompts with a user-friendly drag-and-drop interface.",
+  github: "logspace-ai",
+  tag: "LLM Prompt Management"
+},
+  //LLM Observability 
+
+  {
+  title: "Helicone",
+  link: "https://github.com/Helicone/helicone",
+  description: "Open-source LLM observability platform for logging, monitoring, and debugging AI applications.",
+  github: "Helicone",
+  tag: "LLM Observability"
+},
+{
+  title: "Langfuse",
+  link: "https://github.com/langfuse/langfuse",
+  description: "Open Source LLM Engineering Platform: Traces, evals, prompt management, and metrics to debug and improve your LLM applications.",
+  github: "langfuse",
+  tag: "LLM Observability"
+},
+{
+  title: "LangKit",
+  link: "https://github.com/whylabs/langkit",
+  description: "Out-of-the-box LLM telemetry collection library that extracts features and profiles prompts, responses, and metadata.",
+  github: "whylabs",
+  tag: "LLM Observability"
+},
+{
+  title: "LangWatch",
+  link: "https://github.com/langwatch/langwatch",
+  description: "LLM Ops platform with Analytics, Monitoring, Evaluations, and an LLM Optimization Studio powered by DSPy.",
+  github: "langwatch",
+  tag: "LLM Observability"
+},
+{
+  title: "Helm",
+  link: "https://github.com/stanford-crfm/helm",
+  description: "Holistic Evaluation of Language Models.",
+  github: "stanford-crfm",
+  tag: "LLM Observability"
+},
+{
+  title: "Evidently",
+  link: "https://github.com/evidentlyai/evidently",
+  description: "An open-source framework to evaluate, test, and monitor ML and LLM-powered systems.",
+  github: "evidentlyai",
+  tag: "LLM Observability"
+},
+{
+  title: "Traceloop OpenLLMetry",
+  link: "https://github.com/traceloop/openllmetry",
+  description: "OpenTelemetry-based observability and monitoring for LLM and agent workflows.",
+  github: "traceloop",
+  tag: "LLM Observability"
+},
+{
+  title: "Great Expectations",
+  link: "https://github.com/great-expectations/great_expectations",
+  description: "Always know what to expect from your data.",
+  github: "great-expectations",
+  tag: "LLM Observability"
 }
 ]; 
