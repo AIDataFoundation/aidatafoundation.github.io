@@ -1,14 +1,14 @@
 {
   "blogs": [
     {
-      "id": "1",
-      "title": "Cloud Native Tools Collection",
-      "date": "May 10, 2023",
-      "excerpt": "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
-      "author": "AI Data Foundation",
-      "file": "/blog/cloud-native-tools-collection.md",
-      "category": "Cloud Native",
-      "tags": ["kubernetes", "cloud native", "tools", "open source"]
+      "id": "Qwen-Coder-Models",
+      "title": "Qwen Coder Models: Breakthrough AI at Your Fingertips",
+      "date": "April 23, 2025",
+      "excerpt": "Qwen Coder Models are a new generation of AI models that are designed to be more efficient and effective than traditional LLM models.",
+      "author": "Sangam Biradar",
+      "file": "/blog/Qwen-Coder-Models.md",
+      "category": "LLM",
+      "tags": ["Qwen Coder Models", "AI", "LLM", "LLM Models", "LLM Framework", "LLM Model", "LLM Vector Database", "LLM Tool", "MCP Core", "MCP Database", "MCP Finance", "MCP Web", "MCP Developer", "MCP AI", "MCP AI Tools", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks"]
     },
     {
       "id": "2",
@@ -29,6 +29,16 @@
       "path": "/blog/categories-and-contributing.md",
       "category": "Community",
       "tags": ["contributing", "open source", "community", "guidelines"]
+    },
+    {
+      "id": "markdown-showcase",
+      "title": "Markdown Styling Showcase",
+      "date": "June 4, 2024",
+      "excerpt": "A showcase of all markdown styling elements with syntax highlighting",
+      "author": "AI Data Foundation",
+      "file": "/blog/markdown-showcase.md",
+      "category": "Documentation",
+      "tags": ["markdown", "styling", "code", "documentation"]
     }
   ]
 } 

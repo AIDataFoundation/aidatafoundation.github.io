@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
 import { Helmet } from "react-helmet";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -7,6 +6,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import MarkdownRenderer from "./MarkdownRenderer";
 
 // Fallback data in case the fetch fails
 const fallbackLabsData = [
@@ -498,7 +498,7 @@ ${selectedLab.contributors.join(', ')}
   const imageUrl = lab.image ? `${siteUrl}${lab.image}` : `${siteUrl}/og-image.png`;
 
   return (
-    <div>
+    <div className="w-full">
       <Helmet>
         <title>{lab.title} | AI Data Foundation Labs</title>
         <meta name="description" content={lab.description} />
@@ -545,7 +545,7 @@ ${selectedLab.contributors.join(', ')}
         </div>
       </div>
       
-      <div className="prose prose-invert max-w-none">
+      <div className="w-full">
         {lab.image && (
           <div className="mb-6">
             <img 
@@ -555,7 +555,9 @@ ${selectedLab.contributors.join(', ')}
             />
           </div>
         )}
-        <ReactMarkdown>{content}</ReactMarkdown>
+        <MarkdownRenderer className="w-full">
+          {content}
+        </MarkdownRenderer>
       </div>
 
       <div className="mt-10 pt-6 border-t border-gray-700">
@@ -623,7 +625,7 @@ function Labs() {
   const siteUrl = "https://aidatafoundation.github.io";
 
   return (
-    <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
+    <div className="text-primary w-full mx-auto px-4 py-8 lab-content-container">
       {!labId && (
         <Helmet>
           <title>AI Data Foundation Labs | Research Projects & Experiments</title>

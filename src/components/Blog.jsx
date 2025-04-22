@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import { Helmet } from "react-helmet";
+import MarkdownRenderer from "./MarkdownRenderer";
 import DebugInfo from "./DebugInfo";
 
 function Blog() {
@@ -63,35 +64,16 @@ function Blog() {
         // Fallback to hardcoded data if all fetch attempts fail
         const fallbackData = [
           {
-            "id": "cloud-native-tools-collection",
-            "title": "Cloud Native Tools Collection",
-            "date": "May 10, 2023",
-            "excerpt": "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
-            "author": "AI Data Foundation",
-            "path": "/blog/cloud-native-tools-collection.md",
-            "category": "Cloud Native",
-            "tags": ["kubernetes", "cloud native", "tools", "open source"]
-          },
-          {
-            "id": "quick-start-guide",
-            "title": "Quick Start Guide",
-            "date": "June 15, 2023",
-            "excerpt": "Get started with our platform quickly and easily with this comprehensive guide.",
-            "author": "AI Data Foundation",
-            "path": "/blog/quick-start-guide.md",
-            "category": "Guides",
-            "tags": ["quick start", "guide", "tutorial", "getting started"]
-          },
-          {
-            "id": "categories-and-contributing",
-            "title": "Categories and Contributing",
-            "date": "July 23, 2023", 
-            "excerpt": "Explore our tool categories and learn how to contribute to the project.",
-            "author": "AI Data Foundation",
-            "path": "/blog/categories-and-contributing.md",
-            "category": "Community",
-            "tags": ["contributing", "open source", "community", "guidelines"]
+              "id": "Qwen-Coder-Models",
+              "title": "Qwen Coder Models: Breakthrough AI at Your Fingertips",
+              "date": "April 23, 2025",
+              "excerpt": "Qwen Coder Models are a new generation of AI models that are designed to be more efficient and effective than traditional LLM models.",
+              "author": "Sangam Biradar",
+              "file": "/blog/Qwen-Coder-Models.md",
+              "category": "LLM",
+              "tags": ["Qwen Coder Models", "AI", "LLM", "LLM Models", "LLM Framework", "LLM Model", "LLM Vector Database", "LLM Tool", "MCP Core", "MCP Database", "MCP Finance", "MCP Web", "MCP Developer", "MCP AI", "MCP AI Tools", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks"]
           }
+     
         ]
         
         console.log('Using fallback blog data');
@@ -325,7 +307,7 @@ function Blog() {
   // If postId is provided, show the individual blog post
   if (postId && currentPost) {
     return (
-      <div className="max-w-[1280px] mx-auto px-4 py-8">
+      <div className="w-full mx-auto px-4 py-8 blog-content-container">
         <BlogPostDetail post={currentPost} />
       </div>
     );
@@ -333,7 +315,7 @@ function Blog() {
 
   // Show blog list
   return (
-    <div className="max-w-[1280px] mx-auto px-4 py-8">
+    <div className="w-full mx-auto px-4 py-8 blog-content-container">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-center text-primary mb-2">AI Data Foundation Blog</h1>
         <p className="text-grayFill text-center max-w-[800px] mx-auto">
@@ -426,7 +408,7 @@ function BlogPostDetail({ post }) {
   const hasContent = post.content && post.content.trim().length > 0;
   
   return (
-    <div className="bg-bgGray p-8 rounded-xl shadow-md">
+    <div className="bg-bgGray p-8 rounded-xl shadow-md w-full">
       <Button 
         variant="ghost" 
         className="mb-6"
@@ -446,11 +428,11 @@ function BlogPostDetail({ post }) {
       </div>
       <h2 className="text-2xl font-bold mb-4 text-primary">{post.title}</h2>
       
-      <div className="prose prose-invert max-w-none">
+      <div className="w-full">
         {hasContent ? (
-          <ReactMarkdown>
+          <MarkdownRenderer className="w-full">
             {post.content}
-          </ReactMarkdown>
+          </MarkdownRenderer>
         ) : (
           <div className="text-grayFill">
             <p>{post.excerpt}</p>

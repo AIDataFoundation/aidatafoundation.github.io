@@ -86,18 +86,98 @@
 /* Markdown typography styles */
 .prose {
   color: #f8f8f2; /* primary text color */
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: none; /* Allow full width */
+  margin: 0;
+}
+
+/* Prism.js syntax highlighting customizations */
+.prose pre[class*="language-"],
+.prose code[class*="language-"] {
+  font-family: "JetBrains Mono", Menlo, Monaco, "Courier New", monospace;
+  font-size: 0.95rem;
+  text-shadow: none;
+  line-height: 1.6;
+}
+
+/* Improved code block appearance */
+.prose pre {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #1e1e1e !important;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom scrollbar for code blocks */
+.prose pre::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.prose pre::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.prose pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Line number styling */
+.prose pre .linenumber {
+  color: rgba(255, 255, 255, 0.25);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+/* Code highlight animation */
+.prose pre mark {
+  background-color: rgba(255, 255, 0, 0.1);
+  border-radius: 2px;
+  animation: highlight 2s ease;
+}
+
+@keyframes highlight {
+  0% { background-color: rgba(255, 255, 0, 0.3); }
+  100% { background-color: rgba(255, 255, 0, 0.1); }
+}
+
+/* Better inline code appearance */
+.prose p code, 
+.prose li code,
+.prose td code {
+  background-color: rgba(40, 42, 54, 0.5);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  font-family: "JetBrains Mono", Menlo, Monaco, "Courier New", monospace;
+  font-size: 0.9em;
+  color: #ff79c6;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
   color: #f8f8f2;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .prose h1 {
   font-size: 2.25rem;
   line-height: 2.5rem;
+  letter-spacing: -0.025em;
 }
 
 .prose h2 {
@@ -105,11 +185,13 @@
   line-height: 2.25rem;
   border-bottom: 1px solid rgba(107, 111, 140, 0.3);
   padding-bottom: 0.5rem;
+  letter-spacing: -0.025em;
 }
 
 .prose h3 {
   font-size: 1.5rem;
   line-height: 2rem;
+  letter-spacing: -0.015em;
 }
 
 .prose h4 {
@@ -118,17 +200,22 @@
 }
 
 .prose p {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  color: rgba(107, 111, 140, 1);
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: rgba(227, 230, 255, 0.9);
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
 
 .prose a {
-  color: #3b82f6;
+  color: #4f8cfa;
   text-decoration: none;
+  position: relative;
+  transition: color 0.2s;
 }
 
 .prose a:hover {
+  color: #70a0ff;
   text-decoration: underline;
 }
 
@@ -138,10 +225,11 @@
 }
 
 .prose ul, .prose ol {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
   padding-left: 1.5rem;
-  color: rgba(107, 111, 140, 1);
+  color: rgba(227, 230, 255, 0.9);
+  line-height: 1.8;
 }
 
 .prose ul {
@@ -154,14 +242,18 @@
 
 .prose li {
   margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
 }
 
 .prose blockquote {
   border-left: 4px solid rgba(107, 111, 140, 0.5);
-  padding-left: 1rem;
+  padding: 0.5rem 0 0.5rem 1.5rem;
   font-style: italic;
-  margin: 1.5rem 0;
-  color: rgba(107, 111, 140, 0.8);
+  margin: 1.8rem 0;
+  color: rgba(227, 230, 255, 0.8);
+  background-color: rgba(99, 110, 150, 0.05);
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .prose code {
@@ -226,4 +318,171 @@
 
 .github-btn-container {
   min-width: 120px;
+}
+
+/* Code block enhancements */
+.code-block-wrapper {
+  margin: 2rem 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: #0d1117; /* GitHub dark background */
+  border: 1px solid #30363d; /* GitHub dark border */
+}
+
+.code-block-header {
+  opacity: 0.9;
+  transition: opacity 0.2s ease-in-out;
+  background-color: #161b22 !important; /* GitHub dark header background */
+  color: #8b949e !important; /* GitHub dark text color */
+  border-bottom-left-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+/* Ensure code containers are responsive */
+.prose pre[class*="language-"], 
+.prose code[class*="language-"],
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  background-color: #0d1117 !important; /* GitHub dark background */
+}
+
+/* Style scrollbars to match GitHub theme */
+.prose pre::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.prose pre::-webkit-scrollbar-track {
+  background: rgba(110, 118, 129, 0.1);
+  border-radius: 0;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  background: rgba(110, 118, 129, 0.4);
+  border-radius: 4px;
+}
+
+.prose pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(110, 118, 129, 0.7);
+}
+
+/* Line number styling */
+.prose pre .linenumber {
+  color: #484f58 !important; /* GitHub dark line number color */
+  border-right: 1px solid #30363d !important; /* GitHub dark line number border */
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+/* Ensure Prism highlights follow GitHub colors */
+.prose .token.comment,
+.prose .token.prolog,
+.prose .token.doctype,
+.prose .token.cdata {
+  color: #8b949e !important; /* GitHub dark comment color */
+}
+
+.prose .token.punctuation {
+  color: #c9d1d9 !important; /* GitHub dark punctuation */
+}
+
+.prose .token.property,
+.prose .token.tag,
+.prose .token.constant,
+.prose .token.symbol,
+.prose .token.deleted {
+  color: #7ee787 !important; /* GitHub dark green */
+}
+
+.prose .token.selector,
+.prose .token.attr-name,
+.prose .token.char,
+.prose .token.builtin,
+.prose .token.inserted {
+  color: #79c0ff !important; /* GitHub dark blue */
+}
+
+.prose .token.string {
+  color: #a5d6ff !important; /* GitHub dark light blue */
+}
+
+.prose .token.operator,
+.prose .token.entity,
+.prose .token.url,
+.prose .language-css .token.string,
+.prose .style .token.string {
+  color: #ff7b72 !important; /* GitHub dark red */
+}
+
+.prose .token.atrule,
+.prose .token.attr-value,
+.prose .token.keyword {
+  color: #ff7b72 !important; /* GitHub dark red */
+}
+
+.prose .token.function,
+.prose .token.class-name {
+  color: #d2a8ff !important; /* GitHub dark purple */
+}
+
+.prose .token.boolean,
+.prose .token.number {
+  color: #f2cc60 !important; /* GitHub dark yellow */
+}
+
+.prose .token.regex,
+.prose .token.important,
+.prose .token.variable {
+  color: #ffa657 !important; /* GitHub dark orange */
+}
+
+/* Better inline code appearance */
+.prose p code, 
+.prose li code,
+.prose td code {
+  background-color: rgba(110, 118, 129, 0.4);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.9em;
+  color: #79c0ff;
+  border: 1px solid #30363d;
+}
+
+/* Add a container width constraint for very large screens */
+@media (min-width: 1920px) {
+  .blog-content-container,
+  .lab-content-container {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+/* Improve readability of blog content on mobile */
+@media (max-width: 640px) {
+  .prose {
+    font-size: 1rem;
+  }
+  
+  .prose h1 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+  
+  .prose h2 {
+    font-size: 1.5rem;
+    line-height: 1.9rem;
+  }
+  
+  .prose p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .prose pre code {
+    font-size: 0.85rem;
+  }
 }
