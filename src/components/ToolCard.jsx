@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
@@ -74,9 +74,16 @@ function ToolCard({ title, link, description, github, tag }) {
           fullPath: github
         };
       } else {
-        // For entries with just username/org, determine repo name from the title
-        // This is imperfect but better than using username as repo
-        const repoName = title.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+        // Try to extract repo name from title or use username as repo
+        // This is imperfect but better than nothing
+        let repoName = github;
+        
+        // Try to extract a reasonable repo name from the title
+        if (title) {
+          // Convert title to kebab-case for a more likely repo name
+          repoName = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        }
+        
         return {
           owner: github,
           repo: repoName,
@@ -137,8 +144,8 @@ function ToolCard({ title, link, description, github, tag }) {
                   href={`https://github.com/${githubInfo.fullPath}`}
                   data-icon="octicon-star" 
                   data-size="large"
-                  data-show-count="true" 
-                  data-color-scheme="no-preference: light; light: light; dark: dark;"
+                  data-show-count="true"
+                  data-color-scheme="no-preference: light_high_contrast; light: light_high_contrast; dark: dark_dimmed;"
                   aria-label={`Star ${githubInfo.fullPath} on GitHub`}
                 >
                   Star
