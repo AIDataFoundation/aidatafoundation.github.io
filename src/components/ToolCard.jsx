@@ -138,6 +138,7 @@ function ToolCard({ title, link, description, github, tag }) {
                   data-icon="octicon-star" 
                   data-size="large"
                   data-show-count="true" 
+                  data-color-scheme="no-preference: light; light: light; dark: dark;"
                   aria-label={`Star ${githubInfo.fullPath} on GitHub`}
                 >
                   Star
