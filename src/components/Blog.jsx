@@ -409,7 +409,7 @@ function BlogPostDetail({ post }) {
   const hasContent = post.content && post.content.trim().length > 0;
   
   return (
-    <div className="bg-bgGray p-8 rounded-xl shadow-md w-full">
+    <div className="bg-slate-50/50 dark:bg-slate-900 p-8 rounded-xl shadow-md w-full">
       <OpenGraph
         title={`${post.title} | AI Data Foundation Blog`}
         description={post.excerpt}
@@ -431,12 +431,12 @@ function BlogPostDetail({ post }) {
       </Button>
     
       <div className="mb-4 flex items-center justify-between">
-        <span className="text-sm text-blue-500">{post.date}</span>
+        <span className="text-sm text-indigo-500">{post.date}</span>
         {post.author && (
-          <span className="text-sm text-grayFill">by {post.author}</span>
+          <span className="text-sm text-slate-500 dark:text-slate-400">by {post.author}</span>
         )}
       </div>
-      <h2 className="text-2xl font-bold mb-4 text-primary">{post.title}</h2>
+      <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{post.title}</h2>
       
       <div className="w-full">
         {hasContent ? (
@@ -444,9 +444,9 @@ function BlogPostDetail({ post }) {
             {post.content}
           </MarkdownRenderer>
         ) : (
-          <div className="text-grayFill">
+          <div className="text-slate-500 dark:text-slate-400">
             <p>{post.excerpt}</p>
-            <div className="mt-8 p-4 border border-gray-700 rounded-md bg-gray-800/50">
+            <div className="mt-8 p-4 border border-slate-200 dark:border-slate-700 rounded-md bg-slate-100 dark:bg-slate-800/50">
               <p className="text-yellow-400 mb-2">⚠️ Content loading issue</p>
               <p>The content for this post could not be loaded. Please try again later or visit our GitHub repository to view the source markdown.</p>
             </div>
@@ -454,21 +454,21 @@ function BlogPostDetail({ post }) {
         )}
       </div>
       
-      <div className="mt-8 pt-6 border-t border-gray-700">
+      <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-grayFill">Share:</span>
-            <button className="text-grayFill hover:text-blue-500">
+            <span className="text-sm text-slate-500 dark:text-slate-400">Share:</span>
+            <button className="text-slate-500 dark:text-slate-400 hover:text-indigo-500">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
               </svg>
             </button>
-            <button className="text-grayFill hover:text-blue-500">
+            <button className="text-slate-500 dark:text-slate-400 hover:text-indigo-500">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
               </svg>
             </button>
-            <button className="text-grayFill hover:text-blue-500">
+            <button className="text-slate-500 dark:text-slate-400 hover:text-indigo-500">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
               </svg>
@@ -478,7 +478,7 @@ function BlogPostDetail({ post }) {
             href={`https://github.com/aidatafoundation/aidatafoundation.github.io/edit/main/public${(post.path || post.file)}`} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-sm text-blue-500 hover:underline flex items-center"
+            className="text-sm text-indigo-500 hover:underline flex items-center"
           >
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -521,8 +521,8 @@ function BlogList({ blogPosts }) {
               onClick={() => setActiveCategory(category)}
               className={`px-3 py-1 text-xs rounded-full transition-colors ${
                 activeCategory === category
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
               }`}
             >
               {category}
@@ -531,15 +531,15 @@ function BlogList({ blogPosts }) {
         </div>
         <button 
           onClick={() => setJsonView(!jsonView)}
-          className="text-xs text-blue-500 hover:text-blue-400 px-2 py-1 rounded border border-blue-500/20"
+          className="text-xs text-indigo-500 hover:text-indigo-400 px-2 py-1 rounded border border-indigo-500/20"
         >
           {jsonView ? 'Card View' : 'JSON View'}
         </button>
       </div>
       
       {jsonView ? (
-        <div className="bg-gray-900 p-4 rounded-lg shadow-inner">
-          <pre className="text-xs text-gray-300 overflow-auto max-h-[500px]">
+        <div className="bg-slate-900 p-4 rounded-lg shadow-inner">
+          <pre className="text-xs text-slate-300 overflow-auto max-h-[500px]">
             {JSON.stringify(filteredPosts, null, 2)}
           </pre>
         </div>
@@ -548,32 +548,32 @@ function BlogList({ blogPosts }) {
           {filteredPosts.map(post => (
             <div 
               key={post.id} 
-              className="bg-bgGray rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-blue-500/30 hover:translate-y-[-2px] flex flex-col h-full border border-gray-800"
+              className="bg-slate-50/50 dark:bg-slate-900 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-indigo-500/30 hover:translate-y-[-2px] flex flex-col h-full border border-slate-200 dark:border-slate-800"
             >
               <div className="p-6 flex-grow">
                 <div className="flex justify-between items-start mb-3">
-                  <span className="text-xs font-medium text-blue-500 bg-blue-500/10 py-1 px-2 rounded-full">{post.date}</span>
+                  <span className="text-xs font-medium text-indigo-500 bg-indigo-500/10 py-1 px-2 rounded-full">{post.date}</span>
                   {post.category && (
-                    <span className="text-xs font-medium text-green-500 bg-green-500/10 py-1 px-2 rounded-full">
+                    <span className="text-xs font-medium text-cyan-500 bg-cyan-500/10 py-1 px-2 rounded-full">
                       {post.category}
                     </span>
                   )}
                 </div>
-                <h2 className="text-xl font-bold mb-3 text-primary leading-tight">{post.title}</h2>
-                <p className="text-grayFill text-sm mb-4 line-clamp-3">{post.excerpt}</p>
+                <h2 className="text-xl font-bold mb-3 text-slate-900 dark:text-white leading-tight">{post.title}</h2>
+                <p className="text-slate-500 dark:text-slate-400 text-sm mb-4 line-clamp-3">{post.excerpt}</p>
                 
                 {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-3">
                     {post.tags.slice(0, 3).map(tag => (
                       <span 
                         key={tag} 
-                        className="text-[10px] text-gray-400 bg-gray-800/50 px-2 py-0.5 rounded"
+                        className="text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/50 px-2 py-0.5 rounded"
                       >
                         #{tag}
                       </span>
                     ))}
                     {post.tags.length > 3 && (
-                      <span className="text-[10px] text-gray-500 px-1">
+                      <span className="text-[10px] text-slate-500 px-1">
                         +{post.tags.length - 3} more
                       </span>
                     )}
@@ -581,14 +581,14 @@ function BlogList({ blogPosts }) {
                 )}
               </div>
               
-              <div className="px-6 py-4 border-t border-gray-800 bg-bgGray/50 mt-auto">
+              <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-800/50 mt-auto">
                 <div className="flex items-center justify-between">
-                  <div className="text-sm text-grayFill">
+                  <div className="text-sm text-slate-500 dark:text-slate-400">
                     {post.author && `By ${post.author}`}
                   </div>
                   <button 
                     onClick={() => navigate(`/blog/${post.id}`)} 
-                    className="text-blue-500 text-sm font-medium hover:text-blue-400 transition-colors flex items-center"
+                    className="text-indigo-500 text-sm font-medium hover:text-indigo-400 transition-colors flex items-center"
                   >
                     Read More
                     <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -603,8 +603,8 @@ function BlogList({ blogPosts }) {
       )}
       
       {filteredPosts.length === 0 && (
-        <div className="bg-gray-800/50 rounded-lg p-8 text-center">
-          <p className="text-gray-400">No blog posts found in this category.</p>
+        <div className="bg-slate-100/50 dark:bg-slate-800/50 rounded-lg p-8 text-center">
+          <p className="text-slate-500 dark:text-slate-400">No blog posts found in this category.</p>
         </div>
       )}
     </div>

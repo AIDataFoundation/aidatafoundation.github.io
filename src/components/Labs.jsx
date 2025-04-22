@@ -125,7 +125,7 @@ function LabsList() {
   if (loading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
       </div>
     );
   }
@@ -150,21 +150,21 @@ function LabsList() {
               placeholder="Search labs..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-bgGray/50 border-gray-700"
+              className="bg-slate-50/50 dark:bg-slate-900 border-slate-200 dark:border-slate-700"
             />
           </div>
         </div>
       </div>
 
       <div className="mb-10">
-        <h2 className="text-2xl font-bold mb-6">Available Labs</h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Available Labs</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredLabs.length === 0 ? (
-            <div className="col-span-full text-center py-12 border border-dashed border-gray-700 rounded-lg">
-              <svg className="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="col-span-full text-center py-12 border border-dashed border-slate-200 dark:border-slate-700 rounded-lg">
+              <svg className="w-12 h-12 mx-auto text-slate-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
-              <p className="text-grayFill text-lg">No labs found matching your criteria</p>
+              <p className="text-slate-500 dark:text-slate-400 text-lg">No labs found matching your criteria</p>
               <Button 
                 variant="outline" 
                 className="mt-4"
@@ -180,7 +180,7 @@ function LabsList() {
             filteredLabs.map((lab) => (
               <Card 
                 key={lab.id} 
-                className="hover:shadow-lg transition duration-300 hover:border-blue-500/30 cursor-pointer overflow-hidden flex flex-col"
+                className="hover:shadow-lg transition duration-300 hover:border-indigo-500/30 cursor-pointer overflow-hidden flex flex-col"
                 onClick={() => navigate(`/labs/${lab.id}`)}
               >
                 <CardHeader className="pb-2 relative">
@@ -205,21 +205,21 @@ function LabsList() {
                   
                   <div className="flex flex-wrap gap-1 mb-3">
                     {lab.tags && lab.tags.map((tag, index) => (
-                      <Badge key={index} variant="outline" className="text-xs bg-bgGray/30">
+                      <Badge key={index} variant="outline" className="text-xs bg-slate-900/30">
                         {tag}
                       </Badge>
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="pt-2 border-t border-gray-800 bg-bgGray/30 flex justify-between items-center">
+                <CardFooter className="pt-2 border-t border-slate-700 bg-slate-900/30 flex justify-between items-center">
                   <div className="flex flex-wrap gap-1">
                     {lab.contributors && lab.contributors.map((contributor, index) => (
-                      <Badge key={index} variant="outline" className="bg-bgGray/50 text-xs">
+                      <Badge key={index} variant="outline" className="bg-slate-900/50 text-xs">
                         @{contributor}
                       </Badge>
                     ))}
                   </div>
-                  <Button variant="ghost" className="text-blue-500 p-0 hover:text-blue-400 text-xs">
+                  <Button variant="ghost" className="text-indigo-500 p-0 hover:text-indigo-400 text-xs">
                     Explore
                     <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -232,18 +232,18 @@ function LabsList() {
         </div>
       </div>
 
-      <div className="mb-16 border border-dashed border-gray-700 rounded-lg p-8 hover:border-blue-500/30 transition duration-300">
+      <div className="mb-16 border border-dashed border-slate-700 rounded-lg p-8 hover:border-indigo-500/30 transition duration-300">
         <div className="flex flex-col md:flex-row items-center">
           <div className="mb-6 md:mb-0 md:mr-8">
-            <div className="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center">
-              <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div className="w-16 h-16 bg-indigo-600/20 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
               </svg>
             </div>
           </div>
           <div className="text-center md:text-left flex-grow">
             <h3 className="text-xl font-semibold mb-2">Propose a New Lab</h3>
-            <p className="text-grayFill mb-6 max-w-2xl">
+            <p className="text-slate-400 mb-6 max-w-2xl">
               Have an idea for a new AI research project? Propose a new lab and invite others to collaborate on cutting-edge AI research and development.
             </p>
           </div>
@@ -252,7 +252,7 @@ function LabsList() {
               href="https://github.com/AIDataFoundation/aidatafoundation.github.io/issues/new?labels=new-lab&template=new-lab-proposal.md&title=Lab Proposal: [Your Lab Title]" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition"
+              className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -263,57 +263,57 @@ function LabsList() {
         </div>
       </div>
 
-      <div className="mt-16 bg-bgGray rounded-lg p-8">
+      <div className="mt-16 bg-slate-900 rounded-lg p-8">
         <h2 className="text-2xl font-bold mb-6">How to Contribute</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="bg-bgGray/50">
+          <Card className="bg-slate-900/50">
             <CardContent className="p-6">
-              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
                 <span className="text-white font-semibold text-lg">1</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">Fork the Repository</h3>
-              <p className="text-grayFill">
+              <p className="text-slate-400">
                 Start by forking our GitHub repository to create your own copy where you can make changes.
               </p>
             </CardContent>
           </Card>
           
-          <Card className="bg-bgGray/50">
+          <Card className="bg-slate-900/50">
             <CardContent className="p-6">
-              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
                 <span className="text-white font-semibold text-lg">2</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">Create or Edit Markdown</h3>
-              <p className="text-grayFill">
+              <p className="text-slate-400">
                 Add your content in markdown format following our templates and guidelines for structure.
               </p>
             </CardContent>
           </Card>
           
-          <Card className="bg-bgGray/50">
+          <Card className="bg-slate-900/50">
             <CardContent className="p-6">
-              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
                 <span className="text-white font-semibold text-lg">3</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">Submit a Pull Request</h3>
-              <p className="text-grayFill">
+              <p className="text-slate-400">
                 Submit your changes for review, and our team will review and merge your contribution.
               </p>
             </CardContent>
           </Card>
         </div>
         
-        <div className="mt-8 p-6 border border-blue-500/30 rounded-lg bg-blue-500/10">
+        <div className="mt-8 p-6 border border-indigo-500/30 rounded-lg bg-indigo-500/10">
           <h3 className="text-lg font-semibold mb-2 flex items-center">
             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
             </svg>
             Markdown Format
           </h3>
-          <p className="text-grayFill mb-4">
+          <p className="text-slate-400 mb-4">
             Each lab project uses markdown files to store content. Here's our basic structure:
           </p>
-          <pre className="bg-bgPrimary p-4 rounded-md overflow-x-auto text-sm">
+          <pre className="bg-slate-950 p-4 rounded-md overflow-x-auto text-sm">
             <code>{
 `# Lab Title
 
@@ -339,7 +339,7 @@ Specific guidelines for this lab...`
             <a 
               href="/labs/CONTRIBUTING.md" 
               target="_blank"
-              className="text-blue-400 hover:text-blue-300 flex items-center"
+              className="text-indigo-400 hover:text-indigo-300 flex items-center"
             >
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clipRule="evenodd" />
@@ -486,7 +486,7 @@ ${selectedLab.contributors.join(', ')}
   if (loading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
       </div>
     );
   }
@@ -499,7 +499,7 @@ ${selectedLab.contributors.join(', ')}
   const imageUrl = lab.image ? `${siteUrl}${lab.image}` : `${siteUrl}/og-image.png`;
 
   return (
-    <div className="bg-bgGray p-8 rounded-xl shadow-md w-full">
+    <div className="bg-slate-900 p-8 rounded-xl shadow-md w-full">
       <OpenGraph
         title={`${lab.title} | AI Data Foundation Labs`}
         description={lab.description}
@@ -525,11 +525,11 @@ ${selectedLab.contributors.join(', ')}
           {lab.category}
         </Badge>
         {lab.tags && lab.tags.map((tag, index) => (
-          <Badge key={index} variant="outline" className="text-xs bg-bgGray/30">
+          <Badge key={index} variant="outline" className="text-xs bg-slate-900/30">
             {tag}
           </Badge>
         ))}
-        <div className="text-grayFill text-sm ml-auto">
+        <div className="text-slate-400 text-sm ml-auto">
           {lab.contributors && lab.contributors.length > 0 && (
             <span>Contributors: {lab.contributors.join(', ')}</span>
           )}
@@ -551,14 +551,14 @@ ${selectedLab.contributors.join(', ')}
         </MarkdownRenderer>
       </div>
 
-      <div className="mt-10 pt-6 border-t border-gray-700">
+      <div className="mt-10 pt-6 border-t border-slate-700">
         <h3 className="text-xl font-semibold mb-4">Want to contribute to this lab?</h3>
         <div className="flex flex-wrap gap-4">
           <a 
             href={`https://github.com/AIDataFoundation/aidatafoundation.github.io/edit/main${lab.path}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition"
+            className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition"
           >
             <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
@@ -569,7 +569,7 @@ ${selectedLab.contributors.join(', ')}
             href={`https://github.com/AIDataFoundation/aidatafoundation.github.io/issues/new?title=Feedback on lab: ${lab.title}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-blue-600/70 hover:bg-blue-700 text-white rounded-md transition"
+            className="inline-flex items-center px-4 py-2 bg-indigo-600/70 hover:bg-indigo-700 text-white rounded-md transition"
           >
             <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
@@ -580,7 +580,7 @@ ${selectedLab.contributors.join(', ')}
             href="/labs/CONTRIBUTING.md"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition"
+            className="inline-flex items-center px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-md transition"
           >
             <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
@@ -616,7 +616,7 @@ function Labs() {
   const siteUrl = "https://aidatafoundation.github.io";
 
   return (
-    <div className="text-primary w-full mx-auto px-4 py-8 lab-content-container">
+    <div className="text-white w-full mx-auto px-4 py-8 lab-content-container">
       {!labId && (
         <Helmet>
           <title>AI Data Foundation Labs | Research Projects & Experiments</title>
@@ -639,7 +639,7 @@ function Labs() {
       )}
 
       <h1 className="text-3xl font-bold mb-4 text-center">AI Data Foundation Labs</h1>
-      <p className="text-grayFill text-lg mb-8 text-center max-w-3xl mx-auto">
+      <p className="text-slate-400 text-lg mb-8 text-center max-w-3xl mx-auto">
         Explore our experimental AI labs where we test new ideas, methodologies, and technologies.
         Anyone can contribute to these projects through markdown files.
       </p>
@@ -649,7 +649,7 @@ function Labs() {
           href="https://github.com/AIDataFoundation/aidatafoundation.github.io" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition"
+          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition"
         >
           <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>

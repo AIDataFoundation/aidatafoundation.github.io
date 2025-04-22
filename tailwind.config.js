@@ -36,6 +36,22 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        theme: {
+          primary: {
+            DEFAULT: '#6366f1',
+            light: '#818cf8',
+            dark: '#4f46e5',
+          },
+          secondary: {
+            DEFAULT: '#0891b2',
+            light: '#22d3ee',
+            dark: '#0e7490',
+          },
+          neutral: {
+            DEFAULT: '#f8fafc',
+            dark: '#0f172a',
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -51,10 +67,15 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        "pulse-slow": {
+          '0%, 100%': { opacity: 0.6 },
+          '50%': { opacity: 0.4 },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-slow": "pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       typography: {
         DEFAULT: {
@@ -73,19 +94,19 @@ export default {
               color: '#f8f8f2',
             },
             a: {
-              color: '#3b82f6',
+              color: '#6366f1',
               '&:hover': {
-                color: '#60a5fa',
+                color: '#818cf8',
               },
             },
             code: {
               color: '#f8f8f2',
-              backgroundColor: 'rgba(40, 42, 54, 0.5)',
+              backgroundColor: 'rgba(15, 23, 42, 0.5)',
               padding: '0.125rem 0.25rem',
               borderRadius: '0.25rem',
             },
             pre: {
-              backgroundColor: '#191a21',
+              backgroundColor: '#0f172a',
               code: {
                 backgroundColor: 'transparent',
                 padding: '0',

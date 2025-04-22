@@ -38,9 +38,18 @@ function Nav() {
       <div className="max-w-[1280px] mx-auto flex justify-between items-center p-4">
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-2">
-            {/* Logo placeholder */}
-            <div className="bg-primary text-bgGray rounded-full h-8 w-8 flex items-center justify-center font-bold">ADF</div>
-            <span className="text-primary text-xl font-bold">AI Data Foundation</span>
+            {/* Modern Logo */}
+            <div className="relative h-9 w-9 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-lg transform rotate-3 shadow-lg"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-white font-bold text-sm tracking-wider">ADF</span>
+              </div>
+              <div className="absolute -bottom-2 -right-2 h-5 w-5 bg-gradient-to-tr from-indigo-400 to-cyan-300 rounded-full opacity-70 blur-sm"></div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-primary font-bold text-lg leading-tight">AI Data</span>
+              <span className="text-primary/90 text-xs tracking-wider font-medium">Foundation</span>
+            </div>
           </Link>
         </div>
         

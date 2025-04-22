@@ -86,20 +86,20 @@ function ToolsSection() {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-bgPrimary w-full px-6 py-8 max-w-7xl mx-auto">
+    <div className="bg-slate-50 dark:bg-slate-950 w-full px-6 py-8 max-w-7xl mx-auto">
       <div className="flex flex-col w-full justify-center items-center gap-6 mx-auto rounded-xl">
         <div className="w-full flex flex-col md:flex-row items-center justify-between">
           <div className="flex flex-col items-center md:items-start">
-            <h2 className="text-3xl font-semibold text-gray-900 dark:text-primary mb-2">
+            <h2 className="text-3xl font-semibold text-slate-900 dark:text-white mb-2">
               AI Data Tools
             </h2>
-            <p className="text-base text-gray-600 dark:text-grayFill max-w-2xl text-center md:text-left mb-6">
+            <p className="text-base text-slate-600 dark:text-slate-300 max-w-2xl text-center md:text-left mb-6">
               Discover and explore the best tools for AI, Machine Learning, and Data Science
             </p>
           </div>
           <button
             onClick={() => setShowContributeModal(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md flex items-center hover:bg-blue-700 transition-colors mt-4 md:mt-0"
+            className="px-4 py-2 bg-indigo-600 text-white rounded-md flex items-center hover:bg-indigo-700 transition-colors mt-4 md:mt-0"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -115,8 +115,8 @@ function ToolsSection() {
               type="button"
               className={`px-4 py-2 text-sm font-medium rounded-l-lg ${
                 categoryType === "all" 
-                  ? "bg-blue-600 text-white hover:bg-blue-700" 
-                  : "bg-white dark:bg-bgGray text-gray-700 dark:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700"
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
+                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
               }`}
               onClick={() => {
                 setCategoryType("all");
@@ -129,8 +129,8 @@ function ToolsSection() {
               type="button"
               className={`px-4 py-2 text-sm font-medium ${
                 categoryType === "ai" 
-                  ? "bg-blue-600 text-white hover:bg-blue-700" 
-                  : "bg-white dark:bg-bgGray text-gray-700 dark:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-b border-gray-200 dark:border-gray-700"
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
+                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700"
               }`}
               onClick={() => {
                 setCategoryType("ai");
@@ -143,8 +143,8 @@ function ToolsSection() {
               type="button"
               className={`px-4 py-2 text-sm font-medium ${
                 categoryType === "llm" 
-                  ? "bg-blue-600 text-white hover:bg-blue-700" 
-                  : "bg-white dark:bg-bgGray text-gray-700 dark:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-b border-gray-200 dark:border-gray-700"
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
+                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border-t border-b border-slate-200 dark:border-slate-700"
               }`}
               onClick={() => {
                 setCategoryType("llm");
@@ -157,8 +157,8 @@ function ToolsSection() {
               type="button"
               className={`px-4 py-2 text-sm font-medium rounded-r-lg ${
                 categoryType === "mcp" 
-                  ? "bg-blue-600 text-white hover:bg-blue-700" 
-                  : "bg-white dark:bg-bgGray text-gray-700 dark:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700"
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700" 
+                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700"
               }`}
               onClick={() => {
                 setCategoryType("mcp");
@@ -174,13 +174,13 @@ function ToolsSection() {
           {/* Search Bar */}
           <div className="relative w-full md:w-1/2">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </div>
             <input
               type="search"
-              className="w-full pl-10 pr-4 py-3 rounded-lg bg-white dark:bg-bgGray border border-gray-200 dark:border-gray-700 placeholder-gray-500 text-gray-800 dark:text-primary focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 placeholder-slate-500 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Search tools..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -191,7 +191,7 @@ function ToolsSection() {
             {/* Category Dropdown */}
             <div className="w-full sm:w-2/3">
               <select
-                className="w-full py-3 px-4 rounded-lg bg-white dark:bg-bgGray border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-primary appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full py-3 px-4 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 value={selectVal}
                 onChange={(e) => setSelectVal(e.target.value)}
               >
@@ -205,20 +205,20 @@ function ToolsSection() {
             {/* Sort Dropdown */}
             <div className="w-full sm:w-1/3">
               <select
-                className="w-full py-3 px-4 rounded-lg bg-white dark:bg-bgGray border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-primary appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full py-3 px-4 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
-                <option value="default">Sort by: Default</option>
-                <option value="az">Sort by: A-Z</option>
-                <option value="za">Sort by: Z-A</option>
+                <option value="default">Sort by</option>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
               </select>
             </div>
           </div>
         </div>
         
         {/* Results count */}
-        <div className="w-full text-left text-gray-500 dark:text-grayFill pb-4">
+        <div className="w-full text-left text-slate-500 dark:text-slate-300 pb-4">
           Found {sortedEntries.length} {categoryType === "all" ? "tools" : 
           categoryType === "ai" ? "AI tools" : 
           categoryType === "llm" ? "LLM tools" : "MCP servers"}
@@ -226,12 +226,12 @@ function ToolsSection() {
         
         {/* Display message if no results */}
         {sortedEntries.length === 0 && (
-          <div className="w-full flex flex-col items-center py-10 bg-white dark:bg-bgGray rounded-md border border-gray-200 dark:border-gray-700 p-8">
-            <svg className="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <div className="w-full flex flex-col items-center py-10 bg-white dark:bg-slate-900 rounded-md border border-slate-200 dark:border-slate-700 p-8">
+            <svg className="w-16 h-16 text-slate-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <p className="text-gray-700 dark:text-gray-300 text-xl font-medium">No results found</p>
-            <p className="text-gray-500 text-base text-center mt-2">Try adjusting your search or filter to find what you're looking for.</p>
+            <p className="text-slate-700 dark:text-slate-300 text-xl font-medium">No results found</p>
+            <p className="text-slate-500 text-base text-center mt-2">Try adjusting your search or filter to find what you're looking for.</p>
           </div>
         )}
         
