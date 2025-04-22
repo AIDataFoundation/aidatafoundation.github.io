@@ -34,6 +34,8 @@ export const mcpEntries = [
     github: "modelcontextprotocol",
     tag: "MCP Core"
   },
+
+
   
   // MCP Data/Database
   {
@@ -94,6 +96,20 @@ export const mcpEntries = [
     github: "cryptovisor",
     tag: "MCP Finance"
   },
+  {
+    title: "DexPaprika MCP",
+   link: "https://github.com/coinpaprika/dexpaprika-mcp",
+    description: "Access real-time DEX analytics across 20+ blockchains with DexPaprika API.",
+    github: "coinpaprika",
+    tag: "MCP Finance"
+  },
+  {
+    title: "Bankless Onchain",
+    link: "https://github.com/bankless/onchain-mcp",
+    description: "Query Onchain data, like ERC20 tokens, transaction history, smart contract state.",
+    github: "bankless",
+    tag: "MCP Finance"
+  },
   
   // MCP Search/Web
   {
@@ -140,6 +156,23 @@ export const mcpEntries = [
     github: "terminalai",
     tag: "MCP Developer"
   },
+
+  
+ {
+    title: "Playwright MCP Server",
+    link: "https://github.com/microsoft/playwright-mcp",
+    description: "Playwright MCP server for browser automation and web scraping.",
+    github: "microsoft",
+    tag: "MCP Developer"
+  },
+  {
+    title: "JetBrains MCP",
+    link: "https://github.com/JetBrains/mcp-jetbrains",
+    description: "Work on your code with JetBrains IDEs.",
+    github: "JetBrains",
+    tag: "MCP Developer"
+  },
+ 
   
   // MCP AI/ML
   {
@@ -185,5 +218,12 @@ export const mcpEntries = [
     description: "MCP server for file system operations and cloud storage",
     github: "fileflow",
     tag: "MCP Productivity"
-  }
+  },
+  {
+  title: "Zapier MCP",
+    link: "https://zapier.com/mcp",
+    description: "Connect your AI Agents to 8,000 apps instantly.",
+    github: null,
+    tag: "MCP Productivity"
+  } 
 ]; 
