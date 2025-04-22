@@ -63,27 +63,27 @@ function Blog() {
         // Fallback to hardcoded data if all fetch attempts fail
         const fallbackData = [
           {
-            "id": "1",
+            "id": "cloud-native-tools-collection",
             "title": "Cloud Native Tools Collection",
             "date": "May 10, 2023",
             "excerpt": "A curated collection of tools for Kubernetes and the cloud native ecosystem, presented in an easy-to-browse web interface.",
             "author": "AI Data Foundation",
-            "file": "/blog/cloud-native-tools-collection.md",
+            "path": "/blog/cloud-native-tools-collection.md",
             "category": "Cloud Native",
             "tags": ["kubernetes", "cloud native", "tools", "open source"]
           },
           {
-            "id": "2",
+            "id": "quick-start-guide",
             "title": "Quick Start Guide",
             "date": "June 15, 2023",
             "excerpt": "Get started with our platform quickly and easily with this comprehensive guide.",
             "author": "AI Data Foundation",
-            "file": "/blog/quick-start-guide.md",
+            "path": "/blog/quick-start-guide.md",
             "category": "Guides",
             "tags": ["quick start", "guide", "tutorial", "getting started"]
           },
           {
-            "id": "3",
+            "id": "categories-and-contributing",
             "title": "Categories and Contributing",
             "date": "July 23, 2023", 
             "excerpt": "Explore our tool categories and learn how to contribute to the project.",
@@ -96,6 +96,8 @@ function Blog() {
         
         console.log('Using fallback blog data');
         setBlogPosts(fallbackData);
+        // Clear the error state after setting fallback data
+        setError(null);
       }
     };
 
@@ -283,6 +285,9 @@ function Blog() {
           ...post,
           content: `# ${post.title}\n\n${post.excerpt}\n\nThis content is being displayed as a fallback.`
         });
+        
+        // Clear the error state after setting fallback content
+        setTimeout(() => setError(null), 100);
       }
       
       setLoading(false);
@@ -478,7 +483,7 @@ function BlogPostDetail({ post }) {
             </button>
           </div>
           <a 
-            href={`https://github.com/aidatafoundation/aidatafoundation.github.io/edit/main/public/blog/${post.file}`} 
+            href={`https://github.com/aidatafoundation/aidatafoundation.github.io/edit/main/public${(post.path || post.file)}`} 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-sm text-blue-500 hover:underline flex items-center"
