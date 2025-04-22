@@ -98,18 +98,18 @@ function ToolCard({ title, link, description, github, tag }) {
   const githubInfo = getGitHubInfo();
 
   return (
-    <Card className="w-full h-full flex flex-col">
-      <CardHeader className="flex flex-row items-start justify-between">
-        <CardTitle>{title}</CardTitle>
-        <Badge variant={getBadgeVariant(tag)}>{tag}</Badge>
+    <Card className="w-full h-full flex flex-col bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded-md overflow-hidden">
+      <CardHeader className="flex flex-row items-start justify-between pt-6 pb-4 px-6 border-b border-gray-100 dark:border-gray-700">
+        <CardTitle className="text-lg font-medium text-gray-900 dark:text-gray-100">{title}</CardTitle>
+        <Badge variant={getBadgeVariant(tag)} className="ml-3 whitespace-nowrap text-xs py-1">{tag}</Badge>
       </CardHeader>
-      <CardContent className="flex-grow">
-        <CardDescription>{description}</CardDescription>
+      <CardContent className="flex-grow p-6">
+        <CardDescription className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">{description}</CardDescription>
       </CardContent>
-      <CardFooter className="flex items-center justify-end gap-2 mt-auto">
+      <CardFooter className="flex items-center justify-end gap-2 mt-auto p-4 bg-gray-50 dark:bg-slate-900 border-t border-gray-100 dark:border-gray-700">
         <Button 
           asChild
-          className="h-[36px] bg-blue-600 hover:bg-blue-700 hover:shadow-md"
+          className="h-[36px] bg-blue-600 hover:bg-blue-700 hover:shadow-md font-medium text-white"
         >
           <a
             href={link !== "" ? link : "/"}
@@ -126,7 +126,7 @@ function ToolCard({ title, link, description, github, tag }) {
             <Button
               asChild
               variant="secondary"
-              className="h-[36px] bg-gray-600 hover:bg-gray-700 hover:shadow-md"
+              className="h-[36px] bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100 hover:shadow-md font-medium"
             >
               <a
                 href={`https://github.com/${github}`}
