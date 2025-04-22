@@ -237,5 +237,364 @@ export const llmEntries = [
     description: "Holistic Evaluation of Language Models",
     github: "stanford-crfm",
     tag: "LLM Evaluation"
-  }
+  },
+
+// llm hosting
+  {
+  title: "Nebius",
+  link: "https://nebius.com/explorer-tier",
+  description: "Nebius Explorer Tier: Just $1.50 per GPU hour for H100 NVIDIA Tensor Core GPUs!",
+  tag: "LLM Hosting"
+},
+{
+  title: "TensorWave",
+  link: "https://go.tensorwave.com",
+  description: "A platform for hosting and deploying machine learning models.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Paperspace Gradient",
+  link: "https://paperspace.com/deployments",
+  description: "Deploy and manage machine learning models with Paperspace Gradient.",
+  tag: "LLM Hosting"
+},
+{
+  title: "AWS SageMaker",
+  link: "https://aws.amazon.com/sagemaker",
+  description: "Amazon SageMaker enables developers to build, train, and deploy machine learning models at scale.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Azure AI Machine Learning Studio",
+  link: "https://studio.azureml.net",
+  description: "Build, train, and deploy machine learning models with Azure AI Machine Learning Studio.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Google Vertex AI",
+  link: "https://cloud.google.com/vertex-ai",
+  description: "Google Vertex AI is a unified platform for building and deploying machine learning models.",
+  tag: "LLM Hosting"
+},
+{
+  title: "NVIDIA Triton Inference Server",
+  link: "https://developer.nvidia.com/triton-inference-se",
+  description: "Deploy high-performance inference models with NVIDIA Triton Inference Server.",
+  tag: "LLM Hosting"
+},
+{
+  title: "TensorDock",
+  link: "https://tensordock.com/product-marketplace",
+  description: "A marketplace for on-demand GPU cloud hosting.",
+  tag: "LLM Hosting"
+},
+{
+  title: "TrueFoundry",
+  link: "https://truefoundry.com/llmops",
+  description: "LLMOps platform for hosting and managing machine learning models.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Latitude",
+  link: "https://latitude.sh/accelerate/pricing",
+  description: "Affordable GPU hosting with Latitude's Accelerate platform.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Banana",
+  link: "https://banana.dev",
+  description: "Run machine learning models at scale with Banana.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Beam Cloud",
+  link: "https://beam.cloud",
+  description: "A platform for hosting and scaling AI models with ease.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Lightning",
+  link: "https://lightning.ai",
+  description: "Simplify machine learning model training and deployment with Lightning.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Genesis Cloud",
+  link: "https://genesiscloud.com",
+  description: "High-performance cloud GPU hosting for AI and machine learning workloads.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Vultr",
+  link: "https://vultr.com/pricing",
+  description: "Cloud compute and GPU hosting at competitive prices.",
+  tag: "LLM Hosting"
+},
+{
+  title: "ScaleWay",
+  link: "https://scaleway.com/en",
+  description: "ScaleWay provides cloud infrastructure for machine learning and AI workloads.",
+  tag: "LLM Hosting"
+},
+{
+  title: "CudoCompute",
+  link: "https://cudocompute.com",
+  description: "Cloud GPU hosting and compute services for AI.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Unweave",
+  link: "https://unweave.io",
+  description: "Run and deploy machine learning models with Unweave's cloud platform.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Vagon",
+  link: "https://vagon.io",
+  description: "Vagon provides high-performance cloud computing for AI workloads.",
+  tag: "LLM Hosting"
+},
+{
+  title: "LeaderGPU",
+  link: "https://leadergpu.com",
+  description: "Affordable and powerful GPU cloud hosting services.",
+  tag: "LLM Hosting"
+},
+{
+  title: "CirraScale",
+  link: "https://cirrascale.com",
+  description: "GPU cloud hosting optimized for training and inference.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Vast.AI",
+  link: "https://vast.ai",
+  description: "A decentralized cloud GPU marketplace for AI and deep learning workloads.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Immers Cloud",
+  link: "https://en.immers.cloud/gpu",
+  description: "Cloud hosting for GPU-intensive AI and machine learning tasks.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Fai.ai",
+  link: "https://fal.ai",
+  description: "A platform for hosting and managing AI workloads efficiently.",
+  tag: "LLM Hosting"
+},
+
+  {
+  title: "RunPod",
+  link: "https://runpod.io",
+  description: "Affordable GPU hosting: A100 80GB $1.89/hr, H100 80GB $3.89/hr, A40 48GB $0.79/hr, RTX 4090 24GB $0.74/hr, RTX A6000 48GB $0.79/hr.",
+  tag: "LLM Hosting"
+},
+{
+  title: "HuggingFace Endpoint",
+  link: "https://huggingface.co/inference-endpoints",
+  description: "Deploy and serve machine learning models with Hugging Face Inference Endpoints.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Modelbit",
+  link: "https://modelbit.com",
+  description: "Host and manage machine learning models with ease using Modelbit.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Haven",
+  link: "https://haven.run",
+  description: "A platform for hosting and deploying machine learning models.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Replicate",
+  link: "https://replicate.com",
+  description: "Run machine learning models in the cloud with Replicate.",
+  tag: "LLM Hosting"
+},
+{
+  title: "BaseTen",
+  link: "https://baseten.co",
+  description: "Deploy, monitor, and iterate on machine learning models with BaseTen.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Modal",
+  link: "https://modal.com",
+  description: "Simplify machine learning model hosting and execution on Modal.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Mystic",
+  link: "https://mystic.ai",
+  description: "Host and manage AI models with Mystic.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Salad",
+  link: "https://salad.com",
+  description: "A platform for hosting AI and machine learning workloads.",
+  tag: "LLM Hosting"
+},
+{
+  title: "SaturnCloud",
+  link: "https://saturncloud.io",
+  description: "Collaborative data science and machine learning in the cloud.",
+  tag: "LLM Hosting"
+},
+{
+  title: "DataRobot Algorithmia",
+  link: "https://datarobot.com/platform/deploy-and-run",
+  description: "Deploy and manage models with DataRobot Algorithmia.",
+  tag: "LLM Hosting"
+},
+{
+  title: "DataBricks",
+  link: "https://docs.databricks.com/en/machine-learning/",
+  description: "A cloud platform for big data analytics and machine learning.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Kaggle",
+  link: "https://kaggle.com",
+  description: "Collaborate, learn, and host machine learning models on Kaggle.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Google Colab",
+  link: "https://colab.google",
+  description: "A free cloud-based Jupyter notebook environment for machine learning.",
+  tag: "LLM Hosting"
+},
+{
+  title: "QBlocks",
+  link: "https://qblocks.cloud",
+  description: "Cloud hosting and deployment for machine learning models.",
+  tag: "LLM Hosting"
+},
+{
+  title: "DataCrunch",
+  link: "https://datacrunch.io/inference",
+  description: "Fast and affordable GPU hosting for machine learning and AI workloads.",
+  tag: "LLM Hosting"
+},
+{
+  title: "DStack",
+  link: "https://dstack.ai",
+  description: "Deploy, monitor, and manage machine learning pipelines easily.",
+  tag: "LLM Hosting"
+},
+{
+  title: "CloudFlare",
+  link: "https://ai.cloudflare.com",
+  description: "AI hosting and deployment with Cloudflare's cloud services.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Predibase",
+  link: "https://predibase.com",
+  description: "Deploy machine learning models and pipelines with Predibase.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Encloud",
+  link: "https://encloud.tech",
+  description: "AI cloud hosting with high performance and scalability.",
+  tag: "LLM Hosting"
+},
+{
+  title: "MosaicML",
+  link: "https://mosaicml.com",
+  description: "Optimize and deploy machine learning models on MosaicML.",
+  tag: "LLM Hosting"
+},
+{
+  title: "SeaPlane",
+  link: "https://seaplane.io",
+  description: "Cloud platform for hosting machine learning models with SeaPlane.",
+  tag: "LLM Hosting"
+},
+{
+  title: "llama.cpp",
+  link: "https://github.com/ggml-org/llama.cpp",
+  description: "A C++ implementation of LLaMA model inference, optimized for CPU-based environments.",
+  github: "ggml-org",
+  tag: "LLM Hosting"
+},
+  {
+  title: "SkyPilot",
+  link: "https://github.com/skypilot-org/skypilot",
+  description: "Framework for seamlessly running ML workloads on any cloud.",
+  github: "skypilot-org",
+  tag: "LLM Hosting"
+},
+  {
+  title: "Titan",
+  link: "https://titanml.co",
+  description: "A platform for hosting and managing LLMs with ease.",
+  tag: "LLM Hosting"
+},
+{
+  title: "ollama.ai",
+  link: "https://ollama.ai",
+  description: "Service for deploying and hosting LLMs with optimized performance.",
+  tag: "LLM Hosting"
+},
+  {
+  title: "Together AI",
+  link: "https://together.ai",
+  description: "LLM hosting platform with a focus on collaborative AI development. Token cost applies.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Mistral AI Platform",
+  link: "https://mistral.ai",
+  description: "A platform for deploying and managing Mistral AI models. Token cost applies.",
+  tag: "LLM Hosting"
+},
+{
+  title: "AWS BedRock",
+  link: "https://aws.amazon.com/bedrock",
+  description: "Amazon's fully managed service for deploying and scaling foundation models. Token cost applies.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Anyscale",
+  link: "https://anyscale.com/endpoints",
+  description: "Deploy and manage machine learning models with Anyscale Endpoints. Token cost applies.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Lamini.ai",
+  link: "https://lamini.ai",
+  description: "A platform for fine-tuning and hosting LLMs. Token cost applies.",
+  tag: "LLM Hosting"
+},
+{
+  title: "OpenPipe",
+  link: "https://openpipe.ai",
+  description: "A service for hosting and managing machine learning models. Token cost applies.",
+  tag: "LLM Hosting"
+},
+{
+  title: "Fireworks AI",
+  link: "https://app.fireworks.ai",
+  description: "A platform for hosting and running AI models at scale. Token cost applies.",
+  tag: "LLM Hosting"
+},
+{
+  title: "OpenRouter",
+  link: "https://openrouter.ai",
+  description: "LLM hosting service offering flexible deployment options. Token cost applies.",
+  tag: "LLM Hosting"
+},
+{
+  title: "DeepInfra",
+  link: "https://deepinfra.com",
+  description: "A platform for hosting AI inference services. Token cost applies.",
+  tag: "LLM Hosting"
+}
 ]; 
