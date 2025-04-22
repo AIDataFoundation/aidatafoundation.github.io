@@ -186,6 +186,15 @@ function LabsList() {
                       {lab.category}
                     </Badge>
                   </div>
+                  {lab.image && (
+                    <div className="mb-4 -mx-6 -mt-6">
+                      <img 
+                        src={lab.image} 
+                        alt={`${lab.title} preview`} 
+                        className="w-full h-40 object-contain bg-white p-4 rounded-t-lg"
+                      />
+                    </div>
+                  )}
                   <CardTitle className="pr-24 mb-2">{lab.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="py-2 flex-grow">
@@ -513,6 +522,15 @@ ${selectedLab.contributors.join(', ')}
       </div>
       
       <div className="prose prose-invert max-w-none">
+        {lab.image && (
+          <div className="mb-6">
+            <img 
+              src={lab.image} 
+              alt={`${lab.title} cover image`} 
+              className="w-full max-h-[400px] object-contain bg-white p-6 rounded-lg"
+            />
+          </div>
+        )}
         <ReactMarkdown>{content}</ReactMarkdown>
       </div>
 
