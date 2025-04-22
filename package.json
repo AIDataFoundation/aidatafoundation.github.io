@@ -28,6 +28,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-github-btn": "^1.4.0",
+    "react-helmet": "^6.1.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^6.30.0",
     "vue": "^3.5.13",

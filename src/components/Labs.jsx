@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { Helmet } from "react-helmet";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
@@ -493,8 +494,30 @@ ${selectedLab.contributors.join(', ')}
     return <div>Loading...</div>;
   }
 
+  const siteUrl = "https://aidatafoundation.github.io";
+  const imageUrl = lab.image ? `${siteUrl}${lab.image}` : `${siteUrl}/og-image.png`;
+
   return (
     <div>
+      <Helmet>
+        <title>{lab.title} | AI Data Foundation Labs</title>
+        <meta name="description" content={lab.description} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`${siteUrl}/labs/${lab.id}`} />
+        <meta property="og:title" content={lab.title} />
+        <meta property="og:description" content={lab.description} />
+        <meta property="og:image" content={imageUrl} />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={`${siteUrl}/labs/${lab.id}`} />
+        <meta property="twitter:title" content={lab.title} />
+        <meta property="twitter:description" content={lab.description} />
+        <meta property="twitter:image" content={imageUrl} />
+      </Helmet>
+
       <Button 
         variant="ghost" 
         className="mb-6"
@@ -597,9 +620,31 @@ const getCategoryVariant = (category) => {
 // Main Labs component
 function Labs() {
   const { labId } = useParams();
+  const siteUrl = "https://aidatafoundation.github.io";
 
   return (
     <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
+      {!labId && (
+        <Helmet>
+          <title>AI Data Foundation Labs | Research Projects & Experiments</title>
+          <meta name="description" content="Explore AI Data Foundation's experimental labs where we test new ideas, methodologies, and technologies in artificial intelligence." />
+          
+          {/* Open Graph / Facebook */}
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={`${siteUrl}/labs`} />
+          <meta property="og:title" content="AI Data Foundation Labs | Research Projects & Experiments" />
+          <meta property="og:description" content="Explore AI Data Foundation's experimental labs where we test new ideas, methodologies, and technologies in artificial intelligence." />
+          <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+          
+          {/* Twitter */}
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:url" content={`${siteUrl}/labs`} />
+          <meta property="twitter:title" content="AI Data Foundation Labs | Research Projects & Experiments" />
+          <meta property="twitter:description" content="Explore AI Data Foundation's experimental labs where we test new ideas, methodologies, and technologies in artificial intelligence." />
+          <meta property="twitter:image" content={`${siteUrl}/og-image.png`} />
+        </Helmet>
+      )}
+
       <h1 className="text-3xl font-bold mb-4 text-center">AI Data Foundation Labs</h1>
       <p className="text-grayFill text-lg mb-8 text-center max-w-3xl mx-auto">
         Explore our experimental AI labs where we test new ideas, methodologies, and technologies.
