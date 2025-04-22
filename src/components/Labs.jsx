@@ -10,11 +10,11 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 // Fallback data in case the fetch fails
 const fallbackLabsData = [
   {
-    "id": "whha-is-langchain",
-    "title": "Introduction to LangChain",
-    "description": ".",
+    "id": "what-is-langchain",
+    "title": "What is LangChain?",
+    "description": "LangChain is a framework for building LLM applications. It provides a way to connect LLMs to other tools and data sources.",
     "category": "LLM",
-    "path": "/labs/whha-is-langchain.md",
+    "path": "/labs/what-is-langchain.md",
     "contributors": ["Sangam Biradar"],
     "tags": ["LLM", "LangChain"]
   },
