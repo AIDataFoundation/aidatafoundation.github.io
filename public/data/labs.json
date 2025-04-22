@@ -1,13 +1,13 @@
 {
   "labs": [
     {
-      "id": "data-quality-metrics",
-      "title": "Data Quality Metrics for Large Language Models",
-      "description": "A comprehensive framework for assessing and improving the quality of training data for large language models.",
-      "category": "Data Quality",
-      "path": "/labs/data-quality-metrics.md",
-      "contributors": ["alex.chen", "maria.rodriguez"],
-      "tags": ["data quality", "metrics", "LLM", "assessment"]
+      "id": "whha-is-langchain",
+      "title": "Introduction to LangChain",
+      "description": ".",
+      "category": "LLM",
+      "path": "/labs/whha-is-langchain.md",
+      "contributors": ["Sangam Biradar"],
+      "tags": ["LLM", "LangChain"]
     },
     {
       "id": "ethical-synthetic-data",
