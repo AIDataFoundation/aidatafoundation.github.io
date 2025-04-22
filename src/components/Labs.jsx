@@ -17,7 +17,7 @@ const fallbackLabsData = [
     path: "/labs/LangChain-Practical-Labs.md",
     contributors: ["Sangam Biradar"],
     tags: ["LLM", "LangChain"],
-    image: "/src/assets/langchain.svg"
+    image: "/images/LangChain.svg"
   },
   {
     id: "ethical-synthetic-data",
