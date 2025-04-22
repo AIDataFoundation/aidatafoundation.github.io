@@ -7,6 +7,7 @@ import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import MarkdownRenderer from "./MarkdownRenderer";
+import OpenGraph from "./OpenGraph";
 
 // Fallback data in case the fetch fails
 const fallbackLabsData = [
@@ -498,26 +499,16 @@ ${selectedLab.contributors.join(', ')}
   const imageUrl = lab.image ? `${siteUrl}${lab.image}` : `${siteUrl}/og-image.png`;
 
   return (
-    <div className="w-full">
-      <Helmet>
-        <title>{lab.title} | AI Data Foundation Labs</title>
-        <meta name="description" content={lab.description} />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={`${siteUrl}/labs/${lab.id}`} />
-        <meta property="og:title" content={lab.title} />
-        <meta property="og:description" content={lab.description} />
-        <meta property="og:image" content={imageUrl} />
-        
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={`${siteUrl}/labs/${lab.id}`} />
-        <meta property="twitter:title" content={lab.title} />
-        <meta property="twitter:description" content={lab.description} />
-        <meta property="twitter:image" content={imageUrl} />
-      </Helmet>
-
+    <div className="bg-bgGray p-8 rounded-xl shadow-md w-full">
+      <OpenGraph
+        title={`${lab.title} | AI Data Foundation Labs`}
+        description={lab.description}
+        url={`/labs/${lab.id}`}
+        image={imageUrl}
+        type="article"
+        tags={lab.tags || []}
+      />
+      
       <Button 
         variant="ghost" 
         className="mb-6"
@@ -526,7 +517,7 @@ ${selectedLab.contributors.join(', ')}
         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        Back to Labs
+        Back to All Labs
       </Button>
       
       <div className="mb-6 flex flex-wrap items-center gap-2">

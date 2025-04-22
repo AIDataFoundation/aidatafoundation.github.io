@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Helmet } from "react-helmet";
 import MarkdownRenderer from "./MarkdownRenderer";
 import DebugInfo from "./DebugInfo";
+import OpenGraph from "./OpenGraph";
 
 function Blog() {
   const { postId } = useParams();
@@ -409,6 +410,15 @@ function BlogPostDetail({ post }) {
   
   return (
     <div className="bg-bgGray p-8 rounded-xl shadow-md w-full">
+      <OpenGraph
+        title={`${post.title} | AI Data Foundation Blog`}
+        description={post.excerpt}
+        url={`/blog/${post.id}`}
+        image={post.image || "/og-image.png"}
+        type="article"
+        tags={post.tags || []}
+      />
+      
       <Button 
         variant="ghost" 
         className="mb-6"
