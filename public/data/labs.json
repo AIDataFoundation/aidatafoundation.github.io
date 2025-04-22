@@ -8,7 +8,7 @@
       "path": "/labs/LangChain-Practical-Labs.md",
       "contributors": ["Sangam Biradar"],
       "tags": ["LLM", "LangChain"],
-      "image": "/src/assets/langchain.svg"
+      "image": "/src/assets/LangChain.svg"
     },
     {
       "id": "ethical-synthetic-data",
