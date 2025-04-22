@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { entries } from "../data/entries";
 import ToolCard from "./ToolCard";
+import { request, gql } from 'graphql-request';
 
 function ToolsSection() {
   const [search, setSearch] = useState("");
@@ -48,15 +49,16 @@ function ToolsSection() {
     return count;
   };
 
-  // Function to fetch GitHub stars for a repository
-  const fetchGithubStars = async (repo) => {
-    const cacheKey = `github-stars-${repo}`;
+  // Function to fetch GitHub stars for repositories using GraphQL API
+  const fetchGithubStars = async (repositories) => {
+    const cacheKey = 'github-stars-graphql-cache';
     const cachedData = localStorage.getItem(cacheKey);
     
     // Check if we have cached data less than 6 hours old
     if (cachedData) {
       const { stars, timestamp } = JSON.parse(cachedData);
       if (Date.now() - timestamp < 21600000) { // 6 hours
+        console.log("Using cached GitHub stars data");
         return stars;
       }
     }
@@ -65,54 +67,63 @@ function ToolsSection() {
       // Get GitHub token from environment variable
       const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
       
+      if (!githubToken) {
+        throw new Error("GitHub token is required for GraphQL API. Please set VITE_GITHUB_TOKEN environment variable.");
+      }
+
+      // Prepare repositories for the GraphQL query
+      // Format: "owner/repo" => { owner, name }
+      const repoObjects = repositories.map(repoPath => {
+        const [owner, name] = repoPath.split('/');
+        return { owner, name };
+      });
+
+      // Build the GraphQL query dynamically based on the repositories
+      const query = gql`
+        query {
+          ${repoObjects.map((repo, index) => `
+            repo${index}: repository(owner: "${repo.owner}", name: "${repo.name}") {
+              nameWithOwner
+              stargazerCount
+            }
+          `).join('')}
+        }
+      `;
+
+      const endpoint = 'https://api.github.com/graphql';
       const headers = {
-        'Accept': 'application/vnd.github.v3+json',
-        ...(githubToken && { 'Authorization': `token ${githubToken}` })
+        'Authorization': `Bearer ${githubToken}`
       };
 
-      const response = await fetch(`https://api.github.com/repos/${repo}`, { headers });
+      const data = await request(endpoint, query, {}, headers);
       
-      // Handle rate limiting
-      const rateLimit = {
-        limit: response.headers.get('X-RateLimit-Limit'),
-        remaining: response.headers.get('X-RateLimit-Remaining'),
-        reset: response.headers.get('X-RateLimit-Reset')
-      };
-
-      if (response.status === 429) {
-        const resetDate = new Date(rateLimit.reset * 1000);
-        const minutes = Math.ceil((resetDate - new Date()) / 60000);
-        throw new Error(`GitHub API rate limit exceeded. Resets in ${minutes} minutes. Using cached data where available.`);
-      }
-
-      if (response.status === 403 && rateLimit.remaining === '0') {
-        const resetDate = new Date(rateLimit.reset * 1000);
-        const minutes = Math.ceil((resetDate - new Date()) / 60000);
-        throw new Error(`GitHub API rate limit reached. Resets in ${minutes} minutes. Using cached data where available.`);
-      }
-
-      if (!response.ok) {
-        throw new Error(`GitHub API error for ${repo}: ${response.status}`);
-      }
-
-      const data = await response.json();
+      // Process the response and extract star counts
+      const stars = {};
+      Object.keys(data).forEach(key => {
+        const repo = data[key];
+        if (repo) {
+          stars[repo.nameWithOwner] = repo.stargazerCount;
+        }
+      });
       
-      // Cache the result
+      // Cache the results
       localStorage.setItem(cacheKey, JSON.stringify({
-        stars: data.stargazers_count,
+        stars,
         timestamp: Date.now()
       }));
       
-      return data.stargazers_count;
+      return stars;
     } catch (error) {
-      console.error("Error fetching GitHub stars:", error);
-      // Return cached data if available when hitting rate limits
-      if (error.message.includes('rate limit') && cachedData) {
+      console.error("Error fetching GitHub stars with GraphQL:", error);
+      
+      // Return cached data if available when hitting errors
+      if (cachedData) {
         const { stars } = JSON.parse(cachedData);
         return stars;
       }
+      
       setError(error.message);
-      return null;
+      return {};
     }
   };
 
@@ -121,34 +132,25 @@ function ToolsSection() {
     const fetchAllStars = async () => {
       setIsLoading(true);
       setError(null);
-      const stars = {};
       
-      // Process repositories in batches to avoid overwhelming the API
-      const batchSize = 10;
-      const repos = entries.filter(entry => entry.github);
-      
-      for (let i = 0; i < repos.length; i += batchSize) {
-        const batch = repos.slice(i, i + batchSize);
-        const promises = batch.map(async (entry) => {
-          const starCount = await fetchGithubStars(entry.github);
-          stars[entry.github] = starCount;
-        });
+      try {
+        // Get all GitHub repositories from entries
+        const repos = entries
+          .filter(entry => entry.github)
+          .map(entry => entry.github);
         
-        try {
-          await Promise.all(promises);
-          setGithubStars(prevStars => ({ ...prevStars, ...stars }));
-        } catch (error) {
-          setError(error.message);
-          // Don't break the loop on error, continue with next batch
-        }
+        // Remove duplicates
+        const uniqueRepos = [...new Set(repos)];
         
-        // Add a small delay between batches to be nice to the API
-        if (i + batchSize < repos.length) {
-          await new Promise(resolve => setTimeout(resolve, 1000));
-        }
+        // Fetch stars for all repositories at once using GraphQL
+        const starsData = await fetchGithubStars(uniqueRepos);
+        setGithubStars(starsData || {});
+      } catch (error) {
+        console.error("Error in fetchAllStars:", error);
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
       }
-      
-      setIsLoading(false);
     };
 
     fetchAllStars();

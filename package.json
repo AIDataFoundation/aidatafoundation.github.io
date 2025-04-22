@@ -25,6 +25,8 @@
     "@radix-ui/react-tabs": "^1.1.8",
     "@radix-ui/react-toast": "^1.2.10",
     "caniuse-lite": "^1.0.30001704",
+    "graphql": "^16.10.0",
+    "graphql-request": "^7.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-github-btn": "^1.4.0",

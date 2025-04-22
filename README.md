@@ -9,7 +9,7 @@ A comprehensive resource for AI tools, frameworks, and methodologies, presented 
 - **Comprehensive AI Directory**: Browse tools and frameworks for artificial intelligence and machine learning
 - **Categorized Browsing**: Filter resources by categories like Machine Learning, Natural Language Processing, Computer Vision, and more
 - **Search Functionality**: Quickly find tools based on name or description
-- **GitHub Integration**: View GitHub stars for each project
+- **GitHub Integration**: View GitHub stars for each project using GitHub's GraphQL API
 - **Modern UI**: Clean and responsive interface for desktop and mobile devices
 
 ## 🚀 Quick Start
@@ -18,6 +18,7 @@ A comprehensive resource for AI tools, frameworks, and methodologies, presented 
 
 - Node.js (version 16 or higher)
 - npm or yarn
+- GitHub Personal Access Token (for local development only) - See [GitHub API Setup](GITHUB-API-SETUP.md)
 
 ### Installation
 
@@ -32,12 +33,20 @@ A comprehensive resource for AI tools, frameworks, and methodologies, presented 
    npm install
    ```
 
-3. Start the development server:
+3. For local development only, create a `.env.local` file with your GitHub token:
+   ```
+   VITE_GITHUB_TOKEN=your_github_token_here
+   ```
+   See [GitHub API Setup](GITHUB-API-SETUP.md) for detailed instructions.
+   
+   **Note:** When deploying with GitHub Actions, the token is automatically configured.
+
+4. Start the development server:
    ```
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+5. Open your browser and navigate to `http://localhost:5173`
 
 ## 🔧 Available Scripts
 
