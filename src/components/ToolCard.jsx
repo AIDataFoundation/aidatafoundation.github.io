@@ -42,9 +42,9 @@ function ToolCard({ title, link, description, github, tag }) {
     }
   };
 
-  // Get the GitHub repo path - if github only has username, use the main repo
-  const getGitHubRepoPath = (githubPath, link) => {
-    // First check if the link is a GitHub URL and extract the repo path
+  // Extract repository information from GitHub URL or link
+  const getGitHubInfo = () => {
+    // First try to extract from link if it's a GitHub URL
     if (link && link.includes('github.com')) {
       try {
         const url = new URL(link);
@@ -52,22 +52,43 @@ function ToolCard({ title, link, description, github, tag }) {
           // Extract the path after github.com
           const pathParts = url.pathname.split('/').filter(part => part);
           if (pathParts.length >= 2) {
-            return `${pathParts[0]}/${pathParts[1]}`;
+            return {
+              owner: pathParts[0],
+              repo: pathParts[1],
+              fullPath: `${pathParts[0]}/${pathParts[1]}`
+            };
           }
         }
       } catch (e) {
-        // If URL parsing fails, continue with the fallback
+        // If URL parsing fails, continue with fallback
       }
     }
     
     // Fallback to using the github parameter
-    if (githubPath.includes('/')) {
-      return githubPath; // Already in the correct format
-    } else {
-      // Use the username as both owner and repo name
-      return `${githubPath}/${githubPath}`;
+    if (github) {
+      if (github.includes('/')) {
+        const [owner, repo] = github.split('/');
+        return {
+          owner,
+          repo,
+          fullPath: github
+        };
+      } else {
+        // For entries with just username/org, determine repo name from the title
+        // This is imperfect but better than using username as repo
+        const repoName = title.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+        return {
+          owner: github,
+          repo: repoName,
+          fullPath: `${github}/${repoName}`
+        };
+      }
     }
+    
+    return null;
   };
+
+  const githubInfo = getGitHubInfo();
 
   return (
     <Card className="w-full h-full flex flex-col">
@@ -110,15 +131,19 @@ function ToolCard({ title, link, description, github, tag }) {
               </a>
             </Button>
             
-            <div className="h-[36px] flex items-center ml-1 github-btn-container">
-              <GitHubButton 
-                href={`https://github.com/${getGitHubRepoPath(github, link)}`} 
-                data-size="large"
-                data-show-count="true" 
-                data-text="Star"
-                aria-label={`Star ${github} on GitHub`}
-              />
-            </div>
+            {githubInfo && (
+              <div className="h-[36px] flex items-center ml-1 github-btn-container">
+                <GitHubButton 
+                  href={`https://github.com/${githubInfo.fullPath}`}
+                  data-icon="octicon-star" 
+                  data-size="large"
+                  data-show-count="true" 
+                  aria-label={`Star ${githubInfo.fullPath} on GitHub`}
+                >
+                  Star
+                </GitHubButton>
+              </div>
+            )}
           </>
         )}
       </CardFooter>
