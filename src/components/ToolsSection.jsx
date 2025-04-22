@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { entries } from "../data/entries";
 import ToolCard from "./ToolCard";
-import { request, gql } from 'graphql-request';
 
 function ToolsSection() {
   const [search, setSearch] = useState("");
   const [selectVal, setSelectVal] = useState("");
   const [sortBy, setSortBy] = useState("default");
-  const [githubStars, setGithubStars] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [categoryType, setCategoryType] = useState("all"); // "all", "ai", "llm", "mcp"
 
   // Extract unique tags from entries
@@ -39,132 +35,9 @@ function ToolsSection() {
                      categoryType === "ai" ? aiTags : 
                      categoryType === "llm" ? llmTags : mcpTags;
 
-  // Function to format star count
-  const formatStarCount = (count) => {
-    if (count >= 1000000) {
-      return `${(count / 1000000).toFixed(1)}M`;
-    } else if (count >= 1000) {
-      return `${(count / 1000).toFixed(1)}K`;
-    }
-    return count;
-  };
-
-  // Function to fetch GitHub stars for repositories using GraphQL API
-  const fetchGithubStars = async (repositories) => {
-    const cacheKey = 'github-stars-graphql-cache';
-    const cachedData = localStorage.getItem(cacheKey);
-    
-    // Check if we have cached data less than 6 hours old
-    if (cachedData) {
-      const { stars, timestamp } = JSON.parse(cachedData);
-      if (Date.now() - timestamp < 21600000) { // 6 hours
-        console.log("Using cached GitHub stars data");
-        return stars;
-      }
-    }
-
-    try {
-      // Get GitHub token from environment variable
-      const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
-      
-      if (!githubToken) {
-        throw new Error("GitHub token is required for GraphQL API. Please set VITE_GITHUB_TOKEN environment variable.");
-      }
-
-      // Prepare repositories for the GraphQL query
-      // Format: "owner/repo" => { owner, name }
-      const repoObjects = repositories.map(repoPath => {
-        const [owner, name] = repoPath.split('/');
-        return { owner, name };
-      });
-
-      // Build the GraphQL query dynamically based on the repositories
-      const query = gql`
-        query {
-          ${repoObjects.map((repo, index) => `
-            repo${index}: repository(owner: "${repo.owner}", name: "${repo.name}") {
-              nameWithOwner
-              stargazerCount
-            }
-          `).join('')}
-        }
-      `;
-
-      const endpoint = 'https://api.github.com/graphql';
-      const headers = {
-        'Authorization': `Bearer ${githubToken}`
-      };
-
-      const data = await request(endpoint, query, {}, headers);
-      
-      // Process the response and extract star counts
-      const stars = {};
-      Object.keys(data).forEach(key => {
-        const repo = data[key];
-        if (repo) {
-          stars[repo.nameWithOwner] = repo.stargazerCount;
-        }
-      });
-      
-      // Cache the results
-      localStorage.setItem(cacheKey, JSON.stringify({
-        stars,
-        timestamp: Date.now()
-      }));
-      
-      return stars;
-    } catch (error) {
-      console.error("Error fetching GitHub stars with GraphQL:", error);
-      
-      // Return cached data if available when hitting errors
-      if (cachedData) {
-        const { stars } = JSON.parse(cachedData);
-        return stars;
-      }
-      
-      setError(error.message);
-      return {};
-    }
-  };
-
-  // Fetch GitHub stars for all repositories on component mount
-  useEffect(() => {
-    const fetchAllStars = async () => {
-      setIsLoading(true);
-      setError(null);
-      
-      try {
-        // Get all GitHub repositories from entries
-        const repos = entries
-          .filter(entry => entry.github)
-          .map(entry => entry.github);
-        
-        // Remove duplicates
-        const uniqueRepos = [...new Set(repos)];
-        
-        // Fetch stars for all repositories at once using GraphQL
-        const starsData = await fetchGithubStars(uniqueRepos);
-        setGithubStars(starsData || {});
-      } catch (error) {
-        console.error("Error in fetchAllStars:", error);
-        setError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchAllStars();
-  }, []);
-
   // Function to sort tools based on selected criteria
   const sortTools = (filteredEntries) => {
     switch (sortBy) {
-      case 'stars':
-        return [...filteredEntries].sort((a, b) => {
-          const starsA = githubStars[a.github] || 0;
-          const starsB = githubStars[b.github] || 0;
-          return starsB - starsA;
-        });
       case 'az':
         return [...filteredEntries].sort((a, b) => 
           a.title.localeCompare(b.title)
@@ -214,20 +87,6 @@ function ToolsSection() {
           </p>
         </div>
         
-        {error && (
-          <div className="w-full bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md relative" role="alert">
-            <div className="flex">
-              <div className="py-1">
-                <svg className="w-6 h-6 mr-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              </div>
-              <div>
-                <p className="font-bold">API Error</p>
-                <p className="text-sm">{error}</p>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Category Type Selector */}
         <div className="w-full flex justify-center mb-4">
           <div className="inline-flex rounded-md shadow-sm" role="group">
@@ -330,7 +189,6 @@ function ToolsSection() {
                 onChange={(e) => setSortBy(e.target.value)}
               >
                 <option value="default">Sort by: Default</option>
-                <option value="stars">Sort by: Stars</option>
                 <option value="az">Sort by: A-Z</option>
                 <option value="za">Sort by: Z-A</option>
               </select>
@@ -365,9 +223,6 @@ function ToolsSection() {
               link={entry.link} 
               description={entry.description} 
               github={entry.github} 
-              githubStars={entry.github ? githubStars[entry.github] : null} 
-              isLoading={isLoading}
-              formatStarCount={formatStarCount}
               tag={entry.tag}
             />
           ))}

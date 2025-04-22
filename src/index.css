@@ -215,3 +215,15 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+/* GitHub Button Styles */
+.h-\[36px\] iframe {
+  margin-top: 3px !important;
+  height: 30px !important;
+  width: auto !important;
+  min-width: 100px !important;
+}
+
+.github-btn-container {
+  min-width: 120px;
+}
