@@ -91,11 +91,11 @@ function ToolsSection() {
         <div className="w-full flex flex-col md:flex-row items-center justify-between">
           <div className="flex flex-col items-center md:items-start">
             <h2 className="text-3xl font-semibold text-slate-900 dark:text-white mb-2">
-              AI Data Tools
-            </h2>
+            AI Data Tools
+          </h2>
             <p className="text-base text-slate-600 dark:text-slate-300 max-w-2xl text-center md:text-left mb-6">
-              Discover and explore the best tools for AI, Machine Learning, and Data Science
-            </p>
+            Discover and explore the best tools for AI, Machine Learning, and Data Science
+          </p>
           </div>
           <button
             onClick={() => setShowContributeModal(true)}
@@ -107,7 +107,7 @@ function ToolsSection() {
             Contribute a Tool
           </button>
         </div>
-        
+
         {/* Category Type Selector */}
         <div className="w-full flex justify-center mb-4">
           <div className="inline-flex rounded-md shadow-sm" role="group">

@@ -3,6 +3,7 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
+import ModelLeaderboard from "./ModelLeaderboard";
 
 function LandingPage() {
   // Sample featured tools
@@ -158,21 +159,21 @@ function LandingPage() {
               <span className="inline-block text-indigo-600 dark:text-indigo-400 font-semibold tracking-wider text-sm uppercase mb-3">Our Mission</span>
               <h2 className="text-slate-900 dark:text-white text-3xl lg:text-4xl font-bold mb-6 leading-tight">Democratizing Access to AI Technology</h2>
               <p className="text-slate-600 dark:text-slate-300 text-lg mb-6 leading-relaxed">
-                We believe that access to high-quality tools is the foundation of responsible AI development. 
-                Our mission is to democratize this access while promoting ethical considerations and diversity in AI systems.
-              </p>
+              We believe that access to high-quality tools is the foundation of responsible AI development. 
+              Our mission is to democratize this access while promoting ethical considerations and diversity in AI systems.
+            </p>
               <p className="text-slate-600 dark:text-slate-300 text-lg mb-8 leading-relaxed">
-                Through collaboration with researchers, industry leaders, and diverse communities, we're building 
-                a more inclusive AI ecosystem that benefits humanity. We focus on community building and continuous 
-                improvement of AI tools and methodologies that serve the greater good.
-              </p>
+              Through collaboration with researchers, industry leaders, and diverse communities, we're building 
+              a more inclusive AI ecosystem that benefits humanity. We focus on community building and continuous 
+              improvement of AI tools and methodologies that serve the greater good.
+            </p>
               <Link to="/about" className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center group transition-colors">
-                Learn more about our work
+              Learn more about our work
                 <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </Link>
-            </div>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </div>
             <div className="w-full md:w-1/2 order-1 md:order-2 mb-10 md:mb-0">
               <div className="relative">
                 <div className="absolute -inset-4 rounded-xl bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 dark:from-indigo-500/10 dark:to-cyan-500/10 opacity-70 blur-xl"></div>
@@ -180,10 +181,10 @@ function LandingPage() {
                   <div className="aspect-w-16 aspect-h-9 bg-gradient-to-br from-indigo-500/5 to-cyan-500/5 dark:from-indigo-500/10 dark:to-cyan-500/10 rounded-lg overflow-hidden">
                     <div className="flex items-center justify-center p-6">
                       <svg className="w-32 h-32 sm:w-48 sm:h-48 text-indigo-500/80 dark:text-indigo-400/80" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" />
-                        <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" />
-                        <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" />
-                      </svg>
+                <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" />
+                <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" />
+                <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" />
+              </svg>
                     </div>
                   </div>
                 </div>
@@ -246,62 +247,79 @@ function LandingPage() {
         </div>
       </div>
 
-      {/* Services Section - Modern design with improved depth and colors */}
-      <div className="bg-slate-50 dark:bg-slate-950 py-24">
+      {/* Models Leaderboard Section */}
+      <div className="bg-slate-50 dark:bg-slate-900 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block text-indigo-600 dark:text-indigo-400 font-semibold tracking-wider text-sm uppercase mb-3">What We Offer</span>
-            <h2 className="text-slate-900 dark:text-white text-3xl lg:text-4xl font-bold mb-4 leading-tight">Comprehensive AI Resources</h2>
+            <span className="inline-block text-cyan-600 dark:text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-3">TOP PERFORMERS</span>
+            <h2 className="text-slate-900 dark:text-white text-3xl lg:text-4xl font-bold mb-4 leading-tight">LLM Leaderboard</h2>
             <p className="text-slate-600 dark:text-slate-300 text-xl max-w-3xl mx-auto">
-              Our comprehensive approach to AI tools provides researchers and developers with everything they need to build ethical and effective AI systems.
+              Explore the top-performing large language models ranked by performance metrics and popularity.
             </p>
           </div>
           
+          <div className="rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+            <ModelLeaderboard />
+          </div>
+        </div>
+      </div>
+
+      {/* Services Section - Modern design with improved depth and colors */}
+      <div className="bg-slate-50 dark:bg-slate-950 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+            <span className="inline-block text-indigo-600 dark:text-indigo-400 font-semibold tracking-wider text-sm uppercase mb-3">What We Offer</span>
+            <h2 className="text-slate-900 dark:text-white text-3xl lg:text-4xl font-bold mb-4 leading-tight">Comprehensive AI Resources</h2>
+            <p className="text-slate-600 dark:text-slate-300 text-xl max-w-3xl mx-auto">
+            Our comprehensive approach to AI tools provides researchers and developers with everything they need to build ethical and effective AI systems.
+          </p>
+        </div>
+        
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-12">
             <Card className="relative overflow-hidden border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:shadow-lg transition-shadow group">
               <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
-              <CardContent className="p-8">
+            <CardContent className="p-8">
                 <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:shadow transition-shadow">
                   <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
-                </div>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
                 <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mb-4">Curated Tools</CardTitle>
                 <CardDescription className="text-slate-600 dark:text-slate-300 text-base">
-                  Access our carefully curated collection of high-quality AI tools across various domains, thoroughly evaluated and documented for research and commercial use.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            
+                Access our carefully curated collection of high-quality AI tools across various domains, thoroughly evaluated and documented for research and commercial use.
+              </CardDescription>
+            </CardContent>
+          </Card>
+          
             <Card className="relative overflow-hidden border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:shadow-lg transition-shadow group">
               <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500"></div>
-              <CardContent className="p-8">
+            <CardContent className="p-8">
                 <div className="w-14 h-14 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:shadow transition-shadow">
                   <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                </div>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
                 <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mb-4">Tool Comparisons</CardTitle>
                 <CardDescription className="text-slate-600 dark:text-slate-300 text-base">
-                  Explore our detailed comparisons and evaluations of various AI tools to help you select the right solutions for your specific use cases and requirements.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            
+                Explore our detailed comparisons and evaluations of various AI tools to help you select the right solutions for your specific use cases and requirements.
+              </CardDescription>
+            </CardContent>
+          </Card>
+          
             <Card className="relative overflow-hidden border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:shadow-lg transition-shadow group">
               <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
-              <CardContent className="p-8">
+            <CardContent className="p-8">
                 <div className="w-14 h-14 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:shadow transition-shadow">
                   <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
                 <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mb-4">Community & Collaboration</CardTitle>
                 <CardDescription className="text-slate-600 dark:text-slate-300 text-base">
-                  Join our vibrant community of researchers, data scientists, and AI practitioners to collaborate on projects, share insights, and advance the field together.
-                </CardDescription>
-              </CardContent>
-            </Card>
+                Join our vibrant community of researchers, data scientists, and AI practitioners to collaborate on projects, share insights, and advance the field together.
+              </CardDescription>
+            </CardContent>
+          </Card>
           </div>
         </div>
       </div>
@@ -322,8 +340,8 @@ function LandingPage() {
             <div className="relative px-8 py-16 md:p-16 text-center">
               <h2 className="text-white text-3xl md:text-4xl font-bold mb-6">Join the AI Data Community</h2>
               <p className="text-white/90 text-xl mb-10 max-w-2xl mx-auto">
-                Connect with fellow researchers and AI enthusiasts. Contribute to our tools directory, participate in discussions, and help shape the future of AI.
-              </p>
+              Connect with fellow researchers and AI enthusiasts. Contribute to our tools directory, participate in discussions, and help shape the future of AI.
+            </p>
               <div className="flex flex-col sm:flex-row justify-center gap-5">
                 <a 
                   href="https://github.com/aidatafoundation"
