@@ -7,17 +7,20 @@ import Blog from "./components/Blog";
 import Footer from "./components/Footer";
 import Labs from "./components/Labs";
 import OpenGraph from "./components/OpenGraph";
+import Popup from "./components/Popup";
 
 function App() {
   return (
     <Router>
       <div className="bg-bgPrimary min-h-screen">
         <Nav />
+        {/* Global Discord popup that shows when clicking external links */}
+        <Popup />
         <div className="pt-16">
           <Routes>
             <Route path="/" element={
               <>
-                <OpenGraph 
+                <OpenGraph
                   title="AI Data Foundation | AI Tools, Research & Resources"
                   description="A comprehensive resource for AI tools, frameworks, datasets, and methodologies. Explore the latest in machine learning, natural language processing, computer vision, and more."
                   tags={["AI", "Machine Learning", "Data Science", "NLP", "Computer Vision"]}
@@ -27,7 +30,7 @@ function App() {
             } />
             <Route path="/tools" element={
               <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-                <OpenGraph 
+                <OpenGraph
                   title="AI Tools Collection | AI Data Foundation"
                   description="Explore our curated collection of AI tools, frameworks, libraries, and resources for data science, machine learning, and artificial intelligence."
                   tags={["AI Tools", "Machine Learning Libraries", "Data Science Tools", "Frameworks"]}
@@ -38,7 +41,7 @@ function App() {
             } />
             <Route path="/labs" element={
               <>
-                <OpenGraph 
+                <OpenGraph
                   title="AI Labs | AI Data Foundation"
                   description="Interactive AI labs and experiments showcasing cutting-edge artificial intelligence research and applications."
                   tags={["AI Labs", "Experiments", "Interactive AI", "Research"]}
@@ -49,7 +52,7 @@ function App() {
             <Route path="/labs/:labId" element={<Labs />} />
             <Route path="/blog" element={
               <>
-                <OpenGraph 
+                <OpenGraph
                   title="AI Blog | AI Data Foundation"
                   description="Latest insights, tutorials, and news about artificial intelligence, machine learning, and data science."
                   tags={["AI Blog", "Machine Learning", "Data Science", "Tutorials", "AI News"]}
@@ -60,7 +63,7 @@ function App() {
             <Route path="/blog/:postId" element={<Blog />} />
             <Route path="/about" element={
               <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
-                <OpenGraph 
+                <OpenGraph
                   title="About AI Data Foundation"
                   description="AI Data Foundation is a non-profit organization dedicated to advancing artificial intelligence through high-quality data resources and research."
                   tags={["About", "AI Organization", "Non-Profit", "Research"]}
