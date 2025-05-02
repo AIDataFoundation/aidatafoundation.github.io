@@ -73,6 +73,16 @@ function Blog() {
               "file": "/blog/Qwen-Coder-Models.md",
               "category": "LLM",
               "tags": ["Qwen Coder Models", "AI", "LLM", "LLM Models", "LLM Framework", "LLM Model", "LLM Vector Database", "LLM Tool", "MCP Core", "MCP Database", "MCP Finance", "MCP Web", "MCP Developer", "MCP AI", "MCP AI Tools", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks"]
+          },
+          {
+            id: "MCP_SDLC",
+            title: "MCP Context Protocol Impact on Software Development Life Cycle",
+            date: "June 2, 2025",
+            excerpt: "Model Context Protocol (MCP) is a game-changer in the world of software development. It's a set of guidelines and best practices that help developers create better, more efficient software.",
+            author: "AI Data Foundation",
+            file: "/blog/MCP_SDLC.md",
+            category: "MCP",
+            tags: ["MCP Core", "MCP Database", "MCP Finance", "MCP Web", "MCP Developer", "MCP AI", "MCP AI Tools", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks"]
           }
      
         ]
