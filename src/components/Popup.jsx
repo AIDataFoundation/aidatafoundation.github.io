@@ -14,7 +14,7 @@ const Popup = () => {
   // Function to handle the "Join Discord" button click
   const handleJoinDiscord = () => {
     // Open Discord in a new tab
-    window.open('https://discord.com/invite/rEvr7vq', '_blank');
+    window.open('https://discord.gg/Qe9J74GrAY', '_blank');
     setIsOpen(false);
   };
 
