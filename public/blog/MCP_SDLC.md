@@ -11,6 +11,8 @@ The Model Context Protocol represents a paradigm shift in AI integration archite
    - **Bidirectional Communication Flow**: Implements full-duplex communication channels enabling real-time streaming of context updates between client applications and integration servers
    - **Event-Driven Architecture**: Utilizes publish-subscribe patterns for efficient propagation of context changes across the integration landscape
 
+   ![](./MCP_SDLC_IMG/communication-features.png)
+
 2. **Architectural Components**
    - **Context Broker**: Central mediator managing context distribution across integrated systems
    - **Context Providers**: Specialized adapters that extract contextual information from various sources
@@ -18,11 +20,14 @@ The Model Context Protocol represents a paradigm shift in AI integration archite
    - **Context Registry**: Maintains metadata about available context sources and their capabilities
    - **Context Security Manager**: Enforces access controls and privacy policies across the ecosystem
 
+![](./MCP_SDLC_IMG/MCP_ARCH.png)
+
 3. **Protocol Specifications**
    - **Context Definition Language (CDL)**: Formal schema specification for defining context structures
    - **Context Query Language (CQL)**: Specialized query language for retrieving contextual information
    - **Context Transformation Pipelines**: Mechanisms for converting between different context representations
    - **Context Versioning Protocol**: Ensures backward compatibility as context schemas evolve
+
 
 ### Technical Implementation Details
 
@@ -59,6 +64,8 @@ The Model Context Protocol represents a paradigm shift in AI integration archite
    - **Lazy Loading Strategies**: Deferred loading of context data until required
    - **Batch Processing**: Aggregation of context requests for efficient processing
    - **Connection Pooling**: Reuse of established connections to context providers
+
+![](./MCP_SDLC_IMG/transform-requirements.png)
 
 ## Security and Privacy Architecture
 
@@ -128,6 +135,8 @@ The Model Context Protocol represents a paradigm shift in AI integration archite
   ```
 
 #### 3. Development Workflow Transformation
+
+![](./MCP_SDLC_IMG/deep-dive-sdlc.png)
 
 **Traditional Approach**:
 - Sequential development processes
