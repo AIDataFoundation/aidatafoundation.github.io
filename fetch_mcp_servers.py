@@ -43,35 +43,74 @@ def fetch_all_servers():
     
     return all_servers
 
-def extract_github_info(url):
-    if not url:
-        return None, None
-    if url.startswith("https://github.com/"):
-        # Split the URL into parts
-        parts = url.replace("https://github.com/", "").split("/")
-        username = parts[0]
-        return url, username
-    return None, None
+def extract_github_info(server):
+    source_code_url = server.get("source_code_url", "")
+    github_stars = server.get("github_stars", 0) or 0  # Convert None to 0
+    
+    if source_code_url and source_code_url.startswith("https://github.com/"):
+        # Extract username and repo from GitHub URL
+        parts = source_code_url.replace("https://github.com/", "").split("/")
+        if len(parts) >= 2:
+            username = parts[0]
+            repo = parts[1]
+            return {
+                "url": source_code_url,
+                "username": username,
+                "repo": repo,
+                "stars": github_stars
+            }
+    
+    # If no valid GitHub URL found, create one from the name
+    name = server["name"]
+    repo_name = name.lower().replace(" ", "-").replace("(", "").replace(")", "")
+    username = "mcp-contrib"
+    return {
+        "url": f"https://github.com/{username}/{repo_name}",
+        "username": username,
+        "repo": repo_name,
+        "stars": 0
+    }
 
 def convert_to_mcp_entry(server):
-    # Get the source code URL if available
-    source_code_url = server.get("source_code_url", "")
-    github_url, github_username = extract_github_info(source_code_url)
+    github_info = extract_github_info(server)
     
-    # If no GitHub URL is found, create one from the name
-    if not github_url:
-        # Convert server name to a GitHub-friendly format
-        repo_name = server["name"].lower().replace(" ", "-").replace("(", "").replace(")", "")
-        github_username = "mcp-contrib"  # Default organization
-        github_url = f"https://github.com/{github_username}/{repo_name}"
+    # Get download count if available
+    download_count = server.get("package_download_count", 0) or 0  # Convert None to 0
     
     return {
         "title": server["name"],
-        "link": github_url,  # Always use GitHub URL
+        "link": github_info["url"],
         "description": server.get("short_description", ""),
-        "github": github_username,
-        "tag": "MCP Server"  # Default tag, can be customized based on server properties
+        "githubUsername": github_info["username"],
+        "githubRepo": github_info["repo"],
+        "stars": github_info["stars"],
+        "downloads": download_count,
+        "tag": determine_tag(server)
     }
+
+def determine_tag(server):
+    # Extract category from server name or description
+    name = server["name"].lower()
+    desc = server.get("short_description", "").lower()
+    
+    if any(kw in name or kw in desc for kw in ["blockchain", "ethereum", "web3"]):
+        return "MCP Blockchain"
+    elif any(kw in name or kw in desc for kw in ["ai", "llm", "gpt", "claude"]):
+        return "MCP AI"
+    elif any(kw in name or kw in desc for kw in ["database", "sql", "mongodb"]):
+        return "MCP Database"
+    elif any(kw in name or kw in desc for kw in ["file", "storage", "s3"]):
+        return "MCP Storage"
+    elif any(kw in name or kw in desc for kw in ["api", "rest", "graphql"]):
+        return "MCP API"
+    elif any(kw in name or kw in desc for kw in ["web", "browser", "http"]):
+        return "MCP Web"
+    elif any(kw in name or kw in desc for kw in ["cli", "terminal", "shell"]):
+        return "MCP CLI"
+    elif any(kw in name or kw in desc for kw in ["ui", "design", "figma"]):
+        return "MCP Design"
+    else:
+        return "MCP Server"
 
 def update_mcp_entries(servers):
     mcp_entries_js = """/**
@@ -80,9 +119,12 @@ def update_mcp_entries(servers):
  * Each entry has the following structure:
  * {
  *     title: string // display name
- *     link: string // the link for the website which contain learning resources (GitHub repository)
+ *     link: string // GitHub repository URL
  *     description?: string // description that will be listed with your entry
- *     github?: string // username on github that will display a link to your repo
+ *     githubUsername: string // GitHub username
+ *     githubRepo: string // GitHub repository name
+ *     stars: number // GitHub star count
+ *     downloads: number // Package download count if available
  *     tag: string // category/tag of the tool
  * }
  */
@@ -91,6 +133,9 @@ export const mcpEntries = """
     
     # Convert servers to mcp entries format
     mcp_entries = [convert_to_mcp_entry(server) for server in servers]
+    
+    # Sort entries by stars count (descending)
+    mcp_entries.sort(key=lambda x: (x["stars"], x["downloads"]), reverse=True)
     
     # Add the entries as JSON
     mcp_entries_js += json.dumps(mcp_entries, indent=2)
