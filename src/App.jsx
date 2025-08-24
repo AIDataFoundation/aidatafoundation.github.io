@@ -12,7 +12,7 @@ import Popup from "./components/Popup";
 function App() {
   return (
     <Router>
-      <div className="bg-bgPrimary min-h-screen">
+      <div className="min-h-screen bg-background text-foreground">
         <Nav />
         {/* Global Discord popup that shows when clicking external links */}
         <Popup />
@@ -29,13 +29,20 @@ function App() {
               </>
             } />
             <Route path="/tools" element={
-              <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
+              <div className="container-responsive py-8">
                 <OpenGraph
                   title="AI Tools Collection | AI Data Foundation"
                   description="Explore our curated collection of AI tools, frameworks, libraries, and resources for data science, machine learning, and artificial intelligence."
                   tags={["AI Tools", "Machine Learning Libraries", "Data Science Tools", "Frameworks"]}
                 />
-                <h1 className="text-3xl font-bold mb-8 text-center">AI Tools Collection</h1>
+                <div className="text-center mb-12">
+                  <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                    AI Tools Collection
+                  </h1>
+                  <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                    Discover and explore cutting-edge AI tools, frameworks, and libraries
+                  </p>
+                </div>
                 <ToolsSection />
               </div>
             } />
@@ -62,22 +69,49 @@ function App() {
             } />
             <Route path="/blog/:postId" element={<Blog />} />
             <Route path="/about" element={
-              <div className="text-primary max-w-[1280px] mx-auto px-4 py-8">
+              <div className="container-responsive py-16">
                 <OpenGraph
                   title="About AI Data Foundation"
                   description="AI Data Foundation is a non-profit organization dedicated to advancing artificial intelligence through high-quality data resources and research."
                   tags={["About", "AI Organization", "Non-Profit", "Research"]}
                 />
-                <h1 className="text-3xl font-bold mb-8 text-center">About AI Data Foundation</h1>
-                <p className="text-grayFill text-lg mb-6">
-                  AI Data Foundation is a non-profit organization dedicated to advancing the field of artificial intelligence through high-quality data resources and research.
-                </p>
-                <p className="text-grayFill text-lg mb-6">
-                  Our mission is to democratize access to AI data, enabling researchers and developers from all backgrounds to participate in and contribute to the advancement of AI technology.
-                </p>
-                <p className="text-grayFill text-lg">
-                  Founded in 2023, we collaborate with academic institutions, industry partners, and individual contributors to build a more inclusive and responsible AI ecosystem.
-                </p>
+                <div className="max-w-4xl mx-auto">
+                  <div className="text-center mb-12">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                      About AI Data Foundation
+                    </h1>
+                    <div className="w-24 h-1 bg-gradient-to-r from-primary to-purple-600 mx-auto rounded-full"></div>
+                  </div>
+                  
+                  <div className="prose prose-lg max-w-none">
+                    <div className="bg-card border border-border rounded-xl p-8 shadow-soft">
+                      <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                        AI Data Foundation is a non-profit organization dedicated to advancing the field of artificial intelligence through high-quality data resources and research.
+                      </p>
+                      <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                        Our mission is to democratize access to AI data, enabling researchers and developers from all backgrounds to participate in and contribute to the advancement of AI technology.
+                      </p>
+                      <p className="text-xl text-muted-foreground leading-relaxed">
+                        Founded in 2023, we collaborate with academic institutions, industry partners, and individual contributors to build a more inclusive and responsible AI ecosystem.
+                      </p>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-8 mt-12">
+                      <div className="bg-card border border-border rounded-xl p-6 shadow-soft">
+                        <h3 className="text-2xl font-semibold mb-4 text-foreground">Our Vision</h3>
+                        <p className="text-muted-foreground">
+                          To create a world where AI technology is accessible, ethical, and beneficial to all of humanity.
+                        </p>
+                      </div>
+                      <div className="bg-card border border-border rounded-xl p-6 shadow-soft">
+                        <h3 className="text-2xl font-semibold mb-4 text-foreground">Our Values</h3>
+                        <p className="text-muted-foreground">
+                          Transparency, inclusivity, responsibility, and innovation guide everything we do.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             } />
           </Routes>
