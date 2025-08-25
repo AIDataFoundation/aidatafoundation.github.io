@@ -114,11 +114,10 @@ The collection includes resources for:
 - **Enhanced Typography**: Larger, more readable fonts
 - **Code Highlighting**: Syntax highlighting for code blocks
 - **Responsive Images**: Optimized image display with captions
-- **Table of Contents**: Easy navigation through long articles
+ 
 
 ### User Engagement
 - **Social Sharing**: One-click sharing to major platforms
-- **Reading Progress**: Visual progress indicators
 - **Author Information**: Enhanced author profiles and metadata
 - **Related Content**: Suggestions for further reading
 
