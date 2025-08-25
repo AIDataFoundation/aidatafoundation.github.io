@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Helmet } from "react-helmet";
 import MarkdownRenderer from "./MarkdownRenderer";
+import NotebookRenderer from "./NotebookRenderer";
 import DebugInfo from "./DebugInfo";
 import OpenGraph from "./OpenGraph";
 
@@ -70,14 +71,14 @@ function Blog() {
         // Fallback data
         const fallbackData = [
           {
-            "id": "Qwen-Coder-Models",
-            "title": "Qwen Coder Models: Breakthrough AI at Your Fingertips",
-            "date": "April 23, 2025",
-            "excerpt": "Qwen Coder Models are a new generation of AI models that are designed to be more efficient and effective than traditional LLM models.",
-            "author": "Sangam Biradar",
-            "file": "/blog/Qwen-Coder-Models.md",
-            "category": "LLM",
-            "tags": ["Qwen Coder Models", "AI", "LLM", "LLM Models", "LLM Framework", "LLM Model", "LLM Vector Database", "LLM Tool", "MCP Core", "MCP Database", "MCP Finance", "MCP Web", "MCP Developer", "MCP AI", "MCP AI Tools", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks"]
+              "id": "Qwen-Coder-Models",
+              "title": "Qwen Coder Models: Breakthrough AI at Your Fingertips",
+              "date": "April 23, 2025",
+              "excerpt": "Qwen Coder Models are a new generation of AI models that are designed to be more efficient and effective than traditional LLM models.",
+              "author": "Sangam Biradar",
+              "file": "/blog/Qwen-Coder-Models.md",
+              "category": "LLM",
+              "tags": ["Qwen Coder Models", "AI", "LLM", "LLM Models", "LLM Framework", "LLM Model", "LLM Vector Database", "LLM Tool", "MCP Core", "MCP Database", "MCP Finance", "MCP Web", "MCP Developer", "MCP AI", "MCP AI Tools", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks", "MCP AI Models", "MCP AI Frameworks"]
           },
           {
             id: "MCP_SDLC",
@@ -301,13 +302,13 @@ function Blog() {
         <div className="max-w-2xl mx-auto text-center">
           <div className="bg-destructive/10 text-destructive p-6 rounded-xl mb-6 border border-destructive/20">
             <p className="font-medium">{error}</p>
-          </div>
-          <Button 
-            onClick={() => navigate("/blog")}
-            className="mt-4"
-          >
-            Back to Blog
-          </Button>
+        </div>
+        <Button 
+          onClick={() => navigate("/blog")}
+          className="mt-4"
+        >
+          Back to Blog
+        </Button>
         </div>
       </div>
     );
@@ -397,16 +398,16 @@ function BlogPostDetail({ post }) {
       
       <div className="sticky top-16 z-40 bg-background/80 backdrop-blur-sm border-b border-border mb-8">
         <div className="container-responsive py-4">
-          <Button 
-            variant="ghost" 
+      <Button 
+        variant="ghost" 
             className="group"
-            onClick={() => navigate("/blog")}
-          >
+        onClick={() => navigate("/blog")}
+      >
             <svg className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back to All Posts
-          </Button>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to All Posts
+      </Button>
         </div>
       </div>
     
@@ -440,7 +441,7 @@ function BlogPostDetail({ post }) {
               {post.excerpt}
             </p>
             
-            {post.author && (
+        {post.author && (
               <div className="flex items-center justify-center gap-3 text-muted-foreground">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-purple-600 rounded-full flex items-center justify-center">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -449,23 +450,23 @@ function BlogPostDetail({ post }) {
                 </div>
                 <span className="font-medium text-lg">by {post.author}</span>
               </div>
-            )}
-          </div>
+        )}
+      </div>
         </header>
-        
+      
         {/* Article Content */}
-        <div className="w-full">
+      <div className="w-full">
           <div className="container-responsive">
             <div className="grid grid-cols-1 gap-8">
               {/* Main Content */}
               <div className="col-span-1">
                 <div className="bg-card border border-border rounded-xl shadow-medium overflow-hidden">
                   <div className="p-8 md:p-12 lg:p-16">
-                    {hasContent ? (
+        {hasContent ? (
                       <div className="blog-content">
                         <MarkdownRenderer>
-                          {post.content}
-                        </MarkdownRenderer>
+            {post.content}
+          </MarkdownRenderer>
                       </div>
                     ) : (
                       <div className="text-center py-12">
@@ -480,14 +481,19 @@ function BlogPostDetail({ post }) {
                         </div>
                       </div>
                     )}
+                    {post.notebook && (
+                      <div className="mt-8">
+                        <NotebookRenderer src={post.notebook} />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
               
             </div>
           </div>
-        </div>
-        
+      </div>
+      
         {/* Article Footer */}
         <footer className="bg-muted/30 border-t border-border mt-16">
           <div className="container-responsive py-12">
@@ -497,39 +503,39 @@ function BlogPostDetail({ post }) {
                 <div className="flex items-center gap-3">
                   <button className="p-3 text-muted-foreground hover:text-primary hover:bg-accent rounded-lg transition-all duration-200 hover:scale-105">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                    </svg>
-                  </button>
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+              </svg>
+            </button>
                   <button className="p-3 text-muted-foreground hover:text-primary hover:bg-accent rounded-lg transition-all duration-200 hover:scale-105">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
-                    </svg>
-                  </button>
+                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+              </svg>
+            </button>
                   <button className="p-3 text-muted-foreground hover:text-primary hover:bg-accent rounded-lg transition-all duration-200 hover:scale-105">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-                    </svg>
-                  </button>
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+              </svg>
+            </button>
                   <button className="p-3 text-muted-foreground hover:text-primary hover:bg-accent rounded-lg transition-all duration-200 hover:scale-105">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
                     </svg>
                   </button>
                 </div>
-              </div>
+          </div>
               
               <div className="flex items-center gap-4">
-                <a 
-                  href={`https://github.com/aidatafoundation/aidatafoundation.github.io/edit/main/public${(post.path || post.file)}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+          <a 
+            href={`https://github.com/aidatafoundation/aidatafoundation.github.io/edit/main/public${(post.path || post.file)}`} 
+            target="_blank" 
+            rel="noopener noreferrer"
                   className="text-sm text-primary hover:text-primary/80 flex items-center gap-2 hover:bg-accent px-4 py-2 rounded-lg transition-colors"
-                >
+          >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                  Edit this page
-                </a>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+            Edit this page
+          </a>
                 
                 <Button 
                   variant="outline"
@@ -542,8 +548,8 @@ function BlogPostDetail({ post }) {
                   View All Posts
                 </Button>
               </div>
-            </div>
-          </div>
+        </div>
+      </div>
         </footer>
       </article>
     </div>
@@ -690,8 +696,8 @@ function BlogList({ blogPosts, searchQuery, setSearchQuery, activeView, setActiv
             <BlogListItem key={post.id} post={post} />
           ))}
         </div>
-      )}
-    </div>
+                  )}
+                </div>
   );
 }
 
@@ -732,23 +738,23 @@ function BlogCard({ post }) {
         <CardDescription className="text-muted-foreground line-clamp-3 mb-4 leading-relaxed">
           {post.excerpt}
         </CardDescription>
-        
-        {post.tags && post.tags.length > 0 && (
+                
+                {post.tags && post.tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-4">
-            {post.tags.slice(0, 3).map(tag => (
-              <span 
-                key={tag} 
+                    {post.tags.slice(0, 3).map(tag => (
+                      <span 
+                        key={tag} 
                 className="text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded-md border border-border/50"
-              >
-                #{tag}
-              </span>
-            ))}
-            {post.tags.length > 3 && (
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                    {post.tags.length > 3 && (
               <span className="text-xs text-muted-foreground">
-                +{post.tags.length - 3} more
-              </span>
-            )}
-          </div>
+                        +{post.tags.length - 3} more
+                      </span>
+                    )}
+                  </div>
         )}
       </CardContent>
       
@@ -828,15 +834,15 @@ function BlogListItem({ post }) {
               </div>
               
               <Button 
-                onClick={() => navigate(`/blog/${post.id}`)} 
+                    onClick={() => navigate(`/blog/${post.id}`)} 
                 variant="outline"
                 size="sm"
                 className="group"
-              >
-                Read More
+                  >
+                    Read More
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
               </Button>
             </div>
           </div>
@@ -946,7 +952,7 @@ function FeaturedPost({ post }) {
         <div className="w-8 h-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-full"></div>
         <span className="text-sm font-semibold text-primary uppercase tracking-wider">Featured Post</span>
         <div className="flex-1 h-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-full"></div>
-      </div>
+        </div>
       
       <Card className="group overflow-hidden hover:shadow-strong transition-all duration-500 hover:-translate-y-1">
         <div className="grid md:grid-cols-2 gap-0">

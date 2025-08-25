@@ -36,6 +36,17 @@
       "path": "/labs/reinforcement-learning.md",
       "contributors": ["alex-kumar", "olivia-chen"],
       "tags": ["reinforcement learning", "RL", "agents", "decision-making"]
+    },
+    {
+      "id": "ml-101",
+      "title": "ML 101: A Gentle Introduction",
+      "description": "Fundamental concepts of machine learning with an accompanying interactive Jupyter notebook for hands-on learning.",
+      "category": "ML Basics",
+      "path": "/labs/ml-101.md",
+      "notebook": "/notebooks/ml-101.ipynb",
+      "contributors": ["AI Data Foundation"],
+      "tags": ["machine learning", "basics", "notebook", "tutorial", "scikit-learn"],
+      "image": "/images/Tools.png"
     }
   ]
 } 

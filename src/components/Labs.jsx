@@ -7,6 +7,7 @@ import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import MarkdownRenderer from "./MarkdownRenderer";
+import NotebookRenderer from "./NotebookRenderer";
 import OpenGraph from "./OpenGraph";
 
 // Fallback data in case the fetch fails
@@ -549,6 +550,12 @@ ${selectedLab.contributors.join(', ')}
         <MarkdownRenderer className="w-full">
           {content}
         </MarkdownRenderer>
+        
+        {lab.notebook && (
+          <div className="mt-8">
+            <NotebookRenderer src={lab.notebook} />
+          </div>
+        )}
       </div>
 
       <div className="mt-10 pt-6 border-t border-slate-700">
