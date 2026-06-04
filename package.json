@@ -34,7 +34,7 @@
     "react-github-btn": "^1.4.0",
     "react-helmet": "^6.1.0",
     "react-markdown": "^10.1.0",
-    "react-router-dom": "^6.30.0",
+    "react-router-dom": "^6.30.4",
     "react-syntax-highlighter": "^15.6.1",
     "shiki": "^3.3.0",
     "vue": "^3.5.13",
