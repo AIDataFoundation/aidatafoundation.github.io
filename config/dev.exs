@@ -21,9 +21,8 @@ config :ai_data_foundation, AiDataFoundationWeb.Endpoint,
   live_reload: [
     web_console_logger: true,
     patterns: [
-      ~r"priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"lib/ai_data_foundation_web/router\.ex$",
-      ~r"lib/ai_data_foundation_web/(controllers|live|components)/.*\.(ex|heex)$"
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"lib/ai_data_foundation_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
