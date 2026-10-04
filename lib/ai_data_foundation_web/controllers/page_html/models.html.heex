@@ -1,0 +1,318 @@
+<!-- AI Data Foundation Models & Hardware Sizing Hero -->
+<section class="kube-tools-hero">
+  <div class="max-w-7xl mx-auto px-4 py-16 sm:py-24 sm:px-6 lg:px-8 relative z-10">
+    <div class="kube-tools-hero-copy max-w-4xl">
+      <span class="kube-label">
+        Open LLM Explorer &middot; AI Agents &middot; Benchmarks
+      </span>
+      <h1>
+        Explore open models, <span>calculate VRAM, &amp; discover agents.</span>
+      </h1>
+      <p>
+        Comprehensive benchmarks, real-time GPU memory footprint calculator, context window boundaries, and curated open-source AI agent frameworks from the community.
+      </p>
+
+      <div class="kube-home-proof max-w-3xl mt-8">
+        <div>
+          <strong>{@model_count}</strong>
+          <span>Indexed Open Models</span>
+        </div>
+        <div>
+          <strong>{length(@agents)}</strong>
+          <span>Curated AI Agents</span>
+        </div>
+        <div>
+          <strong>160K</strong>
+          <span>Max Context Length</span>
+        </div>
+        <div>
+          <strong>100%</strong>
+          <span>Open Source</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+  <!-- Interactive GPU Memory (VRAM) Calculator inspired by LLM-Explorer -->
+  <div class="vram-calc-card">
+    <div class="vram-calc-header">
+      <div>
+        <span class="kube-kicker">Hardware Sizing Tool</span>
+        <h2>LLM GPU Memory (VRAM) Calculator</h2>
+      </div>
+      <p class="text-xs text-slate-500 max-w-md">
+        Calculate precise GPU memory requirements for model weights, KV cache, and runtime activation buffers.
+      </p>
+    </div>
+
+    <div class="vram-calc-grid">
+      <!-- Input Controls -->
+      <div class="vram-input-group">
+        <div class="vram-field">
+          <label for="vram-params">Model Parameter Size</label>
+          <select id="vram-params">
+            <option value="0.5">0.5 Billion (e.g. Qwen2.5 0.5B)</option>
+            <option value="1.5">1.5 Billion (e.g. Qwen2.5 1.5B, DeepSeek-R1 1.5B)</option>
+            <option value="3">3 Billion (e.g. Llama 3.2 3B, VibeThinker 3B)</option>
+            <option value="7" selected>7 Billion (e.g. Mistral 7B, Qwen2.5 7B)</option>
+            <option value="8">8 Billion (e.g. Llama 3.1 8B, DeepSeek-R1 8B)</option>
+            <option value="14">14 Billion (e.g. Qwen2.5 14B, DeepSeek-R1 14B)</option>
+            <option value="27">27 Billion (e.g. Gemma 2 27B, Qwopus 27B)</option>
+            <option value="32">32 Billion (e.g. Qwen2.5 32B, DeepSeek-R1 32B)</option>
+            <option value="70">70 Billion (e.g. Llama 3.3 70B, DeepSeek-R1 70B)</option>
+            <option value="120">120 Billion (e.g. Command R+, DBRX)</option>
+            <option value="405">405 Billion (e.g. Llama 3.1 405B)</option>
+            <option value="671">671 Billion MoE (e.g. DeepSeek V3 / R1)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="vram-field">
+            <label for="vram-quant">Quantization Precision</label>
+            <select id="vram-quant">
+              <option value="2.0">16-bit (FP16 / BF16 - Native)</option>
+              <option value="1.05">8-bit (INT8 / FP8)</option>
+              <option value="0.78">6-bit (GGUF Q6_K)</option>
+              <option value="0.67">5-bit (GGUF Q5_K_M)</option>
+              <option value="0.55" selected>4-bit (GGUF Q4_K_M / AWQ / GPTQ)</option>
+              <option value="0.42">3-bit (GGUF Q3_K_M)</option>
+              <option value="0.32">2-bit (GGUF Q2_K)</option>
+            </select>
+          </div>
+
+          <div class="vram-field">
+            <label for="vram-context">Context Window (Tokens)</label>
+            <select id="vram-context">
+              <option value="2048">2,048 Tokens (2K)</option>
+              <option value="4096">4,096 Tokens (4K)</option>
+              <option value="8192" selected>8,192 Tokens (8K standard)</option>
+              <option value="16384">16,384 Tokens (16K)</option>
+              <option value="32768">32,768 Tokens (32K)</option>
+              <option value="65536">65,536 Tokens (64K)</option>
+              <option value="131072">131,072 Tokens (128K)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="vram-field">
+          <label for="vram-kv">KV Cache Optimization</label>
+          <select id="vram-kv">
+            <option value="1.0" selected>FP16 KV Cache (Default)</option>
+            <option value="0.5">FP8 KV Cache (vLLM / llama.cpp - 50% savings)</option>
+            <option value="0.25">4-bit Quantized KV Cache (75% savings)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Real-Time Calculation Results -->
+      <div class="vram-results-card">
+        <div class="vram-summary-total">
+          <span>Estimated VRAM Required</span>
+          <div class="vram-big-number" id="vram-total-output">5.8 GB</div>
+          <small class="text-xs text-slate-500">Includes weights + KV cache + 12% activation buffer</small>
+        </div>
+
+        <div class="vram-breakdown-row">
+          <div class="vram-metric-box">
+            <small>Model Weights</small>
+            <strong id="vram-weights-output">3.9 GB</strong>
+          </div>
+          <div class="vram-metric-box">
+            <small>KV Cache &amp; Buffer</small>
+            <strong id="vram-kv-output">1.9 GB</strong>
+          </div>
+        </div>
+
+        <!-- Hardware Suitability Targets -->
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">Hardware Compatibility</span>
+          <div class="vram-hardware-targets">
+            <div class="vram-hw-row">
+              <span>💻 Entry / Ultrabook (4 GB RAM / iGPU)</span>
+              <span id="hw-4gb" class="vram-badge-oom">✗ Out of Memory</span>
+            </div>
+            <div class="vram-hw-row">
+              <span>💻 Desktop / Mac Base (8 GB - RTX 3050 / M2)</span>
+              <span id="hw-8gb" class="vram-badge-ok">✓ Fits Easily</span>
+            </div>
+            <div class="vram-hw-row">
+              <span>🖥️ Mid-Range GPU (16 GB - RTX 4070 / M-Pro)</span>
+              <span id="hw-16gb" class="vram-badge-ok">✓ Fits Easily</span>
+            </div>
+            <div class="vram-hw-row">
+              <span>🚀 Enthusiast Tier (24 GB - RTX 3090/4090 / M-Max)</span>
+              <span id="hw-24gb" class="vram-badge-ok">✓ Fits Easily</span>
+            </div>
+            <div class="vram-hw-row">
+              <span>🏢 Datacenter Cluster (80 GB - A100 / H100)</span>
+              <span id="hw-80gb" class="vram-badge-ok">✓ Fits Easily</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Open LLM Directory & Benchmarks -->
+  <section class="mb-16">
+    <div class="kube-tools-directory-heading flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+      <div>
+        <span class="kube-kicker">Open-Source Language Models</span>
+        <h2 class="text-3xl font-black tracking-tight text-slate-900 [data-theme=dark]:text-white mt-1">
+          Open Model Leaderboard
+        </h2>
+      </div>
+      <div class="w-full md:w-80">
+        <label for="model-search" class="sr-only">Search models</label>
+        <input
+          type="search"
+          id="model-search"
+          data-table-filter="models-table"
+          placeholder="Filter by name, maintainer, size, license…"
+          class="w-full rounded-lg border border-slate-300 [data-theme=dark]:border-slate-700 bg-white [data-theme=dark]:bg-slate-900 px-4 py-2.5 text-sm"
+        />
+      </div>
+    </div>
+
+    <!-- Quick Filter Chips matching LLM-Explorer -->
+    <div class="llm-chip-group">
+      <button type="button" class="llm-chip is-active" data-tag="all">All Models</button>
+      <button type="button" class="llm-chip" data-tag="4gb">Fit 4GB</button>
+      <button type="button" class="llm-chip" data-tag="8gb">Fit 8GB</button>
+      <button type="button" class="llm-chip" data-tag="16gb">Fit 16GB</button>
+      <button type="button" class="llm-chip" data-tag="24gb">Fit 24GB</button>
+      <button type="button" class="llm-chip" data-tag="codegen">CodeGen</button>
+      <button type="button" class="llm-chip" data-tag="instruct">Instruct</button>
+      <button type="button" class="llm-chip" data-tag="reasoning">Reasoning</button>
+      <button type="button" class="llm-chip" data-tag="gguf">GGUF Quantized</button>
+      <button type="button" class="llm-chip" data-tag="permissive">Permissive License</button>
+    </div>
+
+    <div class="overflow-x-auto rounded-xl border border-slate-200 [data-theme=dark]:border-slate-800 bg-white [data-theme=dark]:bg-slate-900 shadow-sm">
+      <table class="kube-table w-full text-left" id="models-table">
+        <thead>
+          <tr>
+            <th>Model Name</th>
+            <th>Maintainer</th>
+            <th>Params</th>
+            <th>MMLU Score</th>
+            <th>Est. VRAM</th>
+            <th class="text-center">Quantized</th>
+            <th>Context</th>
+            <th>License</th>
+            <th>Downloads</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for model <- @models do %>
+            <tr data-tags={Enum.join(model["tags"] || [], " ")}>
+              <td class="font-bold text-slate-900 [data-theme=dark]:text-white">
+                {model["Model Name"] || model["name"]}
+              </td>
+              <td>
+                <span class="inline-block py-0.5 px-2 rounded bg-slate-100 [data-theme=dark]:bg-slate-800 text-xs font-semibold">
+                  {model["Maintainer"] || "Community"}
+                </span>
+              </td>
+              <td class="font-mono text-xs font-semibold text-violet-600 [data-theme=dark]:text-violet-400">
+                {model["Size"] || model["parameters"]}
+              </td>
+              <td>
+                <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-violet-100 text-violet-800 [data-theme=dark]:bg-violet-950 [data-theme=dark]:text-violet-300">
+                  {model["Score"] || "#{model["mmlu"]}%"}
+                </span>
+              </td>
+              <td class="font-mono text-xs text-slate-600 [data-theme=dark]:text-slate-400">
+                {model["VRAM (GB)"] || "16"} GB
+              </td>
+              <td class="text-center">
+                <%= if model["Quantized"] not in [nil, false, ""] do %>
+                  <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 [data-theme=dark]:bg-emerald-950/60 [data-theme=dark]:text-emerald-400 text-xs font-bold">✓</span>
+                <% else %>
+                  <span class="text-slate-400 text-xs">-</span>
+                <% end %>
+              </td>
+              <td class="font-mono text-xs text-slate-600 [data-theme=dark]:text-slate-400">
+                {model["Context Len"] || model["context"]}
+              </td>
+              <td>
+                <span class="text-xs font-medium text-slate-600 [data-theme=dark]:text-slate-400">
+                  {model["License"] || model["license"] || "Open"}
+                </span>
+              </td>
+              <td class="font-mono text-xs text-slate-500">
+                {model["Downloads"] || "250K+"}
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Popular AI Agents Directory inspired by LLM-Explorer -->
+  <section class="border-t border-slate-200 [data-theme=dark]:border-slate-800 pt-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+      <div>
+        <span class="kube-kicker">Autonomous Intelligence</span>
+        <h2 class="text-3xl font-black tracking-tight text-slate-900 [data-theme=dark]:text-white mt-1">
+          Curated AI Agents &amp; Frameworks
+        </h2>
+      </div>
+      <p class="text-sm text-slate-500 max-w-md">
+        Open-source coding assistants, web browsing operators, multi-agent frameworks, and MCP orchestration runtimes.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto rounded-xl border border-slate-200 [data-theme=dark]:border-slate-800 bg-white [data-theme=dark]:bg-slate-900 shadow-sm">
+      <table class="kube-table w-full text-left">
+        <thead>
+          <tr>
+            <th>Agent</th>
+            <th>Type</th>
+            <th>GitHub Stars</th>
+            <th>Forks</th>
+            <th>License</th>
+            <th>Capabilities &amp; Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for agent <- @agents do %>
+            <tr>
+              <td>
+                <a
+                  href={agent["url"]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-bold text-violet-600 [data-theme=dark]:text-violet-400 hover:underline"
+                >
+                  {agent["name"]}
+                </a>
+                <span class="text-xs text-slate-400 block mt-0.5">by {agent["maintainer"]}</span>
+              </td>
+              <td>
+                <span class="agent-type-pill">{agent["type"]}</span>
+              </td>
+              <td class="font-mono text-xs font-semibold text-slate-900 [data-theme=dark]:text-white">
+                {agent["stars"]}
+              </td>
+              <td class="font-mono text-xs text-slate-500">
+                {agent["forks"]}
+              </td>
+              <td>
+                <span class="text-xs font-medium text-slate-600 [data-theme=dark]:text-slate-400">
+                  {agent["license"]}
+                </span>
+              </td>
+              <td class="text-xs text-slate-600 [data-theme=dark]:text-slate-300 max-w-sm leading-relaxed">
+                {agent["description"]}
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

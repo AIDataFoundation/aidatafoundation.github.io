@@ -1,0 +1,358 @@
+<!-- AI Data Foundation Home Hero -->
+<section class="kube-home-hero">
+  <div class="max-w-7xl mx-auto px-4 py-16 sm:py-24 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 kube-home-copy">
+        <span class="kube-kicker">
+          <span class="inline-block w-2 h-2 rounded-full bg-violet-400 animate-pulse mr-1"></span>
+          Open AI &amp; LLM Engineering Hub
+        </span>
+        <h1>
+          Build confidence with <span>AI &amp; Open Data.</span>
+        </h1>
+        <p>
+          Practical paths through Large Language Models, Model Context Protocol (MCP), Vector Databases, and the open-source tools that power modern artificial intelligence platforms.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/labs" class="kube-button">
+            Explore Hands-on Labs &rarr;
+          </a>
+          <a href="/tools" class="kube-button kube-button-outline">
+            Browse 500+ AI Tools
+          </a>
+        </div>
+        <div class="kube-home-proof">
+          <div>
+            <strong>500+</strong>
+            <span>Curated AI &amp; MCP Tools</span>
+          </div>
+          <div>
+            <strong>{length(@featured_labs)}+</strong>
+            <span>Verifiable Labs</span>
+          </div>
+          <div>
+            <strong>1,000</strong>
+            <span>Roadmap Milestones</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Data Foundation Ecosystem Map Sidecard -->
+      <div class="lg:col-span-5">
+        <div class="kube-home-map">
+          <div class="kube-home-map-top">
+            <span>AI Architecture</span>
+            <span class="text-violet-400">Live Ecosystem</span>
+          </div>
+          <div class="kube-home-map-orbit" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+          <div class="kube-home-map-content">
+            <span class="kube-kicker">Quick Navigation</span>
+            <h2>Curated paths for AI engineers</h2>
+            <ol>
+              <li>
+                <span>01</span>
+                <a href="/labs">Hands-on Labs &mdash; LangChain, Weaviate &amp; RAG</a>
+              </li>
+              <li>
+                <span>02</span>
+                <a href="/tools">AI Tools Index &mdash; 500+ Open Projects</a>
+              </li>
+              <li>
+                <span>03</span>
+                <a href="/models">Model Leaderboard &mdash; Benchmarks &amp; Context</a>
+              </li>
+              <li>
+                <span>04</span>
+                <a href="/roadmap">Curriculum &mdash; 1,000-Step Engineering Path</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Structured Learning Tracks Section -->
+<section class="kube-start-section">
+  <div class="kube-section-container">
+    <div class="kube-home-section-heading">
+      <div>
+        <span class="kube-kicker">Core Pillars</span>
+        <h2>Structured Learning Tracks</h2>
+      </div>
+      <p>
+        From your first local embedding model to production-tested multi-agent workflows, each track is crafted with reproducible code and verified dependencies.
+      </p>
+    </div>
+
+    <div class="kube-learning-grid">
+      <a href="/labs" class="kube-learning-card">
+        <span class="kube-learning-step">Track 01 &middot; Practice</span>
+        <h3>Hands-on Labs</h3>
+        <p>
+          Step-by-step technical guides with complete terminal instructions, code blocks, and verification commands.
+        </p>
+        <span class="kube-learning-action">Browse all labs &rarr;</span>
+      </a>
+
+      <a href="/tools" class="kube-learning-card">
+        <span class="kube-learning-step">Track 02 &middot; Directory</span>
+        <h3>AI Tools Index</h3>
+        <p>
+          Instant search and filter across 500+ curated AI tools, MCP servers, vector databases, and evaluation frameworks.
+        </p>
+        <span class="kube-learning-action">Search directory &rarr;</span>
+      </a>
+
+      <a href="/models" class="kube-learning-card">
+        <span class="kube-learning-step">Track 03 &middot; LLM Explorer</span>
+        <h3>Models &amp; VRAM Calculator</h3>
+        <p>
+          Interactive GPU memory sizing tool, context length boundaries, MMLU benchmarks, and curated AI agent frameworks.
+        </p>
+        <span class="kube-learning-action">Launch LLM Explorer &rarr;</span>
+      </a>
+
+      <a href="/roadmap" class="kube-learning-card">
+        <span class="kube-learning-step">Track 04 &middot; Curriculum</span>
+        <h3>1,000-Item Roadmap</h3>
+        <p>
+          Comprehensive engineering syllabus covering foundational math, LLM architecture, agentic orchestration, and MLOps.
+        </p>
+        <span class="kube-learning-action">Follow roadmap &rarr;</span>
+      </a>
+    </div>
+
+    <!-- Quick Tool Search Box -->
+    <div class="kube-home-search">
+      <form action="/tools" method="get">
+        <label for="home-search-input">Search open AI tools &amp; frameworks</label>
+        <div>
+          <input
+            id="home-search-input"
+            name="q"
+            type="search"
+            placeholder="Search Weaviate, LangChain, Ollama, MCP, vLLM, transformers…"
+            autocomplete="off"
+          />
+          <button type="submit" class="kube-button">
+            Search Directory
+          </button>
+        </div>
+        <p>Filter by name, description, or category with instant real-time results.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Labs Section -->
+<section class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+    <div>
+      <span class="kube-kicker">Interactive Workshops</span>
+      <h2 class="text-3xl font-black tracking-tight text-slate-900 [data-theme=dark]:text-white mt-1">
+        Featured Hands-on Labs
+      </h2>
+    </div>
+    <a
+      href="/labs"
+      class="text-sm font-bold text-violet-600 [data-theme=dark]:text-violet-400 hover:underline"
+    >
+      View all {length(@featured_labs)}+ labs &rarr;
+    </a>
+  </div>
+
+  <div class="kube-labs-grid">
+    <%= for lab <- @featured_labs do %>
+      <article class="kube-lab-card">
+        <div class="kube-lab-card-meta">
+          <span class="kube-label">{lab["category"]}</span>
+          <span class="text-xs font-mono text-slate-400">&gt;_ terminal</span>
+        </div>
+        <h3 class="text-xl font-bold mt-3 mb-2 text-slate-900 [data-theme=dark]:text-white">
+          <a href={~p"/labs/#{lab["id"]}"} class="hover:text-violet-600 transition">
+            {lab["title"]}
+          </a>
+        </h3>
+        <p class="text-sm text-slate-600 [data-theme=dark]:text-slate-300 leading-relaxed mb-4 flex-1">
+          {lab["description"]}
+        </p>
+        <div class="kube-tag-list mb-4">
+          <%= for tag <- Enum.take(lab["tags"] || [], 3) do %>
+            <span class="kube-tag">{tag}</span>
+          <% end %>
+        </div>
+        <div class="kube-lab-card-footer pt-4 border-t border-slate-100 [data-theme=dark]:border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-500">By {Enum.join(lab["contributors"] || ["ADF"], ", ")}</span>
+          <a
+            href={~p"/labs/#{lab["id"]}"}
+            class="text-sm font-bold text-violet-600 [data-theme=dark]:text-violet-400 hover:underline"
+          >
+            Open Lab &rarr;
+          </a>
+        </div>
+      </article>
+    <% end %>
+  </div>
+</section>
+
+<!-- Latest Blog Articles -->
+<section class="border-t border-slate-200 [data-theme=dark]:border-slate-800 bg-slate-100/50 [data-theme=dark]:bg-slate-900/40 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="kube-kicker">Engineering Journal</span>
+        <h2 class="text-3xl font-black tracking-tight text-slate-900 [data-theme=dark]:text-white mt-1">
+          Latest Research &amp; Architectural Notes
+        </h2>
+      </div>
+      <a
+        href="/blog"
+        class="text-sm font-bold text-violet-600 [data-theme=dark]:text-violet-400 hover:underline"
+      >
+        View all articles &rarr;
+      </a>
+    </div>
+
+    <div class="kube-blog-grid">
+      <%= for post <- @featured_posts do %>
+        <article class="kube-blog-card">
+          <div class="kube-lab-card-meta">
+            <span class="kube-label">{post["category"]}</span>
+            <span class="text-xs text-slate-400">{post["date"]}</span>
+          </div>
+          <h3 class="text-xl font-bold mt-3 mb-2 text-slate-900 [data-theme=dark]:text-white">
+            <a href={~p"/blog/#{post["id"]}"} class="hover:text-violet-600 transition">
+              {post["title"]}
+            </a>
+          </h3>
+          <p class="text-sm text-slate-600 [data-theme=dark]:text-slate-300 leading-relaxed mb-4 flex-1">
+            {post["description"]}
+          </p>
+          <div class="pt-4 border-t border-slate-100 [data-theme=dark]:border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-500">By {post["author"]}</span>
+            <a
+              href={~p"/blog/#{post["id"]}"}
+              class="text-sm font-bold text-violet-600 [data-theme=dark]:text-violet-400 hover:underline"
+            >
+              Read Article &rarr;
+            </a>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Model Leaderboard Snapshot -->
+<section class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+    <div>
+      <span class="kube-kicker">Open Weights</span>
+      <h2 class="text-3xl font-black tracking-tight text-slate-900 [data-theme=dark]:text-white mt-1">
+        Featured Model Benchmarks
+      </h2>
+    </div>
+    <a
+      href="/models"
+      class="text-sm font-bold text-violet-600 [data-theme=dark]:text-violet-400 hover:underline"
+    >
+      Full leaderboard &rarr;
+    </a>
+  </div>
+
+  <div class="overflow-x-auto rounded-xl border border-slate-200 [data-theme=dark]:border-slate-800 bg-white [data-theme=dark]:bg-slate-900 shadow-sm">
+    <table class="kube-table w-full text-left">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Parameters</th>
+          <th>MMLU Score</th>
+          <th>Context Length</th>
+          <th>License</th>
+          <th>Primary Strength</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for model <- @featured_models do %>
+          <tr>
+            <td class="font-bold text-slate-900 [data-theme=dark]:text-white">
+              {model["name"]}
+            </td>
+            <td>{model["parameters"]}</td>
+            <td>
+              <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-violet-100 text-violet-800 [data-theme=dark]:bg-violet-950 [data-theme=dark]:text-violet-300">
+                {model["mmlu"]}%
+              </span>
+            </td>
+            <td>{model["context"]}</td>
+            <td>{model["license"]}</td>
+            <td class="text-slate-600 [data-theme=dark]:text-slate-400">
+              {model["description"]}
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Next Useful Steps Section -->
+<section class="border-t border-slate-200 [data-theme=dark]:border-slate-800 bg-slate-50 [data-theme=dark]:bg-[#18131f] py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="kube-home-section-heading mb-8">
+      <div>
+        <span class="kube-kicker">Next Useful Steps</span>
+        <h2>Continue Your AI Journey</h2>
+      </div>
+      <p>
+        Whether you are preparing a local test environment or contributing your own model evaluation, here is where to go next.
+      </p>
+    </div>
+
+    <div class="kube-home-paths">
+      <div class="kube-learning-card">
+        <span class="kube-learning-step">Community Contribution</span>
+        <h3>Share an AI Tool or Lab</h3>
+        <p>
+          AI Data Foundation is 100% community-driven. Submit a pull request to add your open-source model, MCP integration, or notebook.
+        </p>
+        <a
+          href="https://github.com/aidatafoundation/aidatafoundation.github.io"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="kube-learning-action"
+        >
+          View repository on GitHub &rarr;
+        </a>
+      </div>
+
+      <div class="kube-learning-card">
+        <span class="kube-learning-step">Engineering Curriculum</span>
+        <h3>Explore the 1,000-Item Roadmap</h3>
+        <p>
+          Structured tracks through linear algebra, transformers, inference optimization, vector indexing, and agent safety.
+        </p>
+        <a href="/roadmap" class="kube-learning-action">
+          Open roadmap track viewer &rarr;
+        </a>
+      </div>
+
+      <div class="kube-learning-card">
+        <span class="kube-learning-step">Vector Databases</span>
+        <h3>Connect Weaviate Locally</h3>
+        <p>
+          Learn hybrid dense/sparse search, multi-tenant vector clustering, and real-time schema generation with our hands-on workshop.
+        </p>
+        <a href="/labs/AI-native-database" class="kube-learning-action">
+          Start Weaviate lab &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

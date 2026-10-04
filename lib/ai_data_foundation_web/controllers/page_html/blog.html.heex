@@ -1,0 +1,103 @@
+<div data-content-library>
+  <!-- AI Data Foundation Journal Header -->
+  <section class="kube-library-header">
+    <div class="kube-library-container">
+      <span class="kube-kicker">The ADF Journal</span>
+      <h1>
+        Understand more. <span>Build with confidence.</span>
+      </h1>
+      <p class="kube-library-intro">
+        Practical explanations of Large Language Models, Model Context Protocol (MCP), vector retrieval pipelines, and the engineering decisions behind reliable production AI systems.
+      </p>
+      <div class="kube-library-links">
+        <a href="#guide-library">Browse {length(@posts)} guides &darr;</a>
+        <a href="/labs">Prefer hands-on practice? Explore labs &rarr;</a>
+        <a href="/roadmap">View roadmap &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide Catalog Section -->
+  <div class="kube-library-section">
+    <div class="kube-library-container">
+      <div class="kube-library-toolbar" id="guide-library">
+        <div>
+          <span class="kube-kicker">Research &amp; Field Notes</span>
+          <h2>The Guide Library</h2>
+        </div>
+        <div class="kube-library-search" data-library-controls>
+          <label for="blog-library-search">Filter guides by title, category, or author</label>
+          <input
+            id="blog-library-search"
+            type="search"
+            data-library-search
+            placeholder="Search Qwen, MCP, benchmarks, tools…"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <p class="kube-library-count" data-library-count>
+        {length(@posts)} of {length(@posts)} shown
+      </p>
+
+      <div class="kube-blog-grid">
+        <%= for post <- @posts do %>
+          <article class="kube-blog-card" data-library-card>
+            <div class="kube-lab-card-meta">
+              <span class="kube-label">{post["category"]}</span>
+              <span class="text-xs text-slate-400">{post["date"]}</span>
+            </div>
+            <h3>
+              <a href={~p"/blog/#{post["id"]}"}>
+                {post["title"]}
+              </a>
+            </h3>
+            <p>
+              {post["description"] || post["excerpt"]}
+            </p>
+            <div class="kube-tag-list mb-4">
+              <%= for tag <- Enum.take(post["tags"] || [], 3) do %>
+                <span class="kube-tag">{tag}</span>
+              <% end %>
+            </div>
+            <div class="kube-lab-card-footer pt-4 border-t border-slate-100 [data-theme=dark]:border-slate-800 flex items-center justify-between mt-auto">
+              <span class="text-xs text-slate-500">By {post["author"]}</span>
+              <a
+                href={~p"/blog/#{post["id"]}"}
+                class="text-sm font-bold text-violet-600 [data-theme=dark]:text-violet-400 hover:underline"
+              >
+                Read Guide &rarr;
+              </a>
+            </div>
+          </article>
+        <% end %>
+      </div>
+
+      <p class="py-12 text-center text-slate-500" data-library-empty hidden>
+        No engineering guides matched your search keyword. Clear your query to see all guides.
+      </p>
+
+      <!-- Contribute Footer -->
+      <div class="kube-library-footer mt-12 pt-8 border-t border-slate-200 [data-theme=dark]:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="kube-kicker">Open Insights</span>
+          <h2 class="text-xl font-bold text-slate-900 [data-theme=dark]:text-white mt-1">
+            Have insights to share with the AI practitioner community?
+          </h2>
+          <p class="text-sm text-slate-500 mt-1">
+            Submit technical articles, architecture breakdowns, or benchmark evaluations.
+          </p>
+        </div>
+        <a
+          href="https://github.com/aidatafoundation/aidatafoundation.github.io/blob/main/CONTRIBUTING.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="kube-button text-sm shrink-0"
+        >
+          Contribute a Guide &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

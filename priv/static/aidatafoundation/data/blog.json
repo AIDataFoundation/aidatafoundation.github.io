@@ -1,0 +1,64 @@
+{
+  "blogs": [
+    {
+      "id": "Qwen-Coder-Models",
+      "title": "Qwen Coder Models: Breakthrough AI at Your Fingertips",
+      "date": "April 23, 2025",
+      "excerpt": "Qwen Coder Models represent a leap forward in open coding capabilities. Discover how they outperform models twice their size in code generation and debugging.",
+      "author": "Sangam Biradar",
+      "file": "/blog/Qwen-Coder-Models.md",
+      "category": "LLM",
+      "tags": ["Qwen", "Coding", "Open Source LLM", "Benchmarks"]
+    },
+    {
+      "id": "MCP_SDLC",
+      "title": "Model Context Protocol (MCP) Impact on Software Development Life Cycle",
+      "date": "June 2, 2025",
+      "excerpt": "Model Context Protocol (MCP) bridges language models and development environments. Explore how it revolutionizes tooling, automated testing, and developer workflows.",
+      "author": "AI Data Foundation",
+      "file": "/blog/MCP_SDLC.md",
+      "category": "MCP",
+      "tags": ["MCP", "SDLC", "Developer Tools", "AI Architecture"]
+    },
+    {
+      "id": "cloud-native-tools-collection",
+      "title": "Curated AI and Cloud-Native Tools Collection",
+      "date": "May 10, 2024",
+      "excerpt": "A curated directory of AI, LLM, and cloud-native infrastructure tools, presented in an easy-to-browse searchable interface.",
+      "author": "AI Data Foundation",
+      "file": "/blog/cloud-native-tools-collection.md",
+      "category": "Tools",
+      "tags": ["AI Tools", "Cloud Native", "Open Source", "Ecosystem"]
+    },
+    {
+      "id": "quick-start-guide",
+      "title": "Quick Start Guide to AI Data Foundation",
+      "date": "June 15, 2024",
+      "excerpt": "Get started with the AI Data Foundation platform, labs, benchmarks, and community resources with this comprehensive guide.",
+      "author": "AI Data Foundation",
+      "file": "/blog/quick-start-guide.md",
+      "category": "Guides",
+      "tags": ["Quick Start", "Tutorial", "Getting Started"]
+    },
+    {
+      "id": "categories-and-contributing",
+      "title": "Tool Categories and How to Contribute",
+      "date": "July 23, 2024",
+      "excerpt": "Explore our AI & LLM tool categories and learn how to contribute your own open-source project to the directory.",
+      "author": "AI Data Foundation",
+      "file": "/blog/categories-and-contributing.md",
+      "category": "Community",
+      "tags": ["Contributing", "Open Source", "Community", "Guidelines"]
+    },
+    {
+      "id": "markdown-showcase",
+      "title": "Interactive Documentation & Markdown Styling Showcase",
+      "date": "June 4, 2024",
+      "excerpt": "A showcase of technical markdown rendering, syntax highlighting, callouts, and code presentation.",
+      "author": "AI Data Foundation",
+      "file": "/blog/markdown-showcase.md",
+      "category": "Documentation",
+      "tags": ["Markdown", "Styling", "Code", "Documentation"]
+    }
+  ]
+}

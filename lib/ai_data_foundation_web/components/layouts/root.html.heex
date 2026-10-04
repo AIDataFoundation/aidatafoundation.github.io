@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+
+    <title>{assigns[:page_title] || "AI Data Foundation · Open Tools, Benchmarks & Labs"}</title>
+    <meta
+      name="description"
+      content="AI Data Foundation is an independent open-source foundation curating developer tools, reproducible benchmarks, datasets, and architectures for the global artificial intelligence community."
+    />
+    <meta
+      name="keywords"
+      content="AI Data Foundation, AI, LLM, Machine Learning, Open Source, MCP, Model Context Protocol, Weaviate, Vector DB, LangChain, Benchmarks, Datasets, AI Tools"
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://aidatafoundation.github.io/" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="AI Data Foundation Blog"
+      href="/rss.xml"
+    />
+
+    <!-- OpenGraph & Twitter -->
+    <meta property="og:site_name" content="AI Data Foundation" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content={assigns[:page_title] || "AI Data Foundation · Open Tools, Benchmarks & Labs"}
+    />
+    <meta
+      property="og:description"
+      content="Open-source tools, model benchmarks, and hands-on labs for AI researchers and engineers."
+    />
+    <meta property="og:url" content="https://aidatafoundation.github.io/" />
+    <meta property="og:image" content="/aidatafoundation/logos/aidatafoundation.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={assigns[:page_title] || "AI Data Foundation"} />
+    <meta
+      name="twitter:description"
+      content="Open-source tools, model benchmarks, and hands-on labs for AI researchers and engineers."
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
+    </script>
+  </head>
+  <body class="bg-slate-50 text-slate-900 transition-colors duration-200 [data-theme=dark]:bg-[#18131f] [data-theme=dark]:text-slate-100 flex flex-col min-h-screen">
+    <!-- Reading Progress Pickup Banner -->
+    <div id="pick-up" class="hidden">
+      <span>Resume previous session:</span>
+      <a href="#">Continue reading &rarr;</a>
+      <button type="button" aria-label="Dismiss reading resume banner">&times;</button>
+    </div>
+    <div id="pick-up-phone" class="kube-phone-pickup">
+      <p>Pick up where you left off?</p>
+      <a href="#">Resume reading</a>
+      <button type="button" aria-label="Dismiss">&times;</button>
+    </div>
+    <div id="pick-up-overlay" class="kube-pickup-overlay"></div>
+
+    <!-- Standard AI Data Foundation Header -->
+    <header class="kube-site-header">
+      <div class="kube-header-inner">
+        <a href="/" class="kube-brand" aria-label="AI Data Foundation Home">
+          <img
+            src="/aidatafoundation/logos/aidatafoundation.svg"
+            alt="AI Data Foundation"
+            width="240"
+            height="42"
+            class="h-9 sm:h-10 w-auto"
+          />
+        </a>
+
+        <nav class="kube-nav-menu" aria-label="Main Navigation">
+          <a href="/" class="kube-nav-link">Home</a>
+          <a href="/tools" class="kube-nav-link">Tools</a>
+          <a href="/models" class="kube-nav-link">Models &amp; VRAM</a>
+          <a href="/labs" class="kube-nav-link">Labs</a>
+          <a href="/blog" class="kube-nav-link">Blog</a>
+          <a href="/roadmap" class="kube-nav-link">Roadmap</a>
+          <a href="/about" class="kube-nav-link">About</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            id="theme-toggle"
+            aria-label="Toggle Dark Mode"
+            class="p-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-200 [data-theme=dark]:text-slate-400 [data-theme=dark]:hover:text-slate-100 [data-theme=dark]:hover:bg-slate-800 transition cursor-pointer"
+          >
+            <svg
+              id="theme-sun"
+              class="w-4 h-4 hidden [data-theme=dark]:block"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+            <svg
+              id="theme-moon"
+              class="w-4 h-4 block [data-theme=dark]:hidden"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+          </button>
+
+          <a
+            href="https://github.com/aidatafoundation/aidatafoundation.github.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="kube-header-github"
+          >
+            <svg class="w-4 h-4 fill-current inline-block" viewBox="0 0 24 24">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              />
+            </svg>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+      {@inner_content}
+    </main>
+
+    <!-- Standard AI Data Foundation Footer -->
+    <footer class="kube-footer">
+      <div class="kube-footer-inner">
+        <!-- Foundation Info -->
+        <div class="kube-footer-intro">
+          <a href="/" class="kube-brand" aria-label="AI Data Foundation Home">
+            <img
+              src="/aidatafoundation/logos/aidatafoundation.svg"
+              alt="AI Data Foundation"
+              width="240"
+              height="42"
+              class="h-9 w-auto"
+            />
+          </a>
+          <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+            The independent, non-profit open-source foundation dedicated to curating, validating, and standardizing developer tools, reproducible benchmarks, datasets, and architectures for the global artificial intelligence community.
+          </p>
+          <div class="pt-1 flex items-center gap-4 text-xs font-bold text-violet-400">
+            <a
+              href="https://github.com/aidatafoundation/aidatafoundation.github.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 hover:text-white transition"
+            >
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              /></svg>
+              <span>GitHub Organization</span>
+            </a>
+            <span>&middot;</span>
+            <a href="/about" class="hover:text-white transition">About the Foundation</a>
+          </div>
+        </div>
+
+        <!-- Ecosystem & Tools -->
+        <nav class="space-y-2">
+          <span class="kube-footer-heading">Ecosystem &amp; Tools</span>
+          <a href="/tools">AI &amp; LLM Tools Directory</a>
+          <a href="/models">Models &amp; VRAM Calculator</a>
+          <a href="/models#models-table">Open Weights Leaderboard</a>
+          <a href="/tools?category=MCP">MCP Servers &amp; Runtimes</a>
+        </nav>
+
+        <!-- Learning & Labs -->
+        <nav class="space-y-2">
+          <span class="kube-footer-heading">Learning &amp; Labs</span>
+          <a href="/labs">Hands-on Engineering Labs</a>
+          <a href="/labs/LangChain-Practical-Labs">LangChain Practical Lab</a>
+          <a href="/labs/AI-native-database">Weaviate Vector DB Lab</a>
+          <a href="/blog">Engineering Blog &amp; Notes</a>
+          <a href="/roadmap">1,000-Step AI Roadmap</a>
+        </nav>
+
+        <!-- Foundation & Community -->
+        <nav class="space-y-2">
+          <span class="kube-footer-heading">Foundation</span>
+          <a href="/about">About AI Data Foundation</a>
+          <a
+            href="https://github.com/aidatafoundation/aidatafoundation.github.io/blob/main/CONTRIBUTING.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Contribution Guidelines</a>
+          <a
+            href="https://github.com/aidatafoundation/aidatafoundation.github.io/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Report an Issue / Suggestion</a>
+          <a href="/sitemap.xml">Sitemap XML</a>
+          <a href="/rss.xml">RSS Feed</a>
+        </nav>
+      </div>
+
+      <div class="kube-footer-bottom">
+        <p>
+          &copy; {Date.utc_today().year} AI Data Foundation. Open source software released under the Apache-2.0 License.
+        </p>
+        <p>Open Tools &middot; Open Models &middot; Open Benchmarks</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,263 +1,69 @@
 # AI Data Foundation
 
-A comprehensive resource for AI tools, frameworks, and methodologies, presented in a modern, responsive web interface with enhanced blog functionality and cutting-edge design.
+The open-source AI and LLM learning, benchmarking, and tool curation platform, reimplemented in Elixir and the Phoenix web framework (matching the architecture of [kubernetesdaily.github.io](https://github.com/kubernetesdaily/kubernetesdaily.github.io)).
 
+## Features
 
-## 🌟 Features
+- **500+ Curated AI & MCP Tools**: Interactive directory loaded from upstream catalog with client-side search, category filtering, sorting, and GitHub stars.
+- **Open AI Model Leaderboard**: Comprehensive benchmark scores, VRAM requirements, context window lengths, quantization status, and licenses.
+- **7 Hands-on Labs**: Self-paced, terminal-first guides covering LangChain agents, Weaviate vector databases with Ollama, LLM evaluation metrics, ethical synthetic data generation, and reinforcement learning.
+- **AI Engineering Blog**: In-depth architecture guides, MCP protocol specifications, and technical writeups with table-of-contents navigation.
+- **1,000-Item Content Roadmap**: 4 learning tracks (LLM Architectures, Agentic Systems & MCP, RAG & Vector Data, Evaluation & AI Safety) with structured blog and lab titles.
+- **Dual Deployment Model**:
+  - Run as a high-performance **Phoenix web application** (`mix phx.server`)
+  - Export as a **static website** (`mix aidatafoundation.export --output _site`) deployed to GitHub Pages via automated GitHub Actions (`.github/workflows/pages.yml`).
 
-### 🛠️ Core Features
-- **Comprehensive AI Directory**: Browse tools and frameworks for artificial intelligence and machine learning
-- **Categorized Browsing**: Filter resources by categories like Machine Learning, Natural Language Processing, Computer Vision, and more
-- **Advanced Search**: Real-time search functionality with filters and sorting options
-- **GitHub Integration**: View GitHub stars and repository information using GitHub's GraphQL API
-- **Modern UI/UX**: Clean, responsive interface with dark mode support and smooth animations
+## Quick Start
 
-### 📝 Enhanced Blog Section
-- **Full-Screen Reading**: Optimized layout for maximum readability and content utilization
-- **Modern Typography**: Enhanced font system with Inter font and improved readability
-- **Rich Content Support**: Advanced markdown rendering with syntax highlighting
-- **Search & Filtering**: Find blog posts by title, content, author, or tags
-- **Grid/List Views**: Toggle between different viewing modes
-- **Featured Posts**: Prominent display of latest content
-- **Social Sharing**: Easy sharing to social media platforms
-- **Reading Time**: Automatic calculation and display of reading time estimates
+### 1. Prerequisites
 
-### 🎨 Design System
-- **Dark Mode**: Beautiful dark theme with automatic preference detection
-- **Responsive Design**: Optimized for all devices from mobile to 4K displays
-- **Modern Animations**: Smooth transitions and hover effects throughout
-- **Enhanced Typography**: Professional font hierarchy and spacing
-- **Accessibility**: WCAG compliant with proper semantic HTML and ARIA labels
+- Elixir 1.17+ and Erlang/OTP 27+
+- Node.js (for asset compilation)
 
-## 🚀 Quick Start
+### 2. Setup & Run Locally
 
-### Prerequisites
+```bash
+# Install Hex, Rebar, and project dependencies
+mix setup
 
-- Node.js (version 18 or higher)
-- npm or yarn
-- GitHub Personal Access Token (for local development only) - See [GitHub API Setup](GITHUB-API-SETUP.md)
+# Start the Phoenix server
+mix phx.server
+```
 
-### Installation
+Open [http://localhost:4000](http://localhost:4000) in your browser.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/aidatafoundation/aidatafoundation.github.io.git
-   cd aidatafoundation.github.io
-   ```
+### 3. Static Site Export (GitHub Pages)
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+To compile assets and export the entire platform into static HTML/assets for GitHub Pages:
 
-3. For local development only, create a `.env.local` file with your GitHub token:
-   ```bash
-   VITE_GITHUB_TOKEN=your_github_token_here
-   ```
-   See [GitHub API Setup](GITHUB-API-SETUP.md) for detailed instructions.
-   
-   **Note:** When deploying with GitHub Actions, the token is automatically configured.
+```bash
+# Build and digest assets
+mix assets.deploy
 
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
+# Export all public routes to _site
+mix aidatafoundation.export --output _site
+```
 
-5. Open your browser and navigate to `http://localhost:5173`
+The output directory `_site` contains:
+- `index.html` (Landing page)
+- `tools/index.html` (AI Tools Directory)
+- `models/index.html` (Model Leaderboard)
+- `labs/index.html` and individual `/labs/:id/` pages
+- `blog/index.html` and individual `/blog/:id/` pages
+- `roadmap/index.html` (Editorial Roadmap)
+- `about/index.html` (About ADF)
+- `sitemap.xml`, `rss.xml`, `feed.xml`, `404.html`, `CNAME`, `.nojekyll`
 
-## 🔧 Available Scripts
+### 4. Running Tests & Precommit
 
-- `npm run dev` - Start the development server with hot reload
-- `npm run build` - Build the project for production with optimization
-- `npm run preview` - Preview the production build locally
-- `npm run deploy` - Deploy to GitHub Pages
-- `npm run lint` - Run ESLint for code quality checks
+```bash
+# Run tests
+mix test
 
-## 📚 Content Categories
+# Run full precommit suite (warnings-as-errors, code format, and tests)
+mix precommit
+```
 
-The collection includes resources for:
+## License
 
-### 🤖 AI & Machine Learning
-- Machine Learning
-- Deep Learning
-- Natural Language Processing
-- Computer Vision
-- Large Language Models
-- Multimodal Learning
-
-### 🔬 Research & Development
-- Data Quality
-- Federated Learning
-- Synthetic Data
-- Privacy-Preserving ML
-- Explainable AI
-- Model Interpretability
-
-### 🛠️ Tools & Frameworks
-- Development Tools
-- Model Training
-- Data Processing
-- Visualization
-- Deployment
-- Monitoring
-
-## 📝 Blog Features
-
-### Content Management
-- **Markdown Support**: Rich content creation with enhanced markdown rendering
-- **Frontmatter**: Metadata support for posts (title, date, author, tags)
-- **Categories**: Organized content by topics and themes
-- **Tags System**: Flexible tagging for better content discovery
-
-### Reading Experience
-- **Full-Screen Layout**: Maximum content width utilization
-- **Enhanced Typography**: Larger, more readable fonts
-- **Code Highlighting**: Syntax highlighting for code blocks
-- **Responsive Images**: Optimized image display with captions
- 
-
-### User Engagement
-- **Social Sharing**: One-click sharing to major platforms
-- **Author Information**: Enhanced author profiles and metadata
-- **Related Content**: Suggestions for further reading
-
-## 🤝 Contributing
-
-We welcome contributions from the community! Here's how you can contribute:
-
-### Adding a New Tool
-
-1. Fork the repository
-2. Edit `src/data/entries.js` and add your tool in the appropriate category:
-   ```javascript
-   {
-     title: "Your Tool Name",
-     link: "https://link-to-tool",
-     description: "Brief description of the tool",
-     github: "github-username/repo", // Optional
-     tag: "Category Name"
-   }
-   ```
-3. Create a pull request with your changes
-
-### Contributing Blog Posts
-
-1. Fork the repository
-2. Create a new markdown file in `public/blog/` directory
-3. Add your post entry to `public/data/blog.json`
-4. Include proper frontmatter with metadata
-5. Submit a pull request
-
-### Improving the Application
-
-1. Fork the repository
-2. Create a new branch for your feature or fix
-3. Make your changes following the coding standards
-4. Test your changes thoroughly
-5. Submit a pull request with a detailed description
-
-### Guidelines
-
-- Make sure the tool is relevant to the AI/ML ecosystem
-- Provide a concise and accurate description
-- Include the appropriate category/tag
-- Ensure there are no duplicates
-- Follow the established design patterns
-- Test on multiple devices and screen sizes
-
-## 🔧 Technologies Used
-
-### Frontend
-- **React 18** - Modern React with hooks and functional components
-- **Vite** - Fast build tool and development server
-- **Tailwind CSS** - Utility-first CSS framework
-- **Shadcn/ui** - Modern component library
-
-### Styling & Design
-- **Inter Font** - Professional typography
-- **CSS Variables** - Dynamic theming system
-- **Framer Motion** - Smooth animations and transitions
-- **Lucide Icons** - Beautiful, consistent iconography
-
-### Development Tools
-- **ESLint** - Code quality and consistency
-- **Prettier** - Code formatting
-- **TypeScript** - Type safety (optional)
-- **GitHub Actions** - Automated deployment
-
-### Content Management
-- **Markdown** - Rich content creation
-- **JSON** - Structured data management
-- **GitHub API** - Repository information and stars
-
-## 🎨 Design System
-
-### Color Palette
-- **Primary**: Modern blue with purple accents
-- **Secondary**: Muted grays and whites
-- **Accent**: Purple and cyan highlights
-- **Semantic**: Success, warning, error, and info colors
-
-### Typography
-- **Font Family**: Inter (primary), system fonts (fallback)
-- **Font Sizes**: Responsive scale from 14px to 72px
-- **Line Heights**: Optimized for readability
-- **Font Weights**: 100-900 with semantic usage
-
-### Components
-- **Cards**: Elevated content containers
-- **Buttons**: Multiple variants and sizes
-- **Forms**: Accessible input components
-- **Navigation**: Responsive navigation system
-- **Modals**: Overlay dialogs and popups
-
-## 📱 Responsive Design
-
-### Breakpoints
-- **Mobile**: 320px - 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: 1024px - 1440px
-- **Large Desktop**: 1440px+
-
-### Features
-- **Mobile-First**: Optimized for mobile devices
-- **Touch-Friendly**: Large touch targets and gestures
-- **Performance**: Optimized loading and rendering
-- **Accessibility**: WCAG 2.1 AA compliance
-
-## 🚀 Performance
-
-### Optimizations
-- **Code Splitting**: Dynamic imports for better loading
-- **Image Optimization**: WebP format and lazy loading
-- **Caching**: Strategic caching strategies
-- **Bundle Size**: Minimal JavaScript bundle
-- **SEO**: Optimized meta tags and structured data
-
-### Metrics
-- **Lighthouse Score**: 90+ across all categories
-- **Core Web Vitals**: Optimized for user experience
-- **Load Time**: Sub-2 second initial load
-- **Time to Interactive**: Fast interactive experience
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Maintainers
-
-- [AI Data Foundation Team](https://github.com/aidatafoundation)
-
-## 🙏 Acknowledgments
-
-- **Inter Font**: Beautiful typography by Rasmus Andersson
-- **Lucide Icons**: Consistent iconography
-- **Tailwind CSS**: Utility-first CSS framework
-- **Vite**: Fast build tool
-- **React Community**: Amazing ecosystem and tools
-
----
-
-**Star the repo if you find it useful!** ⭐
-
-*Built with ❤️ by the AI Data Foundation team*
+This project is open source under the [Apache 2.0 License](LICENSE).

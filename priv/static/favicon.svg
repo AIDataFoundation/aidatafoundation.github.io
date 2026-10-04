@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="favGradTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="favGradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="favGradRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <filter id="favGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#6366f1" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- High-Precision Neural Cube Favicon Emblem -->
+  <g filter="url(#favGlow)">
+    <!-- Top Face -->
+    <polygon points="32,9 51,19.96 32,30.93 13,19.96" fill="url(#favGradTop)" />
+    <!-- Left Face -->
+    <polygon points="13,19.96 32,30.93 32,53 13,42.03" fill="url(#favGradLeft)" />
+    <!-- Right Face -->
+    <polygon points="32,30.93 51,19.96 51,42.03 32,53" fill="url(#favGradRight)" />
+
+    <!-- Isometric Edges -->
+    <path d="M13 19.96 L32 30.93 L51 19.96" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round" opacity="0.9" />
+    <path d="M32 30.93 L32 53" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.9" />
+
+    <!-- Outer Nodes -->
+    <circle cx="32" cy="9" r="2.5" fill="#c4b5fd" stroke="#ffffff" stroke-width="1" />
+    <circle cx="51" cy="19.96" r="2.5" fill="#67e8f9" stroke="#ffffff" stroke-width="1" />
+    <circle cx="51" cy="42.03" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1" />
+    <circle cx="32" cy="53" r="2.5" fill="#818cf8" stroke="#ffffff" stroke-width="1" />
+    <circle cx="13" cy="42.03" r="2.5" fill="#a78bfa" stroke="#ffffff" stroke-width="1" />
+    <circle cx="13" cy="19.96" r="2.5" fill="#c4b5fd" stroke="#ffffff" stroke-width="1" />
+
+    <!-- Central Glowing Core -->
+    <circle cx="32" cy="30.93" r="4" fill="#ffffff" />
+    <circle cx="32" cy="30.93" r="2" fill="#6366f1" />
+  </g>
+</svg>

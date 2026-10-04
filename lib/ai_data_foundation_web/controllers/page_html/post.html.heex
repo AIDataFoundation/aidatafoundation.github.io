@@ -1,0 +1,87 @@
+<!-- AI Data Foundation Article Hero -->
+<div class="kube-article-hero" id="reader-top">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="kube-lab-breadcrumb" aria-label="Breadcrumb">
+      <a href="/blog">Blog</a>
+      <span aria-hidden="true">/</span>
+      <span>{@post["category"]}</span>
+    </nav>
+    <span class="kube-kicker">Field Notes &amp; Architecture</span>
+    <h1>{@post["title"]}</h1>
+    <p class="text-lg sm:text-xl text-slate-600 [data-theme=dark]:text-slate-300 max-w-3xl leading-relaxed mt-3">
+      {@post["excerpt"]}
+    </p>
+    <div class="flex items-center gap-3 text-sm text-slate-500 mt-4">
+      <span>By
+      <strong class="text-slate-700 [data-theme=dark]:text-slate-200">{@post["author"]}</strong></span>
+      <span>&middot;</span>
+      <span>{@post["date"]}</span>
+    </div>
+    <div class="kube-tag-list mt-4">
+      <%= for tag <- @post["tags"] || [] do %>
+        <span class="kube-tag">{tag}</span>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Article Shell with Sticky Sidebar & Markdown -->
+<div class="kube-article-shell">
+  <aside class="kube-article-aside" aria-label="Article details and contents">
+    <details class="kube-reader-contents" open>
+      <summary>
+        <span>On this page</span>
+        <span class="text-xs font-normal text-slate-400">({length(@outline)})</span>
+      </summary>
+      <nav>
+        <%= for item <- @outline do %>
+          <a
+            class={if(item.level == 3, do: "kube-reader-nested", else: "")}
+            href={"##{item.id}"}
+          >
+            {item.title}
+          </a>
+        <% end %>
+      </nav>
+    </details>
+
+    <button type="button" class="kube-reading-toggle" data-reading-toggle hidden>
+      Reading width: <span>standard</span>
+    </button>
+
+    <a href="/blog" class="kube-lab-outline-all">
+      &larr; Back to all guides
+    </a>
+    <a
+      href={@edit_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="kube-contribute-link"
+    >
+      Edit this guide on GitHub &nearr;
+    </a>
+  </aside>
+
+  <div class="min-w-0">
+    <article class="kube-markdown">
+      {raw(@content)}
+    </article>
+
+    <div class="kube-reader-end">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a
+          href="/labs"
+          class="text-sm font-bold text-violet-600 [data-theme=dark]:text-violet-400 hover:underline"
+        >
+          Prefer hands-on practice? Explore labs &rarr;
+        </a>
+        <a
+          href="#reader-top"
+          class="text-sm text-slate-500 hover:text-slate-900 [data-theme=dark]:hover:text-white"
+        >
+          Back to top &uarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
