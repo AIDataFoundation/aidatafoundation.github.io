@@ -73,6 +73,24 @@ defmodule AiDataFoundation.Foundation do
         "Synthetic Data Validation & Quality Metrics",
         "Governance, Provenance & Watermarking"
       ]
+    },
+    %{
+      id: "ai-security-engineering",
+      title: "AI Security Engineering",
+      description:
+        "Securing AI systems from development through production: threat modeling, adversarial robustness, and compliance.",
+      blogs: 30,
+      labs: 25,
+      topics: [
+        "OWASP Top 10 for LLM Applications",
+        "Prompt Injection: Attack Vectors & Mitigations",
+        "Model Watermarking & Fingerprinting Techniques",
+        "Automated Red-Teaming with Garak & PromptFoo",
+        "Data Provenance, Lineage & Governance",
+        "Supply Chain Security for ML Artifacts",
+        "EU AI Act & NIST AI RMF Compliance",
+        "Runtime Monitoring & Anomaly Detection"
+      ]
     }
   ]
 
@@ -319,7 +337,8 @@ defmodule AiDataFoundation.Foundation do
       labs_count: length(labs()),
       blog_count: length(posts()),
       models_count: length(models()),
-      tracks_count: length(@roadmap_tracks)
+      tracks_count: length(@roadmap_tracks),
+      security_labs_count: 4
     }
   end
 

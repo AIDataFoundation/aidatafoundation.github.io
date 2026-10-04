@@ -105,12 +105,12 @@
 /* This file is for your main application CSS */
 
 :root {
-  --brand-purple-100: #caa2f5;
-  --brand-purple-200: #cfbae6;
-  --brand-purple-300: #967ab4;
-  --brand-purple-800: #7c6f89;
-  --brand-purple-900: #6d28d9;
-  --purple: #7c6f89;
+  --brand-emerald-100: #6ee7b7;
+  --brand-emerald-200: #a7f3d0;
+  --brand-emerald-300: #34d399;
+  --brand-emerald-800: #047857;
+  --brand-emerald-900: #064e3b;
+  --emerald: #047857;
 
   --brand-gray-100: #f9fafb;
   --brand-gray-200: #f5f6f7;
@@ -149,6 +149,20 @@ body {
 [data-theme="dark"] body, .dark body {
   background-color: var(--brand-gray-700);
   color: var(--color-primary);
+}
+
+.glass-card {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 8px 32px 0 rgba(30,41,59,0.08);
+}
+[data-theme="dark"] .glass-card,
+.dark .glass-card {
+  background: rgba(15,23,42,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px 0 rgba(2,6,23,0.25);
 }
 
 /* Accessibility Skip Link */

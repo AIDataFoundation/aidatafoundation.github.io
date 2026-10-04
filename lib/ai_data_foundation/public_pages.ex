@@ -10,7 +10,8 @@ defmodule AiDataFoundation.PublicPages do
       "/labs",
       "/blog",
       "/roadmap",
-      "/about"
+      "/about",
+      "/security"
     ] ++
       Enum.map(Foundation.labs(), &"/labs/#{&1["id"]}") ++
       Enum.map(Foundation.posts(), &"/blog/#{&1["id"]}")

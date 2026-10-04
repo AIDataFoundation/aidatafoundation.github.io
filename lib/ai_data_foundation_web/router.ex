@@ -26,6 +26,7 @@ defmodule AiDataFoundationWeb.Router do
     get "/blog/:id", PageController, :post
     get "/roadmap", PageController, :roadmap
     get "/about", PageController, :about
+    get "/security", PageController, :security
     get "/sitemap.xml", PageController, :sitemap
     get "/rss.xml", PageController, :feed
     get "/feed.xml", PageController, :feed

@@ -108,6 +108,12 @@ defmodule AiDataFoundationWeb.PageController do
     )
   end
 
+  def security(conn, _params) do
+    render(conn, :security,
+      page_title: "AI Safety & Data Security · AI Data Foundation"
+    )
+  end
+
   def sitemap(conn, _params) do
     domain = "https://aidatafoundation.github.io"
     paths = PublicPages.paths()

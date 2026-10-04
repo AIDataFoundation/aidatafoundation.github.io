@@ -4,35 +4,35 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       <div class="lg:col-span-7 kube-home-copy">
         <span class="kube-kicker">
-          <span class="inline-block w-2 h-2 rounded-full bg-violet-400 animate-pulse mr-1"></span>
-          Open AI &amp; LLM Engineering Hub
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-1"></span>
+          Secure AI &amp; Data Security Hub
         </span>
         <h1>
-          Build confidence with <span>AI &amp; Open Data.</span>
+          Defend your AI. <span>Protect your data.</span>
         </h1>
         <p>
-          Practical paths through Large Language Models, Model Context Protocol (MCP), Vector Databases, and the open-source tools that power modern artificial intelligence platforms.
+          Production-grade security for LLM applications: prompt injection defense, model watermarking, automated red-teaming, and data provenance for modern AI platforms.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/labs" class="kube-button">
-            Explore Hands-on Labs &rarr;
+          <a href="/security" class="kube-button">
+            Explore Security Labs &rarr;
           </a>
-          <a href="/tools" class="kube-button kube-button-outline">
-            Browse 500+ AI Tools
+          <a href="/security" class="kube-button kube-button-outline">
+            AI Security Tools
           </a>
         </div>
         <div class="kube-home-proof">
           <div>
             <strong>500+</strong>
-            <span>Curated AI &amp; MCP Tools</span>
+            <span>Security Tools &amp; Frameworks</span>
           </div>
           <div>
-            <strong>{length(@featured_labs)}+</strong>
-            <span>Verifiable Labs</span>
+            <strong>3+</strong>
+            <span>Security Labs</span>
           </div>
           <div>
-            <strong>1,000</strong>
-            <span>Roadmap Milestones</span>
+            <strong>200+</strong>
+            <span>Security Roadmap Steps</span>
           </div>
         </div>
       </div>
@@ -55,11 +55,11 @@
             <ol>
               <li>
                 <span>01</span>
-                <a href="/labs">Hands-on Labs &mdash; LangChain, Weaviate &amp; RAG</a>
+                <a href="/labs">Security Labs &mdash; LangChain, Weaviate &amp; RAG</a>
               </li>
               <li>
                 <span>02</span>
-                <a href="/tools">AI Tools Index &mdash; 500+ Open Projects</a>
+                <a href="/tools">AI Security Tools Index &mdash; 500+ Open Projects</a>
               </li>
               <li>
                 <span>03</span>
@@ -77,13 +77,13 @@
   </div>
 </section>
 
-<!-- Structured Learning Tracks Section -->
+<!-- Secure AI Learning Tracks Section -->
 <section class="kube-start-section">
   <div class="kube-section-container">
     <div class="kube-home-section-heading">
       <div>
         <span class="kube-kicker">Core Pillars</span>
-        <h2>Structured Learning Tracks</h2>
+        <h2>Secure AI Learning Tracks</h2>
       </div>
       <p>
         From your first local embedding model to production-tested multi-agent workflows, each track is crafted with reproducible code and verified dependencies.
@@ -91,25 +91,25 @@
     </div>
 
     <div class="kube-learning-grid">
-      <a href="/labs" class="kube-learning-card">
+      <a href="/labs" class="kube-learning-card glass-card glass-card">
         <span class="kube-learning-step">Track 01 &middot; Practice</span>
-        <h3>Hands-on Labs</h3>
+        <h3>Security Labs</h3>
         <p>
           Step-by-step technical guides with complete terminal instructions, code blocks, and verification commands.
         </p>
         <span class="kube-learning-action">Browse all labs &rarr;</span>
       </a>
 
-      <a href="/tools" class="kube-learning-card">
+      <a href="/tools" class="kube-learning-card glass-card glass-card">
         <span class="kube-learning-step">Track 02 &middot; Directory</span>
-        <h3>AI Tools Index</h3>
+        <h3>AI Security Tools Index</h3>
         <p>
           Instant search and filter across 500+ curated AI tools, MCP servers, vector databases, and evaluation frameworks.
         </p>
         <span class="kube-learning-action">Search directory &rarr;</span>
       </a>
 
-      <a href="/models" class="kube-learning-card">
+      <a href="/models" class="kube-learning-card glass-card glass-card">
         <span class="kube-learning-step">Track 03 &middot; LLM Explorer</span>
         <h3>Models &amp; VRAM Calculator</h3>
         <p>
@@ -118,7 +118,7 @@
         <span class="kube-learning-action">Launch LLM Explorer &rarr;</span>
       </a>
 
-      <a href="/roadmap" class="kube-learning-card">
+      <a href="/roadmap" class="kube-learning-card glass-card glass-card">
         <span class="kube-learning-step">Track 04 &middot; Curriculum</span>
         <h3>1,000-Item Roadmap</h3>
         <p>
@@ -156,7 +156,7 @@
     <div>
       <span class="kube-kicker">Interactive Workshops</span>
       <h2 class="text-3xl font-black tracking-tight text-slate-900 [data-theme=dark]:text-white mt-1">
-        Featured Hands-on Labs
+        Featured Security Labs
       </h2>
     </div>
     <a
@@ -169,7 +169,7 @@
 
   <div class="kube-labs-grid">
     <%= for lab <- @featured_labs do %>
-      <article class="kube-lab-card">
+      <article class="kube-lab-card glass-card">
         <div class="kube-lab-card-meta">
           <span class="kube-label">{lab["category"]}</span>
           <span class="text-xs font-mono text-slate-400">&gt;_ terminal</span>
@@ -221,7 +221,7 @@
 
     <div class="kube-blog-grid">
       <%= for post <- @featured_posts do %>
-        <article class="kube-blog-card">
+        <article class="kube-blog-card glass-card">
           <div class="kube-lab-card-meta">
             <span class="kube-label">{post["category"]}</span>
             <span class="text-xs text-slate-400">{post["date"]}</span>
@@ -255,7 +255,7 @@
     <div>
       <span class="kube-kicker">Open Weights</span>
       <h2 class="text-3xl font-black tracking-tight text-slate-900 [data-theme=dark]:text-white mt-1">
-        Featured Model Benchmarks
+        Secure Model Benchmarks
       </h2>
     </div>
     <a
@@ -302,13 +302,72 @@
   </div>
 </section>
 
+<!-- AI Security Focus Section -->
+<section class="border-t border-slate-200 [data-theme=dark]:border-slate-800 bg-slate-50 [data-theme=dark]:bg-[#18131f] py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="kube-home-section-heading mb-12">
+      <div>
+        <span class="kube-kicker">AI Security</span>
+        <h2 class="text-3xl font-black tracking-tight text-slate-900 [data-theme=dark]:text-white mt-1">
+          Secure Your AI Systems</h2>
+      </div>
+      <p class="text-slate-500 max-w-2xl">
+        From prompt injection defense to model watermarking, red-teaming automation, and regulatory compliance — build AI systems that withstand adversarial threats.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <div class="kube-learning-card glass-card p-6 border-l-4 border-red-500">
+        <div class="w-10 h-10 rounded-lg bg-red-100 [data-theme=dark]:bg-red-950 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-red-600 [data-theme=dark]:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 [data-theme=dark]:text-white mb-1">Prompt Injection Defense</h3>
+        <p class="text-sm text-slate-600 [data-theme=dark]:text-slate-400">Detect & block adversarial inputs, jailbreaks, and indirect prompt injections in production LLM apps.</p>
+      </div>
+
+      <div class="kube-learning-card glass-card p-6 border-l-4 border-amber-500">
+        <div class="w-10 h-10 rounded-lg bg-amber-100 [data-theme=dark]:bg-amber-950 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-amber-600 [data-theme=dark]:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 [data-theme=dark]:text-white mb-1">Model Watermarking</h3>
+        <p class="text-sm text-slate-600 [data-theme=dark]:text-slate-400">Embed cryptographic provenance into model weights to detect unauthorized distillation and prove ownership.</p>
+      </div>
+
+      <div class="kube-learning-card glass-card p-6 border-l-4 border-violet-500">
+        <div class="w-10 h-10 rounded-lg bg-violet-100 [data-theme=dark]:bg-violet-950 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-violet-600 [data-theme=dark]:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 [data-theme=dark]:text-white mb-1">Automated Red-Teaming</h3>
+        <p class="text-sm text-slate-600 [data-theme=dark]:text-slate-400">Continuous adversarial testing with Garak, PromptFoo, and custom attack strategies in CI/CD pipelines.</p>
+      </div>
+
+      <div class="kube-learning-card glass-card p-6 border-l-4 border-emerald-500">
+        <div class="w-10 h-10 rounded-lg bg-emerald-100 [data-theme=dark]:bg-emerald-950 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-emerald-600 [data-theme=dark]:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 [data-theme=dark]:text-white mb-1">Data Provenance & Governance</h3>
+        <p class="text-sm text-slate-600 [data-theme=dark]:text-slate-400">End-to-end data lineage, access controls, and compliance automation for EU AI Act & NIST AI RMF.</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="/security" class="kube-button">
+        Explore AI Security Hub &rarr;
+      </a>
+      <a href="/labs?category=Security" class="kube-button kube-button-outline">
+        Start Security Labs &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Next Useful Steps Section -->
 <section class="border-t border-slate-200 [data-theme=dark]:border-slate-800 bg-slate-50 [data-theme=dark]:bg-[#18131f] py-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="kube-home-section-heading mb-8">
       <div>
         <span class="kube-kicker">Next Useful Steps</span>
-        <h2>Continue Your AI Journey</h2>
+        <h2>Continue Your Security Journey</h2>
       </div>
       <p>
         Whether you are preparing a local test environment or contributing your own model evaluation, here is where to go next.
@@ -318,7 +377,7 @@
     <div class="kube-home-paths">
       <div class="kube-learning-card">
         <span class="kube-learning-step">Community Contribution</span>
-        <h3>Share an AI Tool or Lab</h3>
+        <h3>Share a Security Tool or Lab</h3>
         <p>
           AI Data Foundation is 100% community-driven. Submit a pull request to add your open-source model, MCP integration, or notebook.
         </p>
@@ -334,7 +393,7 @@
 
       <div class="kube-learning-card">
         <span class="kube-learning-step">Engineering Curriculum</span>
-        <h3>Explore the 1,000-Item Roadmap</h3>
+        <h3>Explore the Security Engineering Roadmap</h3>
         <p>
           Structured tracks through linear algebra, transformers, inference optimization, vector indexing, and agent safety.
         </p>
@@ -345,7 +404,7 @@
 
       <div class="kube-learning-card">
         <span class="kube-learning-step">Vector Databases</span>
-        <h3>Connect Weaviate Locally</h3>
+        <h3>Connect Secure Vector DB</h3>
         <p>
           Learn hybrid dense/sparse search, multi-tenant vector clustering, and real-time schema generation with our hands-on workshop.
         </p>
