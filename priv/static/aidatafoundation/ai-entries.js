@@ -439,5 +439,49 @@ export const aiEntries = [
     description: "High-quality single file implementation of Deep Reinforcement Learning algorithms with research-friendly features (PPO, DQN, C51, DDPG, TD3, SAC, PPG)",
     github: "vwxyzjn",
     tag: "Reinforcement Learning"
+  },
+
+  // AI Security
+  {
+    title: "Garak",
+    link: "https://github.com/leondz/garak",
+    description: "LLM vulnerability scanner with 160+ attack probes for red-teaming and security evaluation.",
+    github: "leondz",
+    tag: "AI Security"
+  },
+  {
+    title: "PromptFoo",
+    link: "https://github.com/promptfoo/promptfoo",
+    description: "Automated red-teaming, evaluation, and security testing framework for LLM applications.",
+    github: "promptfoo",
+    tag: "AI Security"
+  },
+  {
+    title: "LLM Guard",
+    link: "https://github.com/protectai/llm-guard",
+    description: "Input/output sanitization, PII detection, and prompt injection defense for production LLMs.",
+    github: "protectai",
+    tag: "AI Security"
+  },
+  {
+    title: "Guardrails AI",
+    link: "https://github.com/lakera/guardrails",
+    description: "Structured output validation and safety rails for LLM applications.",
+    github: "lakera",
+    tag: "AI Security"
+  },
+  {
+    title: "DeepEval",
+    link: "https://github.com/deepeval/deepeval",
+    description: "Hallucination, bias, toxicity, and RAG evaluation metrics for secure AI systems.",
+    github: "deepeval",
+    tag: "AI Security"
+  },
+  {
+    title: "Nebullvm",
+    link: "https://github.com/nebuly-ai/nebullvm",
+    description: "Model optimization with security-preserving compilation for safe AI deployment.",
+    github: "nebuly-ai",
+    tag: "AI Security"
   }
 ]; 
