@@ -34,9 +34,9 @@ jobs:
           path: |
             _build
             deps
-          key: pages-v2-${{ runner.os }}-${{ hashFiles('mix.lock') }}
+          key: pages-v3-${{ runner.os }}-${{ hashFiles('mix.lock') }}
           restore-keys: |
-            pages-v2-${{ runner.os }}-
+            pages-v3-${{ runner.os }}-
 
       - name: Install dependencies
         run: mix deps.get
@@ -60,7 +60,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 

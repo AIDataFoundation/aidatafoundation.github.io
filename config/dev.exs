@@ -17,6 +17,14 @@ config :ai_data_foundation, AiDataFoundationWeb.Endpoint,
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:ai_data_foundation, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:ai_data_foundation, ~w(--watch)]}
+  ],
+  live_reload: [
+    web_console_logger: true,
+    patterns: [
+      ~r"priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"lib/ai_data_foundation_web/router\.ex$",
+      ~r"lib/ai_data_foundation_web/(controllers|live|components)/.*\.(ex|heex)$"
+    ]
   ]
 
 # ## SSL Support
